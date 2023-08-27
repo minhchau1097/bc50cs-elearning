@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
+import { BrowserRouter, Routes } from 'react-router-dom';
+import { Fragment, Suspense } from 'react';
+import renderRoutes from './routes';
+
 import './App.css';
 
-function App() {
+function App(): any {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Suspense>
+        <BrowserRouter  >
+          <Routes >
+
+            {renderRoutes()}
+
+
+          </Routes>
+        </BrowserRouter>
+      </Suspense>
+    </Fragment>
   );
 }
 
