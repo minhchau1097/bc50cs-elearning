@@ -5,7 +5,7 @@ import renderRoutes from './routes';
 
 import './App.css';
 
-function App(): any {
+function App(): JSX.Element {
   return (
     <Fragment>
       <Suspense>
