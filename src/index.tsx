@@ -9,7 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
-import "@fontsource/poppins/800.css"; 
+import "@fontsource/poppins/800.css";
 import './scss/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
