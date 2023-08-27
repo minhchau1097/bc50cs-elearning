@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/page/HomeTemplate/HomePage/index.js'
+    './src/page/HomeTemplate/HomePage/CountUp/index.tsx',
+    './src/page/HomeTemplate/HomePage/Introduce/index.tsx',
   ],
   presets: [],
   darkMode: 'media', // or 'class'

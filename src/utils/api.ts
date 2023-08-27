@@ -2,9 +2,13 @@ import axios from "axios";
 const api = axios.create({
     baseURL: 'https://elearningnew.cybersoft.edu.vn/api/'
 })
+type Config = {
+    headers: any;
 
-api.interceptors.request.use((config) => {
-    const accessToken = JSON.parse(localStorage.getItem('UserAdmin'))?.accessToken || JSON.parse(localStorage.getItem('Customer'))?.accessToken;
+};
+
+api.interceptors.request.use((config: Config) => {
+    const accessToken = JSON.parse(localStorage.getItem('UserAdmin') || '')?.accessToken || JSON.parse(localStorage.getItem('Customer') || '')?.accessToken;
     config.headers = {
         ...config.headers,
         TokenCybersoft:
