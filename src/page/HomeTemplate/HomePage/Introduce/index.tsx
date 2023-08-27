@@ -1,4 +1,4 @@
-
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
 
@@ -6,75 +6,70 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/grid';
+import axios from 'axios';
+import { Rating } from '@mui/material';
 
 
 export default function Introduce() {
+    const [state, setState] = useState([]);
+
+    useEffect(() => {
+        axios({
+            url: 'https://64709e3a3de51400f724a087.mockapi.io/Teacher',
+            method: 'GET',
+        })
+            .then((result) => {
+                setState(result.data)
+            })
+            .catch((error) => {
+
+            })
+    }, [])
+    const renderSlide = () => {
+        return state?.map((item: Teacher, index) => {
+            return <SwiperSlide key={index} className='text-center' >
+                <div className='slider-content ml-3 w-5/6 rounded-md transition-all py-4'>
+                    <div>
+                        <img src={item.hinhAnh} alt="logo" />
+                        <h6>{item.ten}</h6>
+                    </div>
+                    <div>
+                        <p>{item.linhVuc}</p>
+                        <p>{item.ngonNgu}</p>
+                        <div className='flex justify-center'>
+                            <Rating name="half-rating-read" defaultValue={5} precision={0.5}  readOnly ></Rating>
+                            <span>{item.danhGia}</span>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+        })
+    }
     return (
-        <div className='container-fluid'>
-            <div className='introduce'>
-                <Swiper
-                    spaceBetween={50}
-                    slidesPerView={5}
-                    grid={{
-                        rows: 1,
+        <div className='bg-white'>
 
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Pagination, Grid, Navigation]}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    className='mySwiper'
-                >
+            <div className='px-12 '>
+                <div className='introduce'>
+                    <Swiper
+                        spaceBetween={0}
+                        slidesPerView={6}
 
-                    <SwiperSlide className='text-center'>
-                        <div>
+                        grid={{
+                            rows: 1,
 
-                            <img src="	https://demo2.cybersoft.edu.vn/static/media/instrutor5.2e4bd1e6.jpg" alt="logo" />
-                            <h6>Big DadMoon</h6>
-                        </div>
-                        <div>
-                            <p>Chuyên gia lĩnh vực</p>
-                            <p>Lập trình</p>
-                        </div>
-                    </SwiperSlide>
+                        }}
+                        pagination={{
+                            clickable: true,
 
-                    <SwiperSlide className='text-center'>
-                        <div>
-
-                            <img src="	https://demo2.cybersoft.edu.vn/static/media/instrutor5.2e4bd1e6.jpg" alt="logo" />
-                            <h6>Big DadMoon</h6>
-                        </div>
-                        <div>
-                            <p>Chuyên gia lĩnh vực</p>
-                            <p>Lập trình</p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='text-center'>
-                        <div>
-
-                            <img src="	https://demo2.cybersoft.edu.vn/static/media/instrutor5.2e4bd1e6.jpg" alt="logo" />
-                            <h6>Big DadMoon</h6>
-                        </div>
-                        <div>
-                            <p>Chuyên gia lĩnh vực</p>
-                            <p>Lập trình</p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='text-center'>
-                        <div>
-
-                            <img src="	https://demo2.cybersoft.edu.vn/static/media/instrutor5.2e4bd1e6.jpg" alt="logo" />
-                            <h6>Big DadMoon</h6>
-                        </div>
-                        <div>
-                            <p>Chuyên gia lĩnh vực</p>
-                            <p>Lập trình</p>
-                        </div>
-                    </SwiperSlide>
-
-                </Swiper>
+                        }}
+                        modules={[Pagination, Grid]}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        className='mySwiper mb-52 '
+                    >
+                        {renderSlide()}
+                    </Swiper>
+                </div>
             </div>
         </div>
     )

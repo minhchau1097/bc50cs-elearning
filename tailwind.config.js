@@ -192,6 +192,14 @@ module.exports = {
       '7xl': '80rem',
     },
     container: {},
+    containerFluid:{
+        width: '100%',
+        paddingRight: '15px',
+        paddingLeft: '15px',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+    
+    },
     content: {
       none: 'none',
     },
