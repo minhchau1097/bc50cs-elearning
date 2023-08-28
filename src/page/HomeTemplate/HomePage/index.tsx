@@ -1,4 +1,5 @@
 import Number from "./Countup";
+import FeedBack from "./Feedback";
 import Introduce from "./Introduce";
 
 export default function HomePage() {
@@ -13,10 +14,12 @@ export default function HomePage() {
 
 
 
-      
+
 
       <Introduce />
 
+
+      <FeedBack />
 
     </div >
   )
