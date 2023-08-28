@@ -3,6 +3,8 @@ module.exports = {
   content: [
     './src/page/HomeTemplate/HomePage/CountUp/index.tsx',
     './src/page/HomeTemplate/HomePage/Introduce/index.tsx',
+    './src/page/HomeTemplate/HomePage/FeedBack/index.tsx',
+    './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
   ],
   presets: [],
   darkMode: 'media', // or 'class'
@@ -791,6 +793,7 @@ module.exports = {
       150: '1.5',
     },
     screens: {
+      xs: '400px',
       sm: '640px',
       md: '768px',
       lg: '1024px',

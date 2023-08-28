@@ -2,10 +2,10 @@ import React from 'react'
 import CountUp from 'react-countup';
 export default function Number() {
     return (
-        <div className='count-up mb-52 py-10'>
-            <div className='container'>
+        <div className='count-up  py-10'>
+            <div className='px-12'>
                 <div className=''>
-                    <div className='grid grid-cols-4'>
+                    <div className='grid md:grid-cols-4 sm:grid-cols-1 xs:grid-cols-1'>
                         <div className="content" >
                             <div>
 
