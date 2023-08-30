@@ -4,6 +4,7 @@ module.exports = {
     './src/page/HomeTemplate/HomePage/CountUp/index.tsx',
     './src/page/HomeTemplate/HomePage/Introduce/index.tsx',
     './src/page/HomeTemplate/HomePage/FeedBack/index.tsx',
+    './src/page/HomeTemplate/HomePage/Welcome/index.tsx',
     './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
   ],
   presets: [],
