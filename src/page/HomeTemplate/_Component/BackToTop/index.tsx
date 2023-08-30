@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styled from "@emotion/styled";
 export default function BackToTop() {
@@ -16,27 +16,31 @@ export default function BackToTop() {
        cursor: pointer;
     `
     const [visible, setVisible] = useState(false)
+    useEffect(() => {
+        window.addEventListener('scroll', toggleVisible);
 
-    const toggleVisible = () => {
-        const scrolled = document.documentElement.scrollTop;
-        if (scrolled > 300) {
-            setVisible(true)
-        }
-        else if (scrolled <= 300) {
-            setVisible(false)
-        }
-    };
+    }, [])
 
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-            /* you can also use 'auto' behaviour
-               in place of 'smooth' */
-        });
-    };
 
-    window.addEventListener('scroll', toggleVisible);
+        const toggleVisible = () => {
+            const scrolled = document.documentElement.scrollTop;
+            if (scrolled > 300) {
+                setVisible(true)
+            }
+            else if (scrolled <= 300) {
+                setVisible(false)
+            }
+        };
+    
+            const scrollToTop = () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                    /* you can also use 'auto' behaviour
+                    in place of 'smooth' */
+                });
+            };
+    
 
 
 
