@@ -193,3 +193,10 @@ input:focus {
 .iconSize:hover {
   box-shadow: 1px 2px 2px 1px #636363;
 }
+
+/* /HOMEPAGE */
+.homePage{
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 50px;
+}
