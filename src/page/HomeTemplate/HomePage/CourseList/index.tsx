@@ -3,10 +3,11 @@ import {useEffect} from 'react';
 import { actFetchListCourse } from './duck/action';
 import CourseItem from './CourseItem';
 import { Course } from '../../../../type/type';
+import { RootState } from '../../../../store';
 
 export default function CourseList() {
   const dispatch : any= useDispatch();
-  const dataList = useSelector((state:any)=>state.courseListReducer.data);
+  const dataList = useSelector((state: RootState)=>state.courseListReducer.data);
   console.log(dataList);
   
 

@@ -3,13 +3,14 @@ import api from "../../../../../utils/api";
 import { Result ,Action ,Course} from "../../../../../type/type";
 
 export const actFetchListCourse =()=>{
-    return async (dispatch : any)=>{
+    return (dispatch : any)=>{
         dispatch(actListCourseRequest());
-        await api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
-        .then((res )=>{
+         api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
+        .then((res :Result<Course>)=>{
+            console.log(res.data);  
             if(res.data.statusCode === 200){
                 dispatch(actListCourseSuccess(res.data.content));
-                console.log(res.data.content);              
+                console.log(res.data);              
             }               
         })
         .catch((err)=>{
@@ -26,7 +27,7 @@ const actListCourseRequest =() :Action=>{
     }
 }
 
-const actListCourseSuccess =(data :any) :Action=>{
+const actListCourseSuccess =(data :Course[]) :Action=>{
     return{
         type:COURSELIST_SUCCESS,
         payload: data,

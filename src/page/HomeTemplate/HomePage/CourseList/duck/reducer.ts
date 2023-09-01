@@ -1,12 +1,13 @@
+import { Action, AppState, Course } from "../../../../../type/type";
 import { COURSELIST_REQUEST,COURSELIST_SUCCESS,COURSELIST_FAIL } from "./contants";
 
-const initialState = {
+const initialState :AppState<Course>= {
     loading: false,
      data:null,
      error: null,
 };
 
-const courseListReducer = (state=initialState , action:any)=>{
+const courseListReducer = (state=initialState , action:Action)=>{
     switch (action.type) {
         case COURSELIST_REQUEST:{
             state.loading =true;
