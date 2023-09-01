@@ -7,9 +7,9 @@ export const actFetchListCourse =()=>{
         dispatch(actListCourseRequest());
          api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
         .then((res :Result<Course>)=>{
-            console.log(res.data);  
-            if(res.data.statusCode === 200){
-                dispatch(actListCourseSuccess(res.data.content));
+            console.log(res);  
+            if(res.status === 200){
+                dispatch(actListCourseSuccess(res.data));
                 console.log(res.data);              
             }               
         })

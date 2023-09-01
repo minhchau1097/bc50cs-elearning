@@ -16,17 +16,16 @@ export default function CourseList() {
   },[]);
 
   const renderCourseList =()=>{
-    return dataList?.map((item: any)=>{
+    return dataList?.map((item: Course)=>{
       return <CourseItem
       key ={item.maKhoaHoc}
       item = {item}
-      />
+      />  
     })
   }
 
   return (
     <section className="row mt-4">
-      <h1>hello</h1>
       {renderCourseList()}
     </section>
   )
