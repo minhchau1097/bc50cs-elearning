@@ -1,5 +1,5 @@
 import Number from "./Countup";
-import CourseItem from "./CourseItem";
+import CourseList from "./CourseList";
 import FeedBack from "./Feedback";
 import InfoCourse from "./InfoCourse";
 import Introduce from "./Introduce";
@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className="homePage">
       <Welcome />
       <InfoCourse/>
-      <CourseItem/>
+      <CourseList/>
       <Number />
       <Introduce />
       <FeedBack />
