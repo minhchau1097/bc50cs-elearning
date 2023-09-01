@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&family=Nunito:wght@200;300;400;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap");
+p {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.count-up {
+  background-color: #f0f8ff;
+}
+.count-up .content {
+  text-align: center;
+}
+.count-up .content img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.count-up .content span {
+  color: #41b294;
+  font-size: 50px;
+  font-weight: 700;
+}
+.count-up .content p {
+  font-weight: 500;
+}
+
+.introduce .swiper {
+  overflow: visible;
+  overflow-x: clip;
+  height: 250px;
+}
+.introduce .swiper .swiper-slide {
+  height: auto;
+}
+.introduce .swiper .swiper-slide .slider-content:hover {
+  box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.13);
+}
+.introduce .swiper .swiper-slide img {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.introduce .swiper .swiper-pagination {
+  transform: translateY(30px);
+}
+
+.infoCourse {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: white;
+  gap: 20px;
+}
+
+.infoItem {
+  padding: 20px;
+}
+
+.infoLarge {
+  grid-row: 1/span 2;
+  background-color: #41b294;
+  background-image: url(../../Image/astronaut.3c90d598.png);
+  background-position: 100% 100%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.infoSmall_1 {
+  background-color: #f6ba35;
+}
+
+.infoSmall_2 {
+  background-color: #5c8295;
+}
+
+.infoSmall_3 {
+  background-color: #63c0a8;
+}
+
+.infoContent h3 {
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 500;
+}
+.infoContent ul li {
+  padding: 5px;
+}
+.infoContent ul li i {
+  padding-right: 10px;
+}/*# sourceMappingURL=index.css.map */
