@@ -8,8 +8,6 @@ import { RootState } from '../../../../store';
 export default function CourseList() {
   const dispatch : any= useDispatch();
   const dataList = useSelector((state: RootState)=>state.courseListReducer.data);
-  console.log(dataList);
-  
 
   useEffect(()=>{
     dispatch(actFetchListCourse());

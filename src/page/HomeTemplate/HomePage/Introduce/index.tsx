@@ -83,8 +83,6 @@ export default function Introduce() {
 
                     }}
                     modules={[Pagination, Grid]}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
                 >
                     {renderSlide()}
                 </Swiper>

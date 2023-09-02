@@ -9,14 +9,8 @@ export interface Action{
     payload? : any;
 };
 
-export interface Response<T>{
-    statusCode: number;
-    message: string;
-    content: T[];
-}
-
 export interface Result<T>{
-    data : Response<T>;
+    data : T[];
     status: number;
     statusText: string;
 }
@@ -31,4 +25,8 @@ export interface Course{
     maNhom: string;
     ngayTao: string;
     soLuongHocVien: string;
+    danhMucKhoaHoc:{
+        maDanhMucKhoahoc: string;
+        tenDanhMucKhoaHoc: string;
+    }
 }

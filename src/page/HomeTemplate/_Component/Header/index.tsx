@@ -27,10 +27,6 @@ export default function Header() {
               <NavLink className={({ isActive }) => isActive ? "my-active nav-link text-dark" : "nav-link text-dark"} to="/danhmuckhoahoc">DANH MỤC</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => isActive ? "my-active nav-link  text-dark" : "nav-link  text-dark"} to="/khoahoc">KHÓA HỌC</NavLink>
-            </li>
-
-            <li className="nav-item">
               <NavLink className={({ isActive }) => isActive ? "my-active nav-link  text-dark" : "nav-link  text-dark"} to="/blog">BLOG</NavLink>
             </li>
             <li className="nav-item">
