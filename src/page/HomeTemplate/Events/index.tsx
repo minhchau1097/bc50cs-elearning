@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { Grid, ThemeProvider } from '@mui/material'
 import React, { useEffect, useState, useMemo, memo } from 'react'
@@ -17,18 +16,14 @@ export default function Events(props: any) {
   useEffect(() => {
     const interval = setInterval(() => {
       const then: any = dayjs('09 25 2023 ,06:00 am', 'MM DD YYYY, h:mm a');
-      // console.log(then)
       const now: any = dayjs();
-      // console.log(now)
       const countdown = dayjs(then - now);
-      // console.log(countdown)
       const days = countdown.format('DD');
       const hours = countdown.format('HH');
       const minutes = countdown.format('mm');
       const seconds = countdown.format('ss');
-      // console.log(countdown)
-
       setState({ days, hours, minutes, seconds })
+
     }, 1000)
 
     return () => {
@@ -39,12 +34,7 @@ export default function Events(props: any) {
   }, [])
   const { days, hours, minutes, seconds } = state;
 
-  const renderDate = () => {
-    return (
-      'we'
-    )
-  }
-  const renderDateMemo = useMemo(() => renderDate(), [state])
+ 
   return (
     <>
       <div className='relative bg-event grayscale-[50%]'>

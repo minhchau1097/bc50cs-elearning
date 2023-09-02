@@ -9,6 +9,7 @@ module.exports = {
     './src/page/HomeTemplate/Blog/index.tsx',
     './src/page/HomeTemplate/Events/index.tsx',
     './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
+    './src/page/AdminTemplate/AuthPage/index.tsx',
   ],
   presets: [],
   darkMode: 'media', // or 'class'
