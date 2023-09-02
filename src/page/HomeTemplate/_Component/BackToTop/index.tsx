@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styled from "@emotion/styled";
 export default function BackToTop() {
+    const [visible, setVisible] = useState(false)
 
 
 
@@ -12,10 +13,10 @@ export default function BackToTop() {
        right:20px;
        bottom: 20px;
        font-size: 3rem;
-       z-index: 1;
+       z-index: 99999;
        cursor: pointer;
+       visibility: ${visible ? 'visible': 'hidden'};
     `
-    const [visible, setVisible] = useState(false)
     useEffect(() => {
         window.addEventListener('scroll', toggleVisible);
 

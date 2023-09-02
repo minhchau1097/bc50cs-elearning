@@ -7,6 +7,7 @@ module.exports = {
     './src/page/HomeTemplate/HomePage/Welcome/index.tsx',
     './src/page/HomeTemplate/About/index.tsx',
     './src/page/HomeTemplate/Blog/index.tsx',
+    './src/page/HomeTemplate/Events/index.tsx',
     './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
   ],
   presets: [],
