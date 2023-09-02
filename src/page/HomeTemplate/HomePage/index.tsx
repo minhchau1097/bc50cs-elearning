@@ -7,7 +7,7 @@ import Welcome from "./Welcome";
 
 export default function HomePage() {
   return (
-    <div className="homePage">
+    <div>
       <Welcome />
       <InfoCourse/>
       <CourseList/>
