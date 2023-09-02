@@ -8,12 +8,6 @@ const routes =[
         nested:[
             { path: "", element: lazy(() => import("../page/HomeTemplate/HomePage")) },
             { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category"))},
-            { path: "BackEnd", element: lazy(() => import("../page/HomeTemplate/Course/BackEnd"))},
-            {path: "FrontEnd",element: lazy(()=> import("../page/HomeTemplate/Course/FrontEnd"))},
-            {path: "Design", element: lazy(()=> import("../page/HomeTemplate/Course/Design"))},
-            {path: "FullStack",element: lazy(()=> import("../page/HomeTemplate/Course/FullStack"))},
-            {path: "DiDong", element: lazy(()=> import("../page/HomeTemplate/Course/Mobile"))},
-            {path: "TuDuy", element: lazy(()=> import("../page/HomeTemplate/Course/Thinking"))},
             { path: "blog", element: lazy(() => import("../page/HomeTemplate/Blog")) },
             { path: "sukien", element: lazy(() => import("../page/HomeTemplate/Events")) },
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
