@@ -7,11 +7,12 @@ const routes =[
         element : lazy(()=> import("../page/HomeTemplate")),
         nested:[
             { path: "", element: lazy(() => import("../page/HomeTemplate/HomePage")) },
-            { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category")) },
-            { path: "khoahoc", element: lazy(() => import("../page/HomeTemplate/Course")) },
+            { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category"))},
             { path: "blog", element: lazy(() => import("../page/HomeTemplate/Blog")) },
             { path: "sukien", element: lazy(() => import("../page/HomeTemplate/Events")) },
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
+            { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
+            { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
         ]
     },
 
