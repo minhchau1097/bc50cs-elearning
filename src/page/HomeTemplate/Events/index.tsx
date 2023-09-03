@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import { Grid, ThemeProvider } from '@mui/material'
-import React, { useEffect, useState, useMemo, memo } from 'react'
-import { Date } from './type';
+import React, { useEffect, useState } from 'react'
 import 'dayjs/locale/zh-cn'
 import { theme } from '..';
+import { Date } from 'type/type';
 dayjs.locale('zh-vn')
 export default function Events(props: any) {
   const [state, setState] = useState<Date>({

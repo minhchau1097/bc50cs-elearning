@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "utils/*": ["./utils/*"],
+      "pages/*": ["./pages/*"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -22,5 +27,6 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  
 }
