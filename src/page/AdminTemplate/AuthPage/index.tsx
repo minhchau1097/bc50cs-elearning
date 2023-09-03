@@ -1,8 +1,33 @@
 import React, { useState } from 'react'
+import { useFormik, FormikProps } from 'formik';
+import { Form } from 'antd';
+import { MyValues, SelectEvent, InputEvent } from './type/type';
+import { DispatchProp, useDispatch } from 'react-redux';
+import { actSignUp } from './duck/action';
+import { Dispatch } from 'redux';
 
 export default function AuthPage() {
+  const dispatch: any = useDispatch();
   const [status, setStatus] = useState(false);
-
+  const formik: FormikProps<MyValues> = useFormik<MyValues>({
+    initialValues: {
+      taiKhoan: '',
+      matKhau: '',
+      hoTen: '',
+      soDT: '',
+      maLoaiNguoiDung: 'HV',
+      maNhom: '1',
+      email: '',
+    },
+    onSubmit: (values) => {
+      console.log(values)
+      dispatch(actSignUp(values))
+    }
+  });
+  const handleOnchange = (e: InputEvent | SelectEvent) => {
+    const { name, value } = e.target
+    formik.setFieldValue(name, value)
+  }
   return (
     <div>
       <div className={`containerAuth ${status ? 'sign-up-mode' : ''}`}>
@@ -12,11 +37,11 @@ export default function AuthPage() {
               <h2 className="title">Đăng nhập</h2>
               <div className="input-field">
                 <i className="fas fa-user" />
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="Tài khoản" />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock" />
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Mật khẩu" />
               </div>
               <input type="submit" defaultValue="Login" className="btn solid" />
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
@@ -35,29 +60,53 @@ export default function AuthPage() {
                 </a>
               </div>
             </form>
-            <form action="#" className="sign-up-form">
+            <Form
+              onSubmitCapture={formik.handleSubmit}
+              labelCol={{
+                span: 4,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              layout="horizontal"
+              action="#" className="sign-up-form">
               <h2 className="title">Đăng ký</h2>
               <div className="input-field input-sign-up">
-                <input type="text" placeholder="Tài khoản" />
+                <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
+              </div>
+              <div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>sai</p>
               </div>
               <div className="input-field input-sign-up">
-                <input type="password" placeholder="Mật khẩu" />
-              </div>
-              <div className="input-field input-sign-up">
-
-                <input type="email" placeholder="Họ và tên" />
-              </div>
-              <div className="input-field input-sign-up">
-
-                <input type="email" placeholder="Số điện thoại" />
+                <input onChange={handleOnchange} name='matKhau' type="password" placeholder="Mật khẩu" />
               </div>
               <div className="input-field input-sign-up">
 
-                <input type="email" placeholder="Email" />
+                <input onChange={handleOnchange} name='hoTen' type="text" placeholder="Họ và tên" />
+              </div>
+              <div className="input-field input-sign-up">
+
+                <input onChange={handleOnchange} name='soDT' type="text" placeholder="Số điện thoại" />
+              </div>
+              <div className="input-field input-sign-up">
+
+                <input onChange={handleOnchange} name='email' type="email" placeholder="Email" />
               </div>
               <div className="input-field input-sign-up overflow-hidden">
-                <select className='absolute left-0 w-full h-full bg-[#f0f0f0] text-[#aaa] font-semibold' placeholder="Mã nhóm" >
-                  <option value="">GP01</option>
+                <select onChange={handleOnchange} name='maNhom' className='absolute left-0 w-full h-full bg-[#f0f0f0] text-[#000] font-semibold' placeholder="Mã nhóm" >
+                  <option value="GP01">GP01</option>
+                  <option value="GP02">GP02</option>
+                  <option value="GP03">GP03</option>
+                  <option value="GP04">GP04</option>
+                  <option value="GP05">GP05</option>
+                  <option value="GP06">GP06</option>
+                  <option value="GP07">GP07</option>
+                  <option value="GP08">GP08</option>
+                  <option value="GP09">GP09</option>
+                  <option value="GP010">GP10</option>
+                  <option value="GP011">GP11</option>
+                  <option value="GP012">GP12</option>
+                  <option value="GP013">GP13</option>
                 </select>
               </div>
               <input type="submit" className="btn" defaultValue="Sign up" />
@@ -76,7 +125,7 @@ export default function AuthPage() {
                   <i className="fab fa-linkedin-in" />
                 </a>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
         <div className="panels-container">
