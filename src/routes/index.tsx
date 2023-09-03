@@ -11,7 +11,8 @@ const routes =[
             { path: "blog", element: lazy(() => import("../page/HomeTemplate/Blog")) },
             { path: "sukien", element: lazy(() => import("../page/HomeTemplate/Events")) },
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
-            { path: "khoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
+            { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
+            { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
         ]
     },
 

@@ -9,8 +9,6 @@ export const actFetchCourseCategory =(maDanhMuc:any)=>{
          api.get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${maDanhMuc}&MaNhom=GP01`)
         .then((res :Result<Course>)=>{
             if(res.status === 200){
-                console.log(res);
-                
                 dispatch(actCourseCategorySuccess(res.data));             
             }               
         })
@@ -19,6 +17,24 @@ export const actFetchCourseCategory =(maDanhMuc:any)=>{
         })
     }
 };
+
+export const actFetchDetailCourse =(maKhoaHoc:any)=>{
+    return (dispatch : any)=>{
+        dispatch(actCourseCategoryRequest());
+         api.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
+        .then((res : any)=>{
+            if(res.status === 200){ 
+                dispatch(actCourseCategorySuccess(res.data));             
+            }               
+        })
+        .catch((err)=>{
+            dispatch(actCourseCategoryFail(err));        
+        })
+    }
+};
+
+
+
 
 const actCourseCategoryRequest =() :Action=>{
     return{

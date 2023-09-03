@@ -10,8 +10,6 @@ import CategoryItem from "./CategoryItem";
 export default function Category() {
   const dispatch :any = useDispatch();
   const category  = useSelector((state: RootState)=>state.categoryReducer.data);
-  
-  
 
   useEffect(()=>{
     dispatch(actFetchCategory());
@@ -21,7 +19,7 @@ export default function Category() {
     return category?.map((item: any, n :any )=>{
       return <CategoryItem
       key ={item.maDanhMuc}
-      item = {item}
+      category = {item}
       img = {arrayImg[n]}
       />  
     })
@@ -54,28 +52,6 @@ export default function Category() {
       </div>
       <div className="categoryContent p-3 row">
         {renderCategory()}
-        {/* <NavLink to="/front-end" className="categoryItem col-md-6 col-xl-4" >
-            <img src={require('../../../Image/frontend-development-concept-website-interface-design-improvement-web-page-programming-coding-testing-it-profession-isolated-flat-vector-illustration_613284-2357.png')} alt="frontEnd" />
-        </NavLink>
-        <NavLink to="/back-end" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/back-end-development-concept_277904-11497.png')} alt="backEnd" />
-        </NavLink>
-        <NavLink to="/fullstack" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/full-stack-developer-working-computer-it-professional-programmer-coding-website-creation-proccess-computer-technology_277904-5495.png')} alt="fullstack" />
-        </NavLink>
-        <NavLink to="/mobile" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/app-development-concept-illustration_114360-5164.png')} alt="mobile" />
-        </NavLink>
-        <NavLink to="/design" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/cartoon-web-design-landing-page_52683-70880.png')} alt="design" />
-        </NavLink>
-        <NavLink to="/thiking-programming" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/programmer-is-thinking-about-program-code-development-programming-coding-technologies_569013-329.png')} alt="thinking" />
-        </NavLink>
-        <NavLink to="/test" className="categoryItem col-md-6 col-xl-4">
-            <img src={require('../../../Image/programmer-is-thinking-about-program-code-development-programming-coding-technologies_569013-329.png')} alt="thinking" />
-        </NavLink> */}
-        
       </div>
     </section>
   )

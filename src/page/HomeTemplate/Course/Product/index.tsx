@@ -9,10 +9,10 @@ interface Props{
 export default function Product({item} : Props) {
   return (
     <div className='col-md-6 col-xl-3 mt-4 cardGlobal'>
-      <NavLink to={`/`}>
+      <NavLink to={`/chitiet/${item.maKhoaHoc}`}>
           <div className='cardItem'>
               <img src={item?.hinhAnh} alt="" />
-              <span className='titleCard'>{item?.tenKhoaHoc}ava</span>
+              <span className='titleCard'>{item?.tenKhoaHoc}</span>
               <div className='cardBodyGlobal'>
                   <h6 className='pb-2'>Lập trình hiện đang là xu hướng trên toàn thế giới...</h6>
                   <div className='cardIcon'>

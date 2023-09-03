@@ -6,12 +6,13 @@ import { actFetchCourseCategory } from '../duck/action';
 import { Course } from '../../../../type/type';
 import Product from '../Product';
 
+
 export default function Template() {
   const dispatch : any = useDispatch();
-  const courseCategory = useSelector((state :RootState)=> state.courseCategoryReducer.data);
+  const courseCategory : any = useSelector((state :RootState)=> state.courseCategoryReducer.data);
   const param =useParams();
   console.log(courseCategory);
-  
+
 
   useEffect(()=>{
     dispatch(actFetchCourseCategory(param.id));
