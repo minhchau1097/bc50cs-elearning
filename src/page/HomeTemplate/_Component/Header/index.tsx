@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink, Navigate } from 'react-router-dom'
+import { NavigateFunction, useNavigate } from 'react-router';
 export default function Header() {
+  const navigate: NavigateFunction = useNavigate();
   const style = {
     width: '100%'
   }
@@ -36,7 +37,9 @@ export default function Header() {
               <NavLink className={({ isActive }) => isActive ? "my-active nav-link  text-dark" : "nav-link  text-dark"} to="/thongtin">THÔNG TIN</NavLink>
             </li >
             <li className="nav-item">
-              <button className='btn btn-warning text-white'>ĐĂNG NHẬP</button>
+              <button className='btn btn-warning text-white' onClick={() => {
+                navigate('/auth', { replace: true })
+              }}>ĐĂNG NHẬP</button>
             </li>
           </ul>
         </div>

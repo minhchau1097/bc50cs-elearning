@@ -12,5 +12,6 @@ const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(thunk)),
 );
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch
 export default store;
