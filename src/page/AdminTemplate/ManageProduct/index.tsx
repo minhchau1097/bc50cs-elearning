@@ -106,7 +106,7 @@ const onSearch = (value :any) =>{
       width: '25%',
     },
   ];
-  const data =arrCourse;
+  const data =arrCourse? arrCourse : [];
 
   const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
     console.log('params', pagination, filters, sorter, extra);

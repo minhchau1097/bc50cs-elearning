@@ -115,7 +115,7 @@ const onSearch = (value :any) =>{
       width: '25%',
     },
   ];
-  const data  = arrUser;
+  const data  = arrUser? arrUser : [];
 
   const onChange = (pagination :any , filters :any , sorter :any , extra :any ) => {};
 

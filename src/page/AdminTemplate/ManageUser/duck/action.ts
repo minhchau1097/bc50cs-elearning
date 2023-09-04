@@ -43,11 +43,12 @@ export const actDeleteUser =(taiKhoan :string)=>{
     return(dispatch :any)=>{
         api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`)
         .then((res)=>{
-            alert('Xóa user thành công!');
+            toast.success('Xóa user thành công!');
             dispatch( actFetchListUser());
         })
         .catch((error)=>{
             console.log(error);
+            toast.warn(`Không xóa được vì : ${error.response.data}`);
         })
     }
 }
