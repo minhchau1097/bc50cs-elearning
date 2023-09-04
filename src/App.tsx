@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Fragment, Suspense } from 'react';
 import renderRoutes from './routes';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 

@@ -1,5 +1,5 @@
 import { COURSE_CATEGORY_SUCCESS, COURSE_CATEGORY_REQUEST, COURSE_CATEGORY_FAIL } from "./contants";
-import api from "../../../../utils/api";
+import api from "utils/api";
 import { Action, Course, Result } from "../../../../type/type";
 
 

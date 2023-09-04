@@ -3,8 +3,9 @@ import { Table,Input  } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { RootState } from '../../../store';
-import { actFetchListCourse } from '../../HomeTemplate/HomePage/CourseList/duck/action';
-// import { actFetchEditFilm ,actDeleteFilm} from '../AddFilm/duck/action';
+import { actDeleteUser, actFetchListUser } from './duck/action';
+import {useAppDispatch} from "../../../store/type"
+import { User } from 'type/type';
 
 
 const { Search } = Input;
@@ -12,98 +13,101 @@ const { Search } = Input;
 
 export default function ListUser() {
 
-  const arrUser = useSelector((state :RootState)=>state.courseListReducer.data);
-  const dispatch :any= useDispatch();
+  const arrUser = useSelector((state :RootState)=>state.userReducer.data);
+  const dispatch  = useAppDispatch();
   
 const onSearch = (value :any) =>{
   console.log(value);
 
-  dispatch(actFetchListCourse(value));
+  // dispatch(actFetchListUser(value));
  };
 
   useEffect(()=>{
-    dispatch(actFetchListCourse());
+    dispatch(actFetchListUser());
     // dispatch(actFetchEditFilm())
   },[])
 
 
   const columns = [
     {
-      title: 'Mã Khóa Học',
-      dataIndex: 'maKhoaHoc',
+      title: 'Tài Khoản',
+      dataIndex: 'taiKhoan',
       value:(text: any,object: any)=>{return <span>{text}</span>},
 
       sorter: (a : any, b: any) => {
-        let maKhoaHocA = a.maKhoaHoc.toLowerCase().trim();
-        let maKhoaHocB = b.maKhoaHoc.toLowerCase().trim();
-        if(maKhoaHocA > maKhoaHocB){
+        let taiKhoanA = a.taiKhoan.toLowerCase().trim();
+        let taiKhoanB = b.taiKhoan.toLowerCase().trim();
+        if(taiKhoanA > taiKhoanB){
           return 1;
         }
         return -1;
       },
-      sortDirections: ['descend'],
+      sortDirections: ['descend','ascend'],
       width: '15%',
 
     },
+    
     {
-      title: 'Hình Ảnh',
-      dataIndex: 'hinhAnh',
-      render: (text: any,course: any)=>{
-        return <Fragment>
-          <img src={course.hinhAnh} alt={course.tenPhim} width={50} height={50}
-          onError={(e)=>{e.target.onError = null; e.target.src="http://ddcinema.vn/Content/Img/logo.png"}}
-          />
-        </Fragment>
-      },
-      width: '15%',
-    },
-    {
-      title: 'Tên Khóa Học',
-      dataIndex: 'tenKhoaHoc',
+      title: 'Họ Tên',
+      dataIndex: 'hoTen',
       sorter: (a : any, b: any) => {
-        let tenKhoaHocA = a.tenKhoaHoc.toLowerCase().trim();
-        let tenKhoaHocB = b.tenKhoaHoc.toLowerCase().trim();
-        if(tenKhoaHocA > tenKhoaHocB){
+        let hoTenA = a.hoTen.toLowerCase().trim();
+        let hoTenB = b.hoTen.toLowerCase().trim();
+        if(hoTenA > hoTenB){
           return 1;
         }
         return -1;
       },
-      sortDirections: ['descend'],
-      width: '25%',
+      sortDirections: ['descend','ascend'],
+      width: '15%',
       
     },
 
     {
-      title: 'Mô Tả',
-      dataIndex: 'moTa',
-      render:(text :any,course :any)=>{
-        return  <Fragment>
-          {course.moTa.length > 50 ? course.moTa.substr(0,50) + '...' : course.moTa}
-        </Fragment>
-      },
-      width: '25%',
+      title: 'Email',
+      dataIndex: 'email',
+      width: '15%',
     },
+
+    {
+      title: 'Số Điện Thoại',
+      dataIndex: 'soDt',
+      width: '15%',
+    },
+
+    {
+      title: 'Loại Người Dùng',
+      dataIndex: 'tenLoaiNguoiDung',
+      sorter: (a : any, b: any) => {
+        let tenLoaiNguoiDungA = a.tenLoaiNguoiDung.toLowerCase().trim();
+        let tenLoaiNguoiDungB = b.tenLoaiNguoiDung.toLowerCase().trim();
+        if(tenLoaiNguoiDungA > tenLoaiNguoiDungB){
+          return 1;
+        }
+        return -1;
+      },
+      sortDirections: ['descend','ascend'],
+      width: '15%',
+    },
+
+  
 
     {
       title: 'Tùy Chỉnh',
       dataIndex: 'tuyChinh',
-      render:(text :any,course :any)=>{
+      render:(text :any,user :User)=>{
         return  <Fragment>
-          {/* <NavLink to={`/admin/edit-film/${film.maPhim}`}>
+          {/* <NavLink to={`/admin/edit-film/${user.maPhim}`}>
             <button className='btn btn-info'>Sửa</button>
-          </NavLink>
+          </NavLink> */}
 
             <button className='btn btn-danger'
             onClick={()=>{
-              if(window.confirm(`Chắc là muốn xóa phim "${film.tenPhim}" dữ chưa??? `)){
-                  dispatch(actDeleteFilm(film.maPhim))
+              if(window.confirm(`Chắc là muốn đưa "${user.taiKhoan}" ra đảo dữ chưa??? `)){
+                  dispatch(actDeleteUser(user.taiKhoan))
               }
             }}
             >Xóa</button>
-
-            <NavLink to={`/admin/add-show-time/${film.maPhim}`}>
-              <button className='btn btn-warning'>Thêm lịch chiếu</button>
-            </NavLink> */}
 
         </Fragment>
       },
@@ -113,20 +117,20 @@ const onSearch = (value :any) =>{
   const data = arrUser;
 
   const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
-    console.log('params', pagination, filters, sorter, extra);
+    // console.log('params', pagination, filters, sorter, extra);
   };
 
 
   return (
     <div className='container'>
-      <h1 className='text-warning text-center'>Quản Lý Khóa Học</h1>
-      <NavLink to="/admin/them-sanpham">
-        <button className='btn btn-success mb-2'>Thêm Khóa Học</button>
+      <h1 className='text-warning text-center'>Danh Sách Người Dùng</h1>
+      <NavLink to="/admin/them-nguoidung">
+        <button className='btn btn-success mb-2'>Thêm Người Dùng</button>
       </NavLink>
       
       <Search
             className='mb-2'
-            placeholder="Tìm kiếm phim"
+            placeholder="Tìm kiếm Người Dùng"
             allowClear
             enterButton="Search"
             size="large"

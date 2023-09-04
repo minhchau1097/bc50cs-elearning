@@ -875,7 +875,7 @@ html {
   z-index: 5;
 }
 
-.authForm {
+.auth-form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -972,7 +972,7 @@ form.sign-in-form {
   border-color: #F86F03;
 }
 
-.btn {
+.btnAuth {
   width: 150px;
   background-color: #F86F03;
   border: none;
@@ -987,7 +987,7 @@ form.sign-in-form {
   transition: 0.5s;
 }
 
-.btn:hover {
+.btnAuth:hover {
   background-color: #f98c39;
 }
 
@@ -1057,7 +1057,7 @@ form.sign-in-form {
   padding: 0.7rem 0;
 }
 
-.btn.transparent {
+.btnAuth.transparent {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -1159,7 +1159,7 @@ form.sign-in-form {
     font-size: 0.7rem;
     padding: 0.5rem 0;
   }
-  .btn.transparent {
+  .btnAuth.transparent {
     width: 110px;
     height: 35px;
     font-size: 0.7rem;

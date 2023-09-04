@@ -51,7 +51,7 @@ export default function AuthPage() {
         <div className="forms-container">
           <div className="signin-signup">
             <Form onSubmitCapture={formikLogin.handleSubmit}
-            action="#" className="sign-in-form">
+            action="#" className="sign-in-form auth-form">
               <h2 className="title">Đăng nhập</h2>
               <div className="input-field">
                 <i className="fas fa-user" />
@@ -64,7 +64,7 @@ export default function AuthPage() {
               <div className='bg-[#f8d7da] text-[#721c24] w-full max-w-[380px] rounded-[5px] text-center p-1' style={{display:`${state.logIn.error ? 'block': 'none'}`}}>
                 <p>{state?.logIn.error}</p>
               </div>
-              <input type="submit" defaultValue="Login" className="btn solid" />
+              <input type="submit" defaultValue="Login" className="btnAuth solid" />
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
@@ -85,7 +85,7 @@ export default function AuthPage() {
               onSubmitCapture={formik.handleSubmit}
              
               layout="horizontal"
-              action="#" className="sign-up-form">
+              action="#" className="sign-up-form auth-form">
               <h2 className="title">Đăng ký</h2>
               <div className="input-field input-sign-up">
                 <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
@@ -121,7 +121,7 @@ export default function AuthPage() {
                   <option value="GP09">GP09</option>
                 </select>
               </div>
-              <input type="submit" className="btn" defaultValue="Sign up" />
+              <input type="submit" className="btnAuth" defaultValue="Sign up" />
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
@@ -147,7 +147,7 @@ export default function AuthPage() {
               <p>
                 Vui lòng nhấn đăng ký để thiết lập thông tin tài khoản của bạn!
               </p>
-              <button className="btn transparent" id="sign-up-btn" onClick={() => {
+              <button className="btnAuth transparent" id="sign-up-btn" onClick={() => {
                 setStatus(true)
               }}>
                 ĐĂNG KÝ
@@ -163,7 +163,7 @@ export default function AuthPage() {
 
 
               </p>
-              <button className="btn transparent" id="sign-in-btn" onClick={() => {
+              <button className="btnAuth transparent" id="sign-in-btn" onClick={() => {
                 setStatus(false)
               }}>
                 ĐĂNG NHẬP

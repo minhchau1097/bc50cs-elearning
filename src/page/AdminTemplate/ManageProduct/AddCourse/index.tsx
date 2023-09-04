@@ -35,7 +35,7 @@ export default function AddCourse() {
         <div className='row p-3'>
             <div className='col-md-6 mx-auto alert alert-secondary p-4'>
    
-              <h3 className='text-center'>THÊM NGƯỜI DÙNG</h3>
+              <h1 className='text-center'>THÊM KHÓA HỌC</h1>
             
         
                 

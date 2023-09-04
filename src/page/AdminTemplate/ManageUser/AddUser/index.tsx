@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { useAppDispatch } from 'store/type';
+import { actAddUser } from '../duck/action';
 
 export default function AddUser() {
-    const dispatch = useDispatch();
-    // const error = useSelector((state)=>state.addUserReducer.error);
+    const dispatch = useAppDispatch();
+    // const error = useSelector((state : RootState)=>state.userReducer.data);
   
-    const [state,setState]= useState({
+    const [state ,setState]= useState({
       taiKhoan: "",
       matKhau: "",
-      email: "",
-      soDT: "",
-      maNhom: "GP01",
-      maLoaiNguoiDung: "KhachHang",
       hoTen: "",
+      soDT: "",
+      maLoaiNguoiDung: "HV",
+      maNhom: "GP02",
+      email: "",
     })
     
     const handleOnchange = (event :any)=>{
@@ -26,7 +29,7 @@ export default function AddUser() {
     const handleSubmit = (event :any)=>{
       event.preventDefault();
       console.log(state);
-        // dispatch(actAddUser(state));
+        dispatch(actAddUser(state));
     }
 
   return (
@@ -71,9 +74,9 @@ export default function AddUser() {
 
                     <div className='form-group'>
                         <label htmlFor="" className='font-weight-bolder text-warning'>Mã loại người dùng</label>
-                        <select name="maLoaiNguoiDung" id="" className='form-control' onChange={handleOnchange}>
-                          <option value="KhachHang">Giáo vụ</option>
-                          <option value="QuanTri ">Học viên</option>
+                        <select name="maLoaiNguoiDung" id="" className='form-control' onChange={handleOnchange}>                
+                          <option value="HV ">Học viên</option>
+                          <option value="GV">Giáo vụ</option>
                         </select>
                     </div>
 
@@ -84,7 +87,7 @@ export default function AddUser() {
                         onChange={handleOnchange}
                         />
                     </div>
-                    <button className='btn'>THÊM MỚI</button>
+                    <button className='btn btn-warning'>THÊM MỚI</button>
                     {/* {error && (<div className='alert alert-danger'>${error?.response.data.content}. Vui lòng thay đổi!</div>)} */}
                     
                 </form>

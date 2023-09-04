@@ -12,6 +12,7 @@ api.interceptors.request.use((config: Config) => {
 
     const accessTokenUser = localStorage.getItem('USER_CUSTOMER') ?
     JSON.parse(localStorage.getItem('USER_CUSTOMER')).accessToken : '';
+
     
     config.headers = {
         ...config.headers,
