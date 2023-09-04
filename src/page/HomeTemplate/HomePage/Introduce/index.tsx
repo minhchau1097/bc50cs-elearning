@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Grid } from 'swiper/modules';
+import {  Pagination, Grid } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/grid';
 import axios from 'axios';
 import { Rating } from '@mui/material';
+import { Teacher } from 'type/type';
 
 
 export default function Introduce() {
@@ -45,9 +46,6 @@ export default function Introduce() {
                 </div>
             </SwiperSlide>
         })
-    }
-    const solution = () => {
-
     }
     return (
         <div className='px-12 mt-5'>
