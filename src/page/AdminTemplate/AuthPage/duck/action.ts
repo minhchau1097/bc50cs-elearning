@@ -34,9 +34,9 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
             .then((result:Result<DataAuth>) => {
                 console.log(result)
                 dispatch(actLoginSuccess(result.data))
-                localStorage.setItem('USER_CUSTOMER', JSON.stringify(result))
+                localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
 
-                navigate(-1)
+                navigate('/admin/sanpham', { replace: true })
             })
             .catch((error:Error) => {
                 dispatch(actLoginFail(error.response.data))
@@ -45,6 +45,14 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
 
     }
 }
+
+export const actLogOut = (navigate:NavigateFunction) => {
+    localStorage.removeItem("USER_CUSTOMER");
+    navigate("/auth", { replace: true });
+    return {
+        type: ActionTypes.ADMIN_LOGOUT,
+    }
+};
 
 const actSignUpRequest = () => {
     return {

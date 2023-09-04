@@ -2,13 +2,13 @@ import React ,{ useState }from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-// import { actLogOut } from '../../AuthPage/duck/actions';
 import {
   DesktopOutlined,
   FileOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { actLogOut } from '../AuthPage/duck/action';
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label :any, key:any, icon:any, children:any) {
@@ -61,9 +61,9 @@ function getItem(label :any, key:any, icon:any, children:any) {
             <h1>ADMIN MANANAGE</h1>
             <div className='pr-5'>
               <button className='btn btn-info'
-              // onClick={()=>{
-              //   dispatch(actLogOut(navigate));
-              // }}
+              onClick={()=>{
+                dispatch(actLogOut(navigate));
+              }}
               >Log Out</button>
             </div>           
           </div>

@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { useAppDispatch } from 'store/type';
 import { actAddUser } from '../duck/action';
+import { NavigateFunction,useNavigate } from "react-router";
 
 export default function AddUser() {
     const dispatch = useAppDispatch();
+    const navigate:NavigateFunction = useNavigate();
     // const error = useSelector((state : RootState)=>state.userReducer.data);
   
     const [state ,setState]= useState({
@@ -29,7 +31,7 @@ export default function AddUser() {
     const handleSubmit = (event :any)=>{
       event.preventDefault();
       console.log(state);
-        dispatch(actAddUser(state));
+        dispatch(actAddUser(state,navigate));
     }
 
   return (
@@ -88,7 +90,7 @@ export default function AddUser() {
                         />
                     </div>
                     <button className='btn btn-warning'>THÊM MỚI</button>
-                    {/* {error && (<div className='alert alert-danger'>${error?.response.data.content}. Vui lòng thay đổi!</div>)} */}
+                    {/* {error && (<div className='alert alert-danger'>${error?.response.data}. Vui lòng thay đổi!</div>)} */}
                     
                 </form>
               

@@ -1,15 +1,11 @@
 import React, { Fragment, useEffect,useState } from 'react';
 import { Table,Input, Space  } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { RootState } from '../../../store';
 import { actFetchListCourse } from '../../HomeTemplate/HomePage/CourseList/duck/action';
-// import { actFetchEditFilm ,actDeleteFilm} from '../AddFilm/duck/action';
-
 
 const { Search } = Input;
-
 
 export default function DashBoard() {
 
@@ -52,7 +48,6 @@ const onSearch = (value :any) =>{
       render: (text: any,course: any)=>{
         return <Fragment>
           <img src={course.hinhAnh} alt={course.tenPhim} width={50} height={50}
-          onError={(e)=>{e.target.onError = null; e.target.src="http://ddcinema.vn/Content/Img/logo.png"}}
           />
         </Fragment>
       },
@@ -111,7 +106,7 @@ const onSearch = (value :any) =>{
       width: '25%',
     },
   ];
-  const data = arrCourse;
+  const data =arrCourse;
 
   const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -133,7 +128,7 @@ const onSearch = (value :any) =>{
             size="large"
             onSearch={onSearch}
           />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maKhoaHoc"}/>
     </div>
   )
 }

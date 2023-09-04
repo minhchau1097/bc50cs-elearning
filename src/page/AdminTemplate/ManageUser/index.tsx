@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect,useState } from 'react';
 import { Table,Input  } from 'antd';
+import type { ColumnsType, TableProps } from 'antd/es/table';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { RootState } from '../../../store';
@@ -28,7 +29,7 @@ const onSearch = (value :any) =>{
   },[])
 
 
-  const columns = [
+  const columns  = [
     {
       title: 'Tài Khoản',
       dataIndex: 'taiKhoan',
@@ -114,12 +115,9 @@ const onSearch = (value :any) =>{
       width: '25%',
     },
   ];
-  const data = arrUser;
+  const data  = arrUser;
 
-  const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
-    // console.log('params', pagination, filters, sorter, extra);
-  };
-
+  const onChange = (pagination :any , filters :any , sorter :any , extra :any ) => {};
 
   return (
     <div className='container'>
@@ -136,7 +134,7 @@ const onSearch = (value :any) =>{
             size="large"
             onSearch={onSearch}
           />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"taiKhoan"}/>
     </div>
   )
 }
