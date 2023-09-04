@@ -36,7 +36,7 @@ export default function Header() {
               <NavLink className={({ isActive }) => isActive ? "my-active nav-link  text-dark" : "nav-link  text-dark"} to="/thongtin">THÔNG TIN</NavLink>
             </li >
             <li className="nav-item">
-              <button className='btn btn-warning text-white'>ĐĂNG NHẬP</button>
+              <NavLink to="/auth"><button className='btn btn-warning text-white'>ĐĂNG NHẬP</button></NavLink> 
             </li>
           </ul>
         </div>

@@ -21,7 +21,9 @@ const routes =[
         element : lazy(()=> import("../page/AdminTemplate")),
         nested:[
             { path: "sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct")) },
-            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) },         
+            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
+            { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) }, 
+            { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) }, 
         ]
     },
     { path: "auth", element: lazy(() => import("../page/AdminTemplate/AuthPage")) },

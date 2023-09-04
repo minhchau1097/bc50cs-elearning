@@ -9,7 +9,7 @@ import Product from '../Product';
 
 export default function Template() {
   const dispatch : any = useDispatch();
-  const courseCategory : any = useSelector((state :RootState)=> state.courseCategoryReducer.data);
+  const courseCategory :any = useSelector((state :RootState)=> state.courseCategoryReducer.data);
   const param =useParams();
   console.log(courseCategory);
 
@@ -19,12 +19,12 @@ export default function Template() {
   },[]);
 
   const renderItem = ()=>{
-    return courseCategory?.map((item : Course)=>{
-      return <Product
-      key={item.maKhoaHoc}
-      item = {item}
-      />
-    })
+      return courseCategory?.map((item : Course)=>{
+        return <Product
+        key={item.maKhoaHoc}
+        item = {item}
+        />
+      })
   };
 
   return (

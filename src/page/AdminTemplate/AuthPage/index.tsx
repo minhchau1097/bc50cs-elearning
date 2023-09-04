@@ -8,7 +8,7 @@ export default function AuthPage() {
       <div className={`containerAuth ${status ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
-            <form action="#" className="sign-in-form">
+            <form action="#" className="sign-in-form authForm">
               <h2 className="title">Đăng nhập</h2>
               <div className="input-field">
                 <i className="fas fa-user" />
@@ -35,7 +35,7 @@ export default function AuthPage() {
                 </a>
               </div>
             </form>
-            <form action="#" className="sign-up-form">
+            <form action="#" className="sign-up-form authForm">
               <h2 className="title">Đăng ký</h2>
               <div className="input-field input-sign-up">
                 <input type="text" placeholder="Tài khoản" />
