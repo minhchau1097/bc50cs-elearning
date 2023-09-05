@@ -3,9 +3,11 @@ import courseListReducer from "../page/HomeTemplate/HomePage/CourseList/duck/red
 import courseCategoryReducer from "../page/HomeTemplate/Course/duck/reducer";
 import categoryReducer from "../page/HomeTemplate/Category/duck/reducer";
 import authReducer from "page/AdminTemplate/AuthPage/duck/reducer";
+import userReducer from "page/AdminTemplate/ManageUser/duck/reducer";
 export const rootReducer = combineReducers({
     courseListReducer,
     courseCategoryReducer,
     categoryReducer,
     authReducer,
+    userReducer,    
 });

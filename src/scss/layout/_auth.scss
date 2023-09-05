@@ -26,7 +26,7 @@
   z-index: 5;
 }
 
-form {
+  .auth-form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,15 +128,17 @@ form {
 }
 
 .btn-home {
-  line-height: 39px;
+  text-align: center;
+  line-height: 50px;
   background-color: #ff5722 !important;
 
   &:hover {
     background-color: #fc5c2c !important;
+    color: #fff;
   }
 }
 
-.btn {
+.btnAuth {
   width: 150px;
   background-color: #F86F03;
   border: none;
@@ -223,7 +225,7 @@ form {
   }
 }
 
-.btn.transparent {
+.btnAuth.transparent {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -261,7 +263,7 @@ form {
     left: 25%;
   }
 
-  form {
+  .auth-form {
     &.sign-up-form {
       opacity: 1;
       z-index: 2;
@@ -352,7 +354,7 @@ form {
     }
   }
 
-  .btn.transparent {
+  .btnAuth.transparent {
     width: 110px;
     height: 35px;
     font-size: 0.7rem;
@@ -369,6 +371,7 @@ form {
       top: initial;
       transition: 2s ease-in-out;
     }
+
     &.sign-up-mode {
       height: 150vh;
       &:before {
@@ -376,26 +379,25 @@ form {
         bottom: 32%;
         right: initial;
       }
-  
+
       .left-panel {
-  
+
         .image,
         .content {
           transform: translateY(-300px);
         }
       }
-  
+
       .right-panel {
-  
+
         .image,
         .content {
           transform: translateY(0px);
         }
       }
     }
-    
   }
-  
+
   .right-panel {
 
     .image,
@@ -411,8 +413,8 @@ form {
 }
 
 @include Reponsive ($sm) {
-  
-   
+
+
   .containerAuth {
     height: 100vh;
     &.sign-up-mode {
@@ -425,7 +427,7 @@ form {
 }
 
 @include Reponsive ($xs) {
-  form {
+  .auth-form {
     padding: 0 1.5rem;
   }
 
@@ -453,20 +455,27 @@ form {
       left: 50%;
     }
   }
-  
-   
+
+
 }
 
 @include Reponsive ($xxs) {
-  .btn {
+  .btnAuth {
     width: 125px;
   }
-
+.left-panel{
+  margin-top: -3%;
+}
   .containerAuth {
+    min-height: 0;
     height: 100vh;
+    &:before {
+      bottom: 78%;
+      left: 50%;
+    }
     &.sign-up-mode {
       height: 150vh ;
     }
   }
-   
+
 }

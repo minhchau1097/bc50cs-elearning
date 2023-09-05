@@ -2,18 +2,32 @@ import { COURSELIST_REQUEST,COURSELIST_SUCCESS,COURSELIST_FAIL } from "./contant
 import api from "../../../../../utils/api";
 import { Result ,Action ,Course} from "../../../../../type/type";
 
-export const actFetchListCourse =()=>{
+export const actFetchListCourse =(tenKhoaHoc='')=>{
     return (dispatch : any)=>{
         dispatch(actListCourseRequest());
-         api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
-        .then((res :Result<Course>)=>{
-            if(res.status === 200){
-                dispatch(actListCourseSuccess(res.data));             
-            }               
-        })
-        .catch((err)=>{
-            dispatch(actListCourseFail(err));        
-        })
+        if(tenKhoaHoc.trim() !== ''){
+            api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP03`)
+            .then((res :Result<Course>)=>{
+                if(res.status === 200){
+                    dispatch(actListCourseSuccess(res.data));             
+                }               
+            })
+            .catch((err)=>{
+                dispatch(actListCourseFail(err));        
+            })
+        }
+        else{
+            api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
+            .then((res :Result<Course>)=>{
+                if(res.status === 200){
+                    dispatch(actListCourseSuccess(res.data));             
+                }               
+            })
+            .catch((err)=>{
+                dispatch(actListCourseFail(err));        
+            })
+        }
+         
     }
 };
 

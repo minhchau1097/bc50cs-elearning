@@ -10,7 +10,11 @@ export interface Action {
     type: string;
     payload?: any;
 };
-
+export interface ResultAcount<T> {
+    data: T;
+    status: number;
+    statusText: string;
+}
 export interface Result<T> {
     data: T[];
     status: number;
@@ -39,6 +43,17 @@ export interface Course {
         tenDanhMucKhoaHoc: string;
     }
 }
+
+export interface User{
+    taiKhoan : string;
+    matKhau : string;
+    hoTen : string;
+    soDT : string;
+    maLoaiNguoiDung : string;
+    maNhom : string;
+    email : string;
+}
+
 export interface Teacher {
     ten: string,
     linhVuc: string,

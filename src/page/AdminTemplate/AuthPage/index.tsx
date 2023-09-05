@@ -62,7 +62,7 @@ export default function AuthPage() {
         <div className="forms-container">
           <div className="signin-signup">
             <form onSubmitCapture={formikLogin.handleSubmit}
-              action="#" className="sign-in-form">
+              action="#" className="sign-in-form auth-form">
               <h2 className="title">Đăng nhập</h2>
               <div className={`input-field ${formikLogin.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-user" />
@@ -83,8 +83,8 @@ export default function AuthPage() {
               </div>
               <div className='flex justify-between items-center max-w-[380px] w-full'>
                 {/* <NavLink className='bg-[#e4dede] text-[#fff] uppercase rounded hover:text-black px-[19px] py-[12px] font-semibold ' to={'/'} >Về trang chủ</NavLink> */}
-                <NavLink className='btn btn-home ' to={'/'} >Trang chủ</NavLink>
-                <input type="submit" defaultValue="Login" className="btn " />
+                <NavLink className='btnAuth btn-home ' to={'/'} >Trang chủ</NavLink>
+                <input type="submit" defaultValue="Login" className="btnAuth " />
               </div>
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
@@ -104,7 +104,7 @@ export default function AuthPage() {
             </form>
             <form
               onSubmitCapture={formik.handleSubmit}
-              action="#" className="sign-up-form">
+              action="#" className="sign-up-form auth-form">
               <h2 className="title">Đăng ký</h2>
               <div className={`input-field input-sign-up  ${formik.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
@@ -158,8 +158,8 @@ export default function AuthPage() {
               </div>
               <div className='flex justify-between items-center max-w-[380px] w-full'>
 
-                <NavLink className='btn btn-home ' to={'/'} >Trang chủ</NavLink>
-                <input type="submit" className="btn" defaultValue="Sign up" />
+                <NavLink className='btnAuth btn-home ' to={'/'} >Trang chủ</NavLink>
+                <input type="submit" className="btnAuth" defaultValue="Sign up" />
               </div>
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
@@ -186,7 +186,7 @@ export default function AuthPage() {
               <p>
                 Vui lòng nhấn đăng ký để thiết lập thông tin tài khoản của bạn!
               </p>
-              <button className="btn transparent" id="sign-up-btn" onClick={() => {
+              <button className="btnAuth transparent" id="sign-up-btn" onClick={() => {
                 setStatus(true)
               }}>
                 ĐĂNG KÝ
@@ -202,7 +202,7 @@ export default function AuthPage() {
 
 
               </p>
-              <button className="btn transparent" id="sign-in-btn" onClick={() => {
+              <button className="btnAuth transparent" id="sign-in-btn" onClick={() => {
                 setStatus(false)
               }}>
                 ĐĂNG NHẬP
