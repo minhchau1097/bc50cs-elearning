@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useFormik, FormikProps } from 'formik';
-import { Form } from 'antd';
 import { SignUp, SelectEvent, InputEvent, Login } from 'type/type';
 import { actLogin, actSignUp } from './duck/action';
 import { useAppDispatch, useAppSelector } from 'store/type';
 import { NavigateFunction, useNavigate } from 'react-router';
-
+import * as Yup from "yup";
+import { NavLink } from 'react-router-dom';
 export default function AuthPage() {
-  const navigate:NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const dispatch = useAppDispatch();
   const state = useAppSelector(state => state.authReducer);
   const [status, setStatus] = useState(false);
@@ -18,30 +18,41 @@ export default function AuthPage() {
       hoTen: '',
       soDT: '',
       maLoaiNguoiDung: 'HV',
-      maNhom: '1',
+      maNhom: 'GP01',
       email: '',
     },
+    validationSchema: Yup.object({
+      taiKhoan: Yup.string().required('Vui lòng không để trống').min(5, 'Tối thiểu 5 ký tự'),
+      matKhau: Yup.string().required('Vui lòng không để trống').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Tối thiểu 8 ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'),
+      hoTen: Yup.string().required('Vui lòng không để trống').min(5, 'Tối thiểu 5 ký tự'),
+      email: Yup.string().required('Vui lòng không để trống'),
+      soDT: Yup.string()
+        .required('Vui lòng không để trống').matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'Số điện thoại không hợp lệ'),
+    }),
     onSubmit: (values) => {
       console.log(values)
-      dispatch(actSignUp(values,navigate))
+      dispatch(actSignUp(values, navigate))
     }
   });
   const formikLogin: FormikProps<Login> = useFormik<Login>({
     initialValues: {
       taiKhoan: '',
       matKhau: '',
-     
-    },
+
+    }, validationSchema: Yup.object({
+      taiKhoan: Yup.string().required('Vui lòng không để trống'),
+      matKhau: Yup.string().required('Vui lòng không để trống'),
+    }),
     onSubmit: (values) => {
       console.log(values)
-      dispatch(actLogin(values,navigate))
+      dispatch(actLogin(values, navigate))
     }
   });
   const handleOnchange = (e: InputEvent | SelectEvent) => {
     const { name, value } = e.target
     formik.setFieldValue(name, value)
   }
-  const handleChangeLogin=(e: InputEvent | SelectEvent)=>{
+  const handleChangeLogin = (e: InputEvent) => {
     const { name, value } = e.target
     formikLogin.setFieldValue(name, value)
   }
@@ -50,21 +61,31 @@ export default function AuthPage() {
       <div className={`containerAuth ${status ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
-            <Form onSubmitCapture={formikLogin.handleSubmit}
-            action="#" className="sign-in-form auth-form">
+            <form onSubmitCapture={formikLogin.handleSubmit}
+              action="#" className="sign-in-form auth-form">
               <h2 className="title">Đăng nhập</h2>
-              <div className="input-field">
+              <div className={`input-field ${formikLogin.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-user" />
                 <input name='taiKhoan' onChange={handleChangeLogin} type="text" placeholder="Tài khoản" />
               </div>
-              <div className="input-field">
+              {formikLogin.errors.taiKhoan && formikLogin.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formikLogin.errors.taiKhoan}</p>
+              </div>)}
+              <div className={`input-field ${formikLogin.errors.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-lock" />
                 <input name='matKhau' onChange={handleChangeLogin} type="password" placeholder="Mật khẩu" />
               </div>
-              <div className='bg-[#f8d7da] text-[#721c24] w-full max-w-[380px] rounded-[5px] text-center p-1' style={{display:`${state.logIn.error ? 'block': 'none'}`}}>
+              {formikLogin.errors.matKhau && formikLogin.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formikLogin.errors.matKhau}</p>
+              </div>)}
+              <div className='bg-[#f8d7da] text-[#721c24] w-full max-w-[380px] rounded-[5px] text-center p-1' style={{ display: `${state.logIn.error ? 'block' : 'none'}` }}>
                 <p>{state?.logIn.error}</p>
               </div>
-              <input type="submit" defaultValue="Login" className="btnAuth solid" />
+              <div className='flex justify-between items-center max-w-[380px] w-full'>
+                {/* <NavLink className='bg-[#e4dede] text-[#fff] uppercase rounded hover:text-black px-[19px] py-[12px] font-semibold ' to={'/'} >Về trang chủ</NavLink> */}
+                <NavLink className='btnAuth btn-home ' to={'/'} >Trang chủ</NavLink>
+                <input type="submit" defaultValue="Login" className="btnAuth " />
+              </div>
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
@@ -80,34 +101,48 @@ export default function AuthPage() {
                   <i className="fab fa-linkedin-in" />
                 </a>
               </div>
-            </Form>
-            <Form
+            </form>
+            <form
               onSubmitCapture={formik.handleSubmit}
-             
-              layout="horizontal"
               action="#" className="sign-up-form auth-form">
               <h2 className="title">Đăng ký</h2>
-              <div className="input-field input-sign-up">
+              <div className={`input-field input-sign-up  ${formik.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
               </div>
-              <div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                <p></p>
-              </div>
-              <div className="input-field input-sign-up">
+              {formik.errors.taiKhoan && formik.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formik.errors.taiKhoan}</p>
+              </div>)}
+
+              <div className={`input-field input-sign-up  ${formik.errors.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <input onChange={handleOnchange} name='matKhau' type="password" placeholder="Mật khẩu" />
+
               </div>
-              <div className="input-field input-sign-up">
+              {formik.errors.matKhau && formik.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formik.errors.matKhau}</p>
+              </div>)}
+              <div className={`input-field input-sign-up  ${formik.errors.hoTen && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='hoTen' type="text" placeholder="Họ và tên" />
               </div>
-              <div className="input-field input-sign-up">
+              {formik.errors.hoTen && formik.touched.hoTen && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formik.errors.hoTen}</p>
+              </div>)}
+              <div className={`input-field input-sign-up  ${formik.errors.soDT && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='soDT' type="text" placeholder="Số điện thoại" />
+
               </div>
-              <div className="input-field input-sign-up">
+              {formik.errors.soDT && formik.touched.soDT && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formik.errors.soDT}</p>
+              </div>)}
+
+              <div className={`input-field input-sign-up  ${formik.errors.email && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='email' type="email" placeholder="Email" />
               </div>
+              {formik.errors.email && formik.touched.email && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
+                <p>{formik.errors.email}</p>
+              </div>)}
               <div className="input-field input-sign-up overflow-hidden">
                 <select onChange={handleOnchange} name='maNhom' className='absolute left-0 w-full h-full bg-[#f0f0f0] text-[#000] font-semibold' placeholder="Mã nhóm" >
                   <option value="GP01">GP01</option>
@@ -121,7 +156,11 @@ export default function AuthPage() {
                   <option value="GP09">GP09</option>
                 </select>
               </div>
-              <input type="submit" className="btnAuth" defaultValue="Sign up" />
+              <div className='flex justify-between items-center max-w-[380px] w-full'>
+
+                <NavLink className='btnAuth btn-home ' to={'/'} >Trang chủ</NavLink>
+                <input type="submit" className="btnAuth" defaultValue="Sign up" />
+              </div>
               <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
@@ -137,7 +176,7 @@ export default function AuthPage() {
                   <i className="fab fa-linkedin-in" />
                 </a>
               </div>
-            </Form>
+            </form>
           </div>
         </div>
         <div className="panels-container">
