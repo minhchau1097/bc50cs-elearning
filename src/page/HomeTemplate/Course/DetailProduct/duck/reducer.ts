@@ -1,4 +1,4 @@
-import { COURSE_CATEGORY_SUCCESS, COURSE_CATEGORY_REQUEST, COURSE_CATEGORY_FAIL } from "./contants";
+import { DETAIL_COURSE_REQUEST, DETAIL_COURSE_SUCCESS, DETAIL_COURSE_FAIL } from "./contants";
 
 
 const initialState = {
@@ -7,23 +7,23 @@ const initialState = {
      error: null,
 };
 
-const courseCategoryReducer = (state=initialState , action:any)=>{
+const detaiProductReducer = (state=initialState , action:any)=>{
     switch (action.type) {
-        case COURSE_CATEGORY_REQUEST:{
+        case DETAIL_COURSE_REQUEST:{
             state.loading =true;
             state.data = null;
             state.error = null;
             return {...state};
         }
 
-        case COURSE_CATEGORY_SUCCESS:{
+        case DETAIL_COURSE_SUCCESS:{
             state.loading =false;
             state.data = action.payload;
             state.error = null;
             return {...state};
         }
 
-        case COURSE_CATEGORY_FAIL:{
+        case DETAIL_COURSE_FAIL:{
             state.loading =false;
             state.data = null;
             state.error = action.payload;
@@ -36,5 +36,4 @@ const courseCategoryReducer = (state=initialState , action:any)=>{
     }
 };
 
-export default courseCategoryReducer;
-
+export default detaiProductReducer;

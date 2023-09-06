@@ -1,100 +1,188 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useEffect, useState} from 'react';
+import {  useSelector } from 'react-redux';
+import {
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Select,
+} from 'antd';
+import { useFormik } from 'formik';
+import { useAppDispatch } from 'store/type';
+import { actAddCourse } from '../duck/action';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { actFetchCategory } from 'page/HomeTemplate/Category/duck/action';
+import { RootState } from 'store';
+import dayjs from 'dayjs';
 
 export default function AddCourse() {
-    const dispatch = useDispatch();
-    // const error = useSelector((state)=>state.addUserReducer.error);
-  
-    const [state,setState]= useState({
-      taiKhoan: "",
-      matKhau: "",
-      email: "",
-      soDT: "",
-      maNhom: "GP01",
-      maLoaiNguoiDung: "KhachHang",
-      hoTen: "",
-    })
-    
-    const handleOnchange = (event :any)=>{
-      const {name, value} = event.target;
-      setState({
-        ...state,
-        [name] : value,
-      })
-    };
-  
-    const handleSubmit = (event :any)=>{
-      event.preventDefault();
-      console.log(state);
-        // dispatch(actAddUser(state));
+  const [componentSize, setComponentSize] = useState('default');
+  const onFormLayoutChange = ({ size}) => {
+    setComponentSize(size);
+  };
+
+  const [imgSrc,setImgSrc] = useState('');
+  const dispatch = useAppDispatch();
+  const navigate:NavigateFunction = useNavigate();
+  const dataDanhMucKhoaHoc :any = useSelector((state: RootState)=>state.categoryReducer.data);
+  const userData = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
+
+  useEffect(()=>{
+    dispatch(actFetchCategory())
+  },[]);
+
+  const formik =useFormik({
+    initialValues: {
+      maKhoaHoc: "",
+      biDanh : "",
+      tenKhoaHoc : "",
+      moTa : "",
+      luotXem : 0,
+      danhGia : 0,
+      hinhAnh : {},
+      maNhom : "",
+      ngayTao : "",
+      maDanhMucKhoaHoc : "",
+      taiKhoanNguoiTao : userData.taiKhoan,
+    },
+    onSubmit:(value)=>{
+      console.log(value);
+      value.maNhom = 'GP03';
+      let formData =new FormData();
+      
+
+      for(let key in value){
+        if(key === 'hinhAnh'){
+          formData.append('File', value.hinhAnh,value.hinhAnh.name );
+        }else{
+          formData.append(key, value[key]);
+        }
+      }
+      dispatch(actAddCourse(formData,navigate));
     }
+  });
+  
+  const handleChangeDatePicker =(value :any)=>{
+    let ngayTao = dayjs(value).format('DD/MM/YYYY');
+    formik.setFieldValue('ngayTao',ngayTao);
+  };
+
+  const handleChangeInputNumber= (name:any)=>{
+    return(value :any)=>{
+      formik.setFieldValue(name, value)
+    }
+  };
+
+  const handleChangeFile= (event:any)=>{
+    let file = event.target.files[0];
+    if(file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg'){
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload =(event)=>{
+        setImgSrc(event.target.result);
+      }
+      formik.setFieldValue('hinhAnh', file);
+    }
+  };
+
+  const handleChangeDanhMuc= (value :any) => {
+    formik.setFieldValue('maDanhMucKhoaHoc', value)
+    console.log(`selected ${value}`);
+  };
+
+  const selectDanhMuc= () => {
+    return dataDanhMucKhoaHoc?.map((item :any, index :any) => {
+      return { label: item.tenDanhMuc, value: item.maDanhMuc }
+    })
+  };
+
+  
 
   return (
-    <div  className="container" >
-      
-        <div className='row p-3'>
-            <div className='col-md-6 mx-auto alert alert-secondary p-4'>
-   
-              <h1 className='text-center'>THÊM KHÓA HỌC</h1>
-            
-        
-                
-                <form onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Tài Khoản</label>
-                        <input type="text" className='form-control' 
-                        name='taiKhoan'
-                        onChange={handleOnchange}
-                        />
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Mật Khẩu</label>
-                        <input type="text" className='form-control' 
-                        name='matKhau' 
-                        onChange={handleOnchange}
-                        />
-                    </div>
+    <div className='container'>
+<Form
+      onSubmitCapture={formik.handleSubmit}
+      labelCol={{
+        span: 10,
+      }}
+      wrapperCol={{
+        span: 14,
+      }}
+      layout="horizontal"
+      initialValues={{
+        size: componentSize,
+      }}
+      onValuesChange={onFormLayoutChange}
+      size={componentSize}
+      style={{
+        maxWidth: 1200  ,
+      }}
+    >
+      <h1 className='text-warning text-center pb-3'>Thêm Mới Khóa Học</h1>
+      <div className='d-flex justify-content-center'>
+          <div className='pr-5'>
+                  <Form.Item label="Form Size" name="size" >
+                <Radio.Group>
+                  <Radio.Button value="small">Small</Radio.Button>
+                  <Radio.Button value="default">Default</Radio.Button>
+                  <Radio.Button value="large">Large</Radio.Button>
+                </Radio.Group>
+              </Form.Item>
 
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Email</label>
-                        <input type="text" className='form-control' 
-                        name='email' 
-                        onChange={handleOnchange}
-                        />
-                    </div>
+              <Form.Item label="Mã Khóa Học" >
+                <Input name='maKhoaHoc' onChange={formik.handleChange} />
+              </Form.Item>
 
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Số điện thoại</label>
-                        <input type="text" className='form-control' 
-                        name='soDT' 
-                        onChange={handleOnchange}
-                        />
-                    </div>
+              <Form.Item label="Bí Danh">
+                <Input name='biDanh' onChange={formik.handleChange}/>
+              </Form.Item>
 
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Mã loại người dùng</label>
-                        <select name="maLoaiNguoiDung" id="" className='form-control' onChange={handleOnchange}>
-                          <option value="KhachHang">Khách hàng</option>
-                          <option value="QuanTri ">Quản trị</option>
-                        </select>
-                    </div>
+              <Form.Item label="Tên Khóa Học" >
+                <Input name='tenKhoaHoc' onChange={formik.handleChange} />
+              </Form.Item>
 
-                    <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Họ tên</label>
-                        <input type="text" className='form-control' 
-                        name='hoTen' 
-                        onChange={handleOnchange}
-                        />
-                    </div>
-                    <button className='btn btn-warning pr-5 pl-5'>THÊM MỚI</button>
-                    {/* {error && (<div className='alert alert-danger'>${error?.response.data.content}. Vui lòng thay đổi!</div>)} */}
-                    
-                </form>
+              <Form.Item label="Mô Tả">
+                <Input name='moTa' onChange={formik.handleChange}/>
+              </Form.Item>
+
+              <Form.Item label="Lượt Xem">
+                <Input name='luotXem' onChange={formik.handleChange}/>
+              </Form.Item>
+
+              <Form.Item label="Đánh Giá">
+               <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10}/>
+              </Form.Item>  
+
               
-                
-               
-            </div>
-        </div>
+          </div>
+          <div className='border border-warning border-top-0 border-right-0 border-bottom-0'>
+            <Form.Item label="Ngày Tạo">
+                  <DatePicker name='ngayTao' format={"DD/MM/YYYY"} onChange={handleChangeDatePicker}/>
+            </Form.Item>
+        
+
+            <Form.Item label="Đánh Giá">
+              <Select defaultValue="BackEnd" onChange={handleChangeDanhMuc} 
+              options={selectDanhMuc()}
+              />
+            </Form.Item>
+
+
+
+            <Form.Item label="Hình Ảnh">
+              <input type="file" onChange={handleChangeFile} 
+              accept="image/png, image/jpeg, image/gif, image/jpg"/>
+              <br />
+              <img src={imgSrc} alt="1" style={{width:150, height:150}} />
+            </Form.Item>
+          </div>
+      </div>
+      
+      <div className='text-center '>
+        <button type='submit' className='btn btn-warning'>SUBMIT</button>
+      </div>
+    </Form>
     </div>
   )
 }

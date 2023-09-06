@@ -9,10 +9,8 @@ import Product from '../Product';
 
 export default function Template() {
   const dispatch : any = useDispatch();
-  const courseCategory :any = useSelector((state :RootState)=> state.courseCategoryReducer.data);
+  const courseCategory : any= useSelector((state :RootState)=> state.courseCategoryReducer.data);
   const param =useParams();
-  console.log(courseCategory);
-
 
   useEffect(()=>{
     dispatch(actFetchCourseCategory(param.id));
@@ -24,7 +22,7 @@ export default function Template() {
         key={item.maKhoaHoc}
         item = {item}
         />
-      })
+      })  
   };
 
   return (

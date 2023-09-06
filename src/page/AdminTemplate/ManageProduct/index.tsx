@@ -1,16 +1,18 @@
-import React, { Fragment, useEffect,useState } from 'react';
-import { Table,Input, Space  } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { Fragment, useEffect } from 'react';
+import { Table,Input  } from 'antd';
+import {  useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { RootState } from '../../../store';
 import { actFetchListCourse } from '../../HomeTemplate/HomePage/CourseList/duck/action';
+import { actDeleteCourse } from './duck/action';
+import { useAppDispatch } from 'store/type';
 
 const { Search } = Input;
 
 export default function DashBoard() {
 
   const arrCourse = useSelector((state :RootState)=>state.courseListReducer.data);
-  const dispatch :any= useDispatch();
+  const dispatch = useAppDispatch();
   
 const onSearch = (value :any) =>{
   console.log(value);
@@ -85,21 +87,18 @@ const onSearch = (value :any) =>{
       dataIndex: 'tuyChinh',
       render:(text :any,course :any)=>{
         return  <Fragment>
-          {/* <NavLink to={`/admin/edit-film/${film.maPhim}`}>
+          <NavLink to={`/admin/chinhsua/${course.maKhoaHoc}`}>
             <button className='btn btn-info'>Sửa</button>
           </NavLink>
 
             <button className='btn btn-danger'
             onClick={()=>{
-              if(window.confirm(`Chắc là muốn xóa phim "${film.tenPhim}" dữ chưa??? `)){
-                  dispatch(actDeleteFilm(film.maPhim))
+              if(window.confirm(`Chắc là muốn xóa phim "${course.maKhoaHoc}" dữ chưa??? `)){
+                  dispatch(actDeleteCourse(course.maKhoaHoc))
               }
             }}
             >Xóa</button>
 
-            <NavLink to={`/admin/add-show-time/${film.maPhim}`}>
-              <button className='btn btn-warning'>Thêm lịch chiếu</button>
-            </NavLink> */}
 
         </Fragment>
       },
@@ -122,7 +121,7 @@ const onSearch = (value :any) =>{
       
       <Search
             className='mb-2'
-            placeholder="Tìm kiếm phim"
+            placeholder="Tìm kiếm khóa học"
             allowClear
             enterButton="Search"
             size="large"

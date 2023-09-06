@@ -21,9 +21,10 @@ const routes =[
         element : lazy(()=> import("../page/AdminTemplate")),
         nested:[
             { path: "sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct")) },
-            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
             { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) }, 
-            { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) }, 
+            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
+            { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) },
+            { path: "chinhsua-nguoidung/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/EditUser")) },  
         ]
     },
     { path: "auth", element: lazy(() => import("../page/AdminTemplate/AuthPage")) },

@@ -2,15 +2,14 @@ import {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../../store';
 import { useParams } from 'react-router-dom';
-import { actFetchDetailCourse } from '../duck/action';
+// import { actFetchDetailCourse } from '../duck/action';
+import { actFetchDetailCourse } from './duck/action';
 
 export default function DetailProduct() {   
     const dispatch :any = useDispatch();
-    const product : any = useSelector((state : RootState)=>state.courseCategoryReducer.data);
+    const product : any = useSelector((state : RootState)=>state.detaiProductReducer.data);
     const param = useParams();
-    console.log(product);
     
-
     useEffect(()=>{
         dispatch(actFetchDetailCourse(param.id));
       },[]);

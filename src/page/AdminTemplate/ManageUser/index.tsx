@@ -23,11 +23,23 @@ const onSearch = (value :any) =>{
   // dispatch(actFetchListUser(value));
  };
 
-  useEffect(()=>{
-    dispatch(actFetchListUser());
-    // dispatch(actFetchEditFilm())
-  },[])
 
+ const handleOnchange = (event :any)=>{
+  
+  // const {name, value} = event.target;  
+  
+  console.log(event.target.value);
+
+  // actFetchListUser(event.target)
+};
+
+useEffect(()=>{
+  dispatch(actFetchListUser());
+  // dispatch(actFetchEditFilm())
+},[])
+
+
+ 
 
   const columns  = [
     {
@@ -98,9 +110,9 @@ const onSearch = (value :any) =>{
       dataIndex: 'tuyChinh',
       render:(text :any,user :User)=>{
         return  <Fragment>
-          {/* <NavLink to={`/admin/edit-film/${user.maPhim}`}>
+          <NavLink to={`/admin/chinhsua-nguoidung/${user.taiKhoan}`}>
             <button className='btn btn-info'>Sửa</button>
-          </NavLink> */}
+          </NavLink>
 
             <button className='btn btn-danger'
             onClick={()=>{
@@ -125,6 +137,18 @@ const onSearch = (value :any) =>{
       <NavLink to="/admin/them-nguoidung">
         <button className='btn btn-success mb-2'>Thêm Người Dùng</button>
       </NavLink>
+      <div className='form-group'>
+                        <label htmlFor="" className='font-weight-bolder text-warning'>Nhóm </label>
+                        <select name="maNhom" id="nhomGP" className='form-control col-2'
+                         onChange={handleOnchange} 
+                         >                
+                          <option value="GP01 ">GP01</option>
+                          <option value="GP02 ">GP02</option>
+                          <option value="GP03 ">GP03</option>
+                          <option value="GP04 ">GP04</option>
+                          <option value="GP05 ">GP05</option>
+                        </select>
+                    </div>
       
       <Search
             className='mb-2'
