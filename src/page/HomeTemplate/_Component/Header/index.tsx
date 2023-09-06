@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavLink, Navigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { NavigateFunction, useNavigate } from 'react-router';
 export default function Header() {
+
   const navigate: NavigateFunction = useNavigate();
   const style = {
     width: '100%'

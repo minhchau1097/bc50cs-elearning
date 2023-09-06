@@ -10,7 +10,11 @@ export interface Action {
     type: string;
     payload?: any;
 };
-
+export interface ResultAcount<T> {
+    data: T;
+    status: number;
+    statusText: string;
+}
 export interface Result<T> {
     data: T[];
     status: number;
