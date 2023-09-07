@@ -39,7 +39,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                     localStorage.setItem('USER_CUSTOMER', JSON.stringify(result))
                     if (window.history.state && window.history.state.idx > 0) {
                         navigate(-1);
-                    } else {
+                    } else {    
                         navigate('/', { replace: true }); 
                     }
 

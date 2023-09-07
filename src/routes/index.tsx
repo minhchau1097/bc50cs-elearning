@@ -13,6 +13,7 @@ const routes =[
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
             { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
             { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
+            
         ]
     },
 
@@ -27,6 +28,7 @@ const routes =[
         ]
     },
     { path: "auth", element: lazy(() => import("../page/AdminTemplate/AuthPage")) },
+    { path: "thong-tin-ca-nhan", element: lazy(() => import("../page/HomeTemplate/Information")) },
 ];
 
 const renderRoutes =()=>{
