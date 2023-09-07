@@ -1,9 +1,10 @@
-import { USER_REQUEST,USER_SUCCESS,USER_FAIL } from "./contants";
+import { USER_REQUEST,USER_SUCCESS,USER_FAIL,EDIT_USER } from "./contants";
 
 const initialState = {
     loading: false,
-     data:null,
-     error: null,
+    data:null,
+    error: null,
+    userEdit: null,
 };
 
 const userReducer = (state=initialState , action:any)=>{
@@ -29,6 +30,10 @@ const userReducer = (state=initialState , action:any)=>{
             return {...state};
         }
 
+        case EDIT_USER:{
+            state.userEdit = action.payload;
+            return{...state}
+        }
 
         default:
             return {...state}

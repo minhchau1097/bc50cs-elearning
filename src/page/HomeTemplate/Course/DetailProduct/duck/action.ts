@@ -1,14 +1,14 @@
-import { COURSE_CATEGORY_SUCCESS, COURSE_CATEGORY_REQUEST, COURSE_CATEGORY_FAIL } from "./contants";
+import { DETAIL_COURSE_REQUEST, DETAIL_COURSE_SUCCESS, DETAIL_COURSE_FAIL } from "./contants";
 import api from "utils/api";
-import { Action, Course, Result } from "../../../../type/type";
+import { Action, Course } from "../../../../../type/type";
 
 
-export const actFetchCourseCategory =(maDanhMuc:any)=>{
+export const actFetchDetailCourse =(maKhoaHoc:any)=>{
     return (dispatch : any)=>{
         dispatch(actCourseCategoryRequest());
-         api.get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${maDanhMuc}&MaNhom=GP01`)
-        .then((res :Result<Course>)=>{
-            if(res.status === 200){
+         api.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
+        .then((res : any)=>{
+            if(res.status === 200){ 
                 dispatch(actCourseCategorySuccess(res.data));             
             }               
         })
@@ -21,20 +21,20 @@ export const actFetchCourseCategory =(maDanhMuc:any)=>{
 
 const actCourseCategoryRequest =() :Action=>{
     return{
-        type:COURSE_CATEGORY_REQUEST,
+        type:DETAIL_COURSE_REQUEST,
     }
 }
 
 const actCourseCategorySuccess =(data :Course[]) :Action=>{
     return{
-        type:COURSE_CATEGORY_SUCCESS,
+        type:DETAIL_COURSE_SUCCESS,
         payload: data,
     }
 }
 
 const actCourseCategoryFail =(error: any):Action=>{
     return{
-        type:COURSE_CATEGORY_FAIL,
+        type:DETAIL_COURSE_FAIL,
         payload: error,
     }
 }
