@@ -34,7 +34,7 @@ export default function DetailProduct() {
                             <i className="fas fa-graduation-cap"></i>
                             <div className='pl-1 pr-1'>
                                 <p>Lĩnh Vực</p>
-                                {/* <p>{product?.danhMucKhoaHoc.tenDanhMucKhoaHoc}</p> */}
+                                <p>{product?.danhMucKhoaHoc.tenDanhMucKhoaHoc}</p>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ export default function DetailProduct() {
                                     <i className="fas fa-star"></i>
                                     <i className="fas fa-star"></i>
                                     <i className="fas fa-star"></i>
-                                    5 sao
+                                    <p>5 sao</p>
                                 </div>
                                 <p className='pt-2'>{product?.luotXem} Lượt Xem</p>
                             </div>

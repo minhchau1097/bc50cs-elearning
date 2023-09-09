@@ -11,6 +11,7 @@ export const actFetchListUser =(taiKhoan='')=>{
             api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02&tuKhoa=${taiKhoan}`)
             .then((res :Result<User>)=>{
                 if(res.status === 200){
+                    console.log(res.data);
                     dispatch(actUserSuccess(res.data));
                     dispatch(actFetchEditUser(null));             
                 }               
@@ -18,9 +19,8 @@ export const actFetchListUser =(taiKhoan='')=>{
             .catch((err)=>{
                 dispatch(actUserFail(err));        
             })
-        }else
-        {
-            api.get("QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02")
+        }else{
+            api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02`)
             .then((res :Result<User>)=>{
                 if(res.status === 200){
                     dispatch(actUserSuccess(res.data));
@@ -31,7 +31,8 @@ export const actFetchListUser =(taiKhoan='')=>{
                 dispatch(actUserFail(err));        
             })
         }
-         
+             
+        
     }
 };
 
@@ -42,7 +43,6 @@ export const actAddUser =(user :User,navigate: NavigateFunction)=>{
         .then((res)=>{
             if(res.status === 200){
                 toast.success('Thêm người dùng thành công!');
-                console.log(res.data);
                 navigate('/admin/nguoidung', { replace: true })    
             }       
         })
@@ -72,9 +72,7 @@ export const actDeleteUser =(taiKhoan :string)=>{
 export const actFetchEditUser =  (taiKhoan:any)=>{
     return(dispatch :any)=>{
         api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02&tuKhoa=${taiKhoan}`)
-        .then((res)=>{
-            console.log(res.data[0]);
-            
+        .then((res)=>{    
             dispatch(actEditUser(res.data[0]))
         })  
         .catch((error)=>{

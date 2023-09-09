@@ -1,6 +1,7 @@
 import { COURSELIST_REQUEST,COURSELIST_SUCCESS,COURSELIST_FAIL } from "./contants";
 import api from "../../../../../utils/api";
 import { Result ,Action ,Course} from "../../../../../type/type";
+import { actFetchEditCourse } from "page/AdminTemplate/ManageProduct/duck/action";
 
 export const actFetchListCourse =(tenKhoaHoc='')=>{
     return (dispatch : any)=>{
@@ -9,7 +10,8 @@ export const actFetchListCourse =(tenKhoaHoc='')=>{
             api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP03`)
             .then((res :Result<Course>)=>{
                 if(res.status === 200){
-                    dispatch(actListCourseSuccess(res.data));             
+                    dispatch(actListCourseSuccess(res.data));
+                    dispatch(actFetchEditCourse(null));              
                 }               
             })
             .catch((err)=>{
@@ -20,7 +22,8 @@ export const actFetchListCourse =(tenKhoaHoc='')=>{
             api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
             .then((res :Result<Course>)=>{
                 if(res.status === 200){
-                    dispatch(actListCourseSuccess(res.data));             
+                    dispatch(actListCourseSuccess(res.data));    
+                    dispatch(actFetchEditCourse(null));          
                 }               
             })
             .catch((err)=>{

@@ -14,28 +14,18 @@ const { Search } = Input;
 
 export default function ListUser() {
 
-  const arrUser = useSelector((state :RootState)=>state.userReducer.data);
+  const arrUser :any= useSelector((state :RootState)=>state.userReducer.data);
   const dispatch  = useAppDispatch();
   
 const onSearch = (value :any) =>{
   console.log(value);
-
-  // dispatch(actFetchListUser(value));
+  dispatch(actFetchListUser(value));
  };
 
 
- const handleOnchange = (event :any)=>{
-  
-  // const {name, value} = event.target;  
-  
-  console.log(event.target.value);
-
-  // actFetchListUser(event.target)
-};
 
 useEffect(()=>{
   dispatch(actFetchListUser());
-  // dispatch(actFetchEditFilm())
 },[])
 
 
@@ -137,19 +127,6 @@ useEffect(()=>{
       <NavLink to="/admin/them-nguoidung">
         <button className='btn btn-success mb-2'>Thêm Người Dùng</button>
       </NavLink>
-      <div className='form-group'>
-                        <label htmlFor="" className='font-weight-bolder text-warning'>Nhóm </label>
-                        <select name="maNhom" id="nhomGP" className='form-control col-2'
-                         onChange={handleOnchange} 
-                         >                
-                          <option value="GP01 ">GP01</option>
-                          <option value="GP02 ">GP02</option>
-                          <option value="GP03 ">GP03</option>
-                          <option value="GP04 ">GP04</option>
-                          <option value="GP05 ">GP05</option>
-                        </select>
-                    </div>
-      
       <Search
             className='mb-2'
             placeholder="Tìm kiếm Người Dùng"

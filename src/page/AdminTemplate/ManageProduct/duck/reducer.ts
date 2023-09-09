@@ -4,7 +4,7 @@ const initialState = {
     loading: false,
     data:null,
     error: null,
-    userEdit: null,
+    courseEdit: null,
 };
 
 const productReducer = (state=initialState , action:any)=>{
@@ -31,7 +31,7 @@ const productReducer = (state=initialState , action:any)=>{
         }
 
         case EDIT_PRODUCT:{
-            state.userEdit = action.payload;
+            state.courseEdit = action.payload;
             return{...state}
         }
 
