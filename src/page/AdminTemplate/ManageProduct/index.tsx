@@ -22,7 +22,6 @@ const onSearch = (value :any) =>{
 
   useEffect(()=>{
     dispatch(actFetchListCourse());
-    // dispatch(actFetchEditFilm())
   },[])
 
 
@@ -82,12 +81,12 @@ const onSearch = (value :any) =>{
       width: '25%',
     },
 
-    {
+    { 
       title: 'Tùy Chỉnh',
       dataIndex: 'tuyChinh',
       render:(text :any,course :any)=>{
         return  <Fragment>
-          <NavLink to={`/admin/chinhsua/${course.maKhoaHoc}`}>
+          <NavLink to={`/admin/chinhsua-sanpham/${course.tenKhoaHoc}`}>
             <button className='btn btn-info'>Sửa</button>
           </NavLink>
 
@@ -108,7 +107,7 @@ const onSearch = (value :any) =>{
   const data =arrCourse? arrCourse : [];
 
   const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
-    console.log('params', pagination, filters, sorter, extra);
+    
   };
 
 

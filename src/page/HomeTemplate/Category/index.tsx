@@ -1,22 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import {useEffect} from 'react';
+import {useEffect } from 'react';
 import { actFetchCategory } from "./duck/action";
-import {CategoryType } from "./duck/type";
 import CategoryItem from "./CategoryItem";
+import { useAppDispatch } from "store/type";
 
 
 export default function Category() {
-  const dispatch :any = useDispatch();
-  const category  = useSelector((state: RootState)=>state.categoryReducer.data);
+  const dispatch  = useAppDispatch();
+  const category :any = useSelector((state: RootState)=>state.categoryReducer.data);
 
   useEffect(()=>{
     dispatch(actFetchCategory());
   },[]);
 
   const renderCategory =()=>{
-    return category?.map((item: any, n :any )=>{
+    return category?.map((item: any, n :number )=>{
       return <CategoryItem
       key ={item.maDanhMuc}
       category = {item}
@@ -24,6 +23,7 @@ export default function Category() {
       />  
     })
   };
+
 
   const arrayImg = [
 
@@ -40,6 +40,7 @@ export default function Category() {
     'https://img.freepik.com/premium-vector/programmer-is-thinking-about-program-code-development-programming-coding-technologies_569013-329.jpg?w=2000',
 
   ];
+
 
   return (
     <section className="category">

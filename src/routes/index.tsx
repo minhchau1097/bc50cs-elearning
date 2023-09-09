@@ -22,8 +22,9 @@ const routes = [
         element: lazy(() => import("../page/AdminTemplate")),
         nested: [
             { path: "sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct")) },
-            { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) },
-            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) },
+            { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) }, 
+            { path: "chinhsua-sanpham/:id", element: lazy(() => import("../page/AdminTemplate/ManageProduct/EditCourse")) }, 
+            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
             { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) },
             { path: "chinhsua-nguoidung/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/EditUser")) },
         ]

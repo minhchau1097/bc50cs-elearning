@@ -39,7 +39,8 @@ export interface Course {
     biDanh: string;
     tenKhoaHoc: string;
     moTa: string;
-    luotXem: string;
+    luotXem: number;
+    danhGia? : number;
     hinhAnh: string;
     maNhom: string;
     ngayTao: string;

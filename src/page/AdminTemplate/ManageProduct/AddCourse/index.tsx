@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React,{useEffect, useState, } from 'react';
 import {  useSelector } from 'react-redux';
 import {
   DatePicker,
@@ -16,6 +16,7 @@ import { actFetchCategory } from 'page/HomeTemplate/Category/duck/action';
 import { RootState } from 'store';
 import dayjs from 'dayjs';
 
+
 export default function AddCourse() {
   const [componentSize, setComponentSize] = useState('default');
   const onFormLayoutChange = ({ size}) => {
@@ -23,10 +24,11 @@ export default function AddCourse() {
   };
 
   const [imgSrc,setImgSrc] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
   const dispatch = useAppDispatch();
   const navigate:NavigateFunction = useNavigate();
   const dataDanhMucKhoaHoc :any = useSelector((state: RootState)=>state.categoryReducer.data);
-  const userData = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
+  const userData = JSON.parse(localStorage.getItem('USER_ADMIN') || '');
 
   useEffect(()=>{
     dispatch(actFetchCategory())
@@ -40,26 +42,19 @@ export default function AddCourse() {
       moTa : "",
       luotXem : 0,
       danhGia : 0,
-      hinhAnh : {},
+      hinhAnh : "",
       maNhom : "",
       ngayTao : "",
       maDanhMucKhoaHoc : "",
       taiKhoanNguoiTao : userData.taiKhoan,
     },
-    onSubmit:(value)=>{
-      console.log(value);
+    onSubmit:(value :any)=>{
       value.maNhom = 'GP03';
       let formData =new FormData();
-      
+      formData.append('file', selectedFile );
+      formData.append('tenKhoaHoc', value.tenKhoaHoc);
 
-      for(let key in value){
-        if(key === 'hinhAnh'){
-          formData.append('File', value.hinhAnh,value.hinhAnh.name );
-        }else{
-          formData.append(key, value[key]);
-        }
-      }
-      dispatch(actAddCourse(formData,navigate));
+      dispatch(actAddCourse(value,formData,navigate));
     }
   });
   
@@ -82,13 +77,13 @@ export default function AddCourse() {
       reader.onload =(event)=>{
         setImgSrc(event.target.result);
       }
-      formik.setFieldValue('hinhAnh', file);
+      formik.setFieldValue('hinhAnh', file.name);
     }
+    setSelectedFile(file);
   };
 
   const handleChangeDanhMuc= (value :any) => {
     formik.setFieldValue('maDanhMucKhoaHoc', value)
-    console.log(`selected ${value}`);
   };
 
   const selectDanhMuc= () => {
@@ -147,11 +142,11 @@ export default function AddCourse() {
               </Form.Item>
 
               <Form.Item label="Lượt Xem">
-                <Input name='luotXem' onChange={formik.handleChange}/>
+                <InputNumber type='number' onChange={handleChangeInputNumber('luotXem')}min={1} max={1000000}/>
               </Form.Item>
 
               <Form.Item label="Đánh Giá">
-               <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10}/>
+               <InputNumber type='number' onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
               </Form.Item>  
 
               
@@ -162,7 +157,7 @@ export default function AddCourse() {
             </Form.Item>
         
 
-            <Form.Item label="Đánh Giá">
+            <Form.Item label="Danh Mục">
               <Select defaultValue="BackEnd" onChange={handleChangeDanhMuc} 
               options={selectDanhMuc()}
               />
