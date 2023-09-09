@@ -5,6 +5,12 @@ export interface AppState<T> {
     data: T[] | null;
     error: any;
 };
+export interface AppStateAcount<T> {
+    loading: boolean;
+    data: T | null;
+    error: any;
+};
+
 
 export interface Action {
     type: string;
@@ -20,8 +26,8 @@ export interface Result<T> {
     status: number;
     statusText: string;
 }
-export interface Error{
-    response:{  
+export interface Error {
+    response: {
         data: string;
         status: number;
         statusText: string;
@@ -45,31 +51,31 @@ export interface Course {
     }
 }
 
-export interface User{
-    taiKhoan : string;
-    matKhau : string;
-    hoTen : string;
-    soDT : string;
-    maLoaiNguoiDung : string;
-    maNhom : string;
-    email : string;
+export interface User {
+    taiKhoan: string ;
+    matKhau: string ;
+    hoTen: string ;
+    soDT: string ;
+    maLoaiNguoiDung: string ;
+    maNhom: string ;
+    email: string ;
 }
 
 export interface Teacher {
-    ten: string,
-    linhVuc: string,
-    ngonNgu: string,
-    hinhAnh: string,
-    danhGia: number,
-    soLuongDanhGia: string,
+    ten: string;
+    linhVuc: string;
+    ngonNgu: string;
+    hinhAnh: string;
+    danhGia: number;
+    soLuongDanhGia: string;
     id: number | string
 }
 
-export interface Date{
-    days: undefined | string ,
-      hours: undefined | string,
-      minutes: undefined | string,
-      seconds: undefined | string
+export interface Date {
+    days: undefined | string;
+    hours: undefined | string;
+    minutes: undefined | string;
+    seconds: undefined | string
 }
 
 export interface SignUp {
@@ -87,11 +93,22 @@ export interface Login {
 }
 
 export interface DataAuth {
-    taiKhoan: string
+    taiKhoan: string;
+    email: string;
+    soDT: string;
+    maNhom: string;
+    maLoaiNguoiDung: string;
+    hoTen: string;
+    accessToken: string;
+}
+
+export interface DetailUser {
+    chiTietKhoaHocGhiDanh: []
     email: string
-    soDT: string
-    maNhom: string
-    maLoaiNguoiDung: string
     hoTen: string
-    accessToken: string
+    maLoaiNguoiDung: string
+    maNhom: string
+    matKhau: string
+    soDT: string
+    taiKhoan: string
 }

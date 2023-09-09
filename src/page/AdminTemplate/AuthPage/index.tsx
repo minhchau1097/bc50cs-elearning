@@ -64,14 +64,14 @@ export default function AuthPage() {
             <form onSubmitCapture={formikLogin.handleSubmit}
               action="#" className="sign-in-form auth-form">
               <h2 className="title">Đăng nhập</h2>
-              <div className={`input-field ${formikLogin.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field ${formikLogin.errors.taiKhoan && formikLogin.touched.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-user" />
                 <input name='taiKhoan' onChange={handleChangeLogin} type="text" placeholder="Tài khoản" />
               </div>
               {formikLogin.errors.taiKhoan && formikLogin.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formikLogin.errors.taiKhoan}</p>
               </div>)}
-              <div className={`input-field ${formikLogin.errors.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field ${formikLogin.errors.matKhau && formikLogin.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-lock" />
                 <input name='matKhau' onChange={handleChangeLogin} type="password" placeholder="Mật khẩu" />
               </div>
@@ -106,28 +106,28 @@ export default function AuthPage() {
               onSubmitCapture={formik.handleSubmit}
               action="#" className="sign-up-form auth-form">
               <h2 className="title">Đăng ký</h2>
-              <div className={`input-field input-sign-up  ${formik.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field input-sign-up  ${formik.errors.taiKhoan && formik.touched.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
               </div>
               {formik.errors.taiKhoan && formik.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formik.errors.taiKhoan}</p>
               </div>)}
 
-              <div className={`input-field input-sign-up  ${formik.errors.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field input-sign-up  ${formik.errors.matKhau && formik.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <input onChange={handleOnchange} name='matKhau' type="password" placeholder="Mật khẩu" />
 
               </div>
               {formik.errors.matKhau && formik.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formik.errors.matKhau}</p>
               </div>)}
-              <div className={`input-field input-sign-up  ${formik.errors.hoTen && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field input-sign-up  ${formik.errors.hoTen && formik.touched.hoTen && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='hoTen' type="text" placeholder="Họ và tên" />
               </div>
               {formik.errors.hoTen && formik.touched.hoTen && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formik.errors.hoTen}</p>
               </div>)}
-              <div className={`input-field input-sign-up  ${formik.errors.soDT && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field input-sign-up  ${formik.errors.soDT && formik.touched.soDT && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='soDT' type="text" placeholder="Số điện thoại" />
 
@@ -136,7 +136,7 @@ export default function AuthPage() {
                 <p>{formik.errors.soDT}</p>
               </div>)}
 
-              <div className={`input-field input-sign-up  ${formik.errors.email && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field input-sign-up  ${formik.errors.email && formik.touched.email && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
 
                 <input onChange={handleOnchange} name='email' type="email" placeholder="Email" />
               </div>

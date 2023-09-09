@@ -38,8 +38,8 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                 if (user === 'HV') {
                     localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
                     if (window.history.state && window.history.state.idx > 0) {
-                        navigate(-1);
-                    } else {
+                       navigate(-1)
+                    } else {    
                         navigate('/', { replace: true }); 
                     }
 
@@ -56,6 +56,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
 
     }
 }
+
 
 export const actLogOut = (navigate: NavigateFunction) => {
     localStorage.removeItem("USER_CUSTOMER");

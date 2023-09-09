@@ -1,6 +1,7 @@
 @import './helpers/variable';
 @import './helpers/mixin';
 @import './base/reset';
+@import './layout/header';
 @import './layout/countUp';
 @import './layout/introduce';
 @import './layout/infoCourse';
@@ -11,3 +12,4 @@
 @import './layout/events';
 @import './layout/course';
 @import './layout/auth';
+@import './layout/information';
