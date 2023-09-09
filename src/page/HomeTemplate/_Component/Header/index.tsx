@@ -1,21 +1,17 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { NavigateFunction, useNavigate } from 'react-router';
-import { DataAuth } from 'type/type';
+
+import { NavLink, useNavigate } from 'react-router-dom'
 export default function Header() {
-  const navigate: NavigateFunction = useNavigate();
-  const [state, setState] = useState<boolean>(true);
+  const navigate = useNavigate();
   const renderUser = () => {
     if (localStorage.getItem('USER_CUSTOMER')) {
       let user = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '')
-      console.log(user)
       return <div>
-        <span className='logo-user'>{user.data.hoTen.slice(0, 1)}</span>
+        <span className='logo-user'>{user.hoTen.slice(0, 1)}</span>
       </div>
     } else {
 
       return <button className='btn btn-warning text-white' onClick={() => {
-        navigate('/auth', { replace: true })
+        navigate('/auth', { replace: true });
       }}>ĐĂNG NHẬP</button>
     }
 

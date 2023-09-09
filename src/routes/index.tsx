@@ -1,48 +1,51 @@
-import {Route} from "react-router-dom";
-import {lazy} from "react";
+import { Route } from "react-router-dom";
+import { lazy } from "react";
 
-const routes =[
+const routes = [
     {
         path: "",
-        element : lazy(()=> import("../page/HomeTemplate")),
-        nested:[
+        element: lazy(() => import("../page/HomeTemplate")),
+        nested: [
             { path: "", element: lazy(() => import("../page/HomeTemplate/HomePage")) },
-            { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category"))},
+            { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category")) },
             { path: "blog", element: lazy(() => import("../page/HomeTemplate/Blog")) },
             { path: "sukien", element: lazy(() => import("../page/HomeTemplate/Events")) },
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
             { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
             { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
-            
+
         ]
     },
 
     {
         path: "admin",
-        element : lazy(()=> import("../page/AdminTemplate")),
-        nested:[
+        element: lazy(() => import("../page/AdminTemplate")),
+        nested: [
             { path: "sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct")) },
-            { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) }, 
-            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
+            { path: "them-sanpham", element: lazy(() => import("../page/AdminTemplate/ManageProduct/AddCourse")) },
+            { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) },
             { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) },
-            { path: "chinhsua-nguoidung/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/EditUser")) },  
+            { path: "chinhsua-nguoidung/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/EditUser")) },
         ]
     },
     { path: "auth", element: lazy(() => import("../page/AdminTemplate/AuthPage")) },
     { path: "thong-tin-ca-nhan", element: lazy(() => import("../page/HomeTemplate/Information")) },
+    { path: "thong-tin-ca-nhan/chinh-sua", element: lazy(() => import("../page/HomeTemplate/Information/EditInfor")) }
+
+
 ];
 
-const renderRoutes =()=>{
-    return routes.map((route)=>{
-        if(route.nested){
-            return(
+const renderRoutes = () => {
+    return routes.map((route) => {
+        if (route.nested) {
+            return (
                 <Route
-                key={route.path}
-                path ={route.path}
-                element= {<route.element/>}
+                    key={route.path}
+                    path={route.path}
+                    element={<route.element />}
                 >
-                    {route.nested.map((item)=>{
-                         return (
+                    {route.nested.map((item) => {
+                        return (
                             <Route
                                 key={item.path}
                                 path={item.path}
@@ -52,7 +55,7 @@ const renderRoutes =()=>{
                     })}
                 </Route>
             )
-        }else{
+        } else {
             return (
                 <Route
                     key={route.path}

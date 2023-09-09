@@ -36,16 +36,16 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                 let user = result.data.maLoaiNguoiDung
                 console.log(user)
                 if (user === 'HV') {
-                    localStorage.setItem('USER_CUSTOMER', JSON.stringify(result))
+                    localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
                     if (window.history.state && window.history.state.idx > 0) {
-                        navigate(-1);
+                       navigate(-1)
                     } else {    
                         navigate('/', { replace: true }); 
                     }
 
                 } else {
 
-                    localStorage.setItem('USER_ADMIN', JSON.stringify(result))
+                    localStorage.setItem('USER_ADMIN', JSON.stringify(result.data))
                     navigate('/admin/sanpham', { replace: true });
 
                 }
@@ -56,6 +56,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
 
     }
 }
+
 
 export const actLogOut = (navigate: NavigateFunction) => {
     localStorage.removeItem("USER_CUSTOMER");

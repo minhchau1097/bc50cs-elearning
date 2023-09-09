@@ -1,167 +1,28 @@
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from 'store/type'
+import { actDetailUser } from './duck/action';
+import { DetailUser } from 'type/type';
+import { Modal } from 'antd';
 
 export default function Information() {
-    return (
-        //      <section style={{backgroundColor: '#eee'}}>
-        //   <div className="container mx-auto sm:px-4 py-5">
-        //    <h3 className='text-center'>Thông tin cá nhân</h3>
-        //     <div className="flex flex-wrap ">
-        //       <div className="lg:w-1/3 pr-4 pl-4">
-        //         <div className="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4">
-        //           <div className="flex-auto p-6 text-center">
-        //             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" className="rounded-full max-w-full h-auto" style={{width: 150}} />
-        //             <h5 className="my-3">John Smith</h5>
-        //             <p className="text-gray-700 mb-1">Full Stack Developer</p>
-        //             <p className="text-gray-700 mb-4">Bay Area, San Francisco, CA</p>
-        //             <div className="flex justify-center mb-2">
-        //               <button type="button" className="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600">Follow</button>
-        //               <button type="button" className="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline text-blue-600 border-blue-600  hover:text-white bg-white hover:bg-blue-600 ms-1">Message</button>
-        //             </div>
-        //           </div>
-        //         </div>
-        //         <div className="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4 lg:mb-0">
-        //           <div className="flex-auto p-6 ">
-        //             <ul className="flex flex-col pl-0 mb-0 border rounded border-gray-300  rounded-3">
-        //               <li className="relative  py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline flex justify-between items-center p-6">
-        //                 <i className="fas fa-globe fa-lg text-yellow-500" />
-        //                 <p className="mb-0">https://mdbootstrap.com</p>
-        //               </li>
-        //               <li className="relative  py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline flex justify-between items-center p-6">
-        //                 <i className="fab fa-github fa-lg" style={{color: '#333333'}} />
-        //                 <p className="mb-0">mdbootstrap</p>
-        //               </li>
-        //               <li className="relative  py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline flex justify-between items-center p-6">
-        //                 <i className="fab fa-twitter fa-lg" style={{color: '#55acee'}} />
-        //                 <p className="mb-0">@mdbootstrap</p>
-        //               </li>
-        //               <li className="relative  py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline flex justify-between items-center p-6">
-        //                 <i className="fab fa-instagram fa-lg" style={{color: '#ac2bac'}} />
-        //                 <p className="mb-0">mdbootstrap</p>
-        //               </li>
-        //               <li className="relative  py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline flex justify-between items-center p-6">
-        //                 <i className="fab fa-facebook-f fa-lg" style={{color: '#3b5998'}} />
-        //                 <p className="mb-0">mdbootstrap</p>
-        //               </li>
-        //             </ul>
-        //           </div>
-        //         </div>
-        //       </div>
-        //       <div className="lg:w-2/3 pr-4 pl-4">
-        //         <div className="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4">
-        //           <div className="flex-auto p-6">
-        //             <div className="flex flex-wrap ">
-        //               <div className="sm:w-1/4 pr-4 pl-4">
-        //                 <p className="mb-0">Full Name</p>
-        //               </div>
-        //               <div className="sm:w-3/4 pr-4 pl-4">
-        //                 <p className="text-gray-700 mb-0">Johnatan Smith</p>
-        //               </div>
-        //             </div>
-        //             <hr />
-        //             <div className="flex flex-wrap ">
-        //               <div className="sm:w-1/4 pr-4 pl-4">
-        //                 <p className="mb-0">Email</p>
-        //               </div>
-        //               <div className="sm:w-3/4 pr-4 pl-4">
-        //                 <p className="text-gray-700 mb-0">example@example.com</p>
-        //               </div>
-        //             </div>
-        //             <hr />
-        //             <div className="flex flex-wrap ">
-        //               <div className="sm:w-1/4 pr-4 pl-4">
-        //                 <p className="mb-0">Phone</p>
-        //               </div>
-        //               <div className="sm:w-3/4 pr-4 pl-4">
-        //                 <p className="text-gray-700 mb-0">(097) 234-5678</p>
-        //               </div>
-        //             </div>
-        //             <hr />
-        //             <div className="flex flex-wrap ">
-        //               <div className="sm:w-1/4 pr-4 pl-4">
-        //                 <p className="mb-0">Mobile</p>
-        //               </div>
-        //               <div className="sm:w-3/4 pr-4 pl-4">
-        //                 <p className="text-gray-700 mb-0">(098) 765-4321</p>
-        //               </div>
-        //             </div>
-        //             <hr />
-        //             <div className="flex flex-wrap ">
-        //               <div className="sm:w-1/4 pr-4 pl-4">
-        //                 <p className="mb-0">Address</p>
-        //               </div>
-        //               <div className="sm:w-3/4 pr-4 pl-4">
-        //                 <p className="text-gray-700 mb-0">Bay Area, San Francisco, CA</p>
-        //               </div>
-        //             </div>
-        //           </div>
-        //         </div>
-        //         <div className="flex flex-wrap ">
-        //           <div className="md:w-1/2 pr-4 pl-4">
-        //             <div className="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4 md:mb-0">
-        //               <div className="flex-auto p-6">
-        //                 <p className="mb-4"><span className="text-blue-600 italic me-1">assigment</span> Project Status
-        //                 </p>
-        //                 <p className="mb-1" style={{fontSize: '.77rem'}}>Web Design</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '80%'}} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Website Markup</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '72%'}} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>One Page</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '89%'}} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Mobile Template</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '55%'}} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Backend API</p>
-        //                 <div className="progress rounded mb-2" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '66%'}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //               </div>
-        //             </div>
-        //           </div>
-        //           <div className="md:w-1/2 pr-4 pl-4">
-        //             <div className="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4 md:mb-0">
-        //               <div className="flex-auto p-6">
-        //                 <p className="mb-4"><span className="text-blue-600 italic me-1">assigment</span> Project Status
-        //                 </p>
-        //                 <p className="mb-1" style={{fontSize: '.77rem'}}>Web Design</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '80%'}} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Website Markup</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '72%'}} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>One Page</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '89%'}} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Mobile Template</p>
-        //                 <div className="progress rounded" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '55%'}} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //                 <p className="mt-4 mb-1" style={{fontSize: '.77rem'}}>Backend API</p>
-        //                 <div className="progress rounded mb-2" style={{height: 5}}>
-        //                   <div className="progress-bar" role="progressbar" style={{width: '66%'}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-        //                 </div>
-        //               </div>
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </section>
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { data, loading, error } = useAppSelector(state => state.detailUserReducer);
+    useEffect(() => {
+        dispatch(actDetailUser())
 
-        <section className='infor-user' style={{ backgroundColor: '#eee',minHeight:'100vh' }}>
-            <div className="container py-5">
+    }, [])
+   
+    // return (
+
+    //     // renderInfor()
+
+    // )
+    return (
+        <section  className='infor-user' style={{ backgroundColor: '#eee', minHeight: '100vh' }}>
+            <div className="px-[50px] py-5">
                 <div className="row">
                     <div className="col">
                         <nav aria-label="breadcrumb" className=" mb-4">
@@ -176,15 +37,21 @@ export default function Information() {
                     <div className="col-lg-4">
                         <div className="card mb-4 rounded-[8px]" >
                             <div className="card-body text-center">
-                                <div className='logo-user'>
-
-                                    <span >M</span>
+                                <div >
+                               
+                                    <span className='text-white bg-[#f6ba35] rounded-full w-16 h-16 leading-[64px] uppercase font-semibold text-[24px] inline-block'> {data?.hoTen.slice(0, 1)}</span>
+                                    <h5 className="my-3">{data?.hoTen}</h5>
+                                    <p className="text-muted mb-1">{data?.soDT}</p>
+                                    <p className="text-muted mb-4">{data?.email}</p>
                                 </div>
-                                <h5 className="my-3">John Smith</h5>
-                                <p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+
                                 <div className="d-flex justify-content-center mb-2">
-                                    <button className="btn btn-primary">Chỉnh sửa</button>
+                                    <button className="btn btn-primary flex" onClick={() => {
+                                        navigate('/thong-tin-ca-nhan/chinh-sua', { replace: true })
+                                    }}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                  </svg>
+                                   Chỉnh sửa</button>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +90,7 @@ export default function Information() {
                                         <p className="mb-0">Họ và tên</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">Johnatan Smith</p>
+                                        <p className="text-muted mb-0">{data?.hoTen}</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -232,7 +99,7 @@ export default function Information() {
                                         <p className="mb-0">Email</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">example@example.com</p>
+                                        <p className="text-muted mb-0">{data?.email}</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -241,7 +108,7 @@ export default function Information() {
                                         <p className="mb-0">Số điện thoại</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">(097) 234-5678</p>
+                                        <p className="text-muted mb-0">{data?.soDT}</p>
                                     </div>
                                 </div>
 
@@ -252,7 +119,7 @@ export default function Information() {
                                         <p className="mb-0">Mã nhóm </p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                        <p className="text-muted mb-0">{data?.maNhom}</p>
                                     </div>
                                 </div>
                             </div>
