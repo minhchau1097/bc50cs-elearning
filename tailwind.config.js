@@ -8,6 +8,8 @@ module.exports = {
     './src/page/HomeTemplate/About/index.tsx',
     './src/page/HomeTemplate/Blog/index.tsx',
     './src/page/HomeTemplate/Events/index.tsx',
+    './src/page/HomeTemplate/Information/index.tsx',
+    './src/page/HomeTemplate/Information/EditInfor/index.tsx',
     './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
     './src/page/AdminTemplate/AuthPage/index.tsx',
   ],

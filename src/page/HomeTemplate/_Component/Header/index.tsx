@@ -1,9 +1,21 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { NavigateFunction, useNavigate } from 'react-router';
-export default function Header() {
 
-  const navigate: NavigateFunction = useNavigate();
+import { NavLink, useNavigate } from 'react-router-dom'
+export default function Header() {
+  const navigate = useNavigate();
+  const renderUser = () => {
+    if (localStorage.getItem('USER_CUSTOMER')) {
+      let user = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '')
+      return <div>
+        <span className='logo-user'>{user.hoTen.slice(0, 1)}</span>
+      </div>
+    } else {
+
+      return <button className='btn btn-warning text-white' onClick={() => {
+        navigate('/auth', { replace: true });
+      }}>ĐĂNG NHẬP</button>
+    }
+
+  }
   const style = {
     width: '100%'
   }
@@ -37,13 +49,10 @@ export default function Header() {
             <li className="nav-item">
               <NavLink className={({ isActive }) => isActive ? "my-active nav-link  text-dark" : "nav-link  text-dark"} to="/thongtin">THÔNG TIN</NavLink>
             </li >
-            <li className="nav-item">
-              <button className='btn btn-warning text-white' onClick={() => {
-                navigate('/auth', { replace: true })
-              }}>ĐĂNG NHẬP</button>
-            </li>
+
           </ul>
         </div>
+        {renderUser()}
 
       </nav>
     </>
