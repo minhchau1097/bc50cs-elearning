@@ -86,6 +86,10 @@ const onSearch = (value :any) =>{
       dataIndex: 'tuyChinh',
       render:(text :any,course :any)=>{
         return  <Fragment>
+
+          <NavLink to={`/admin/ghidanh-sanpham/${course.maKhoaHoc}`}>
+            <button className='btn btn-warning'>Ghi Danh</button>
+          </NavLink>
           <NavLink to={`/admin/chinhsua-sanpham/${course.tenKhoaHoc}`}>
             <button className='btn btn-info'>Sửa</button>
           </NavLink>

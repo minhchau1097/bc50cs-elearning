@@ -5,6 +5,7 @@ const initialState = {
     data:null,
     error: null,
     courseEdit: null,
+    courseRegist: null,
 };
 
 const productReducer = (state=initialState , action:any)=>{

@@ -82,7 +82,21 @@ export const actUpdateCourse = (formData :any,hinhAnh:any,navigate :NavigateFunc
             toast.warn(`Không update được vì : ${error.response.data}`);
         });
     }
-}
+};
+
+export const actFetchRegistCourse=  (maKhoaHoc:any)=>{
+    return(dispatch :any)=>{
+        dispatch(actCourseRequest());
+        api.post(`QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`,maKhoaHoc)
+        .then((res)=>{
+            console.log(res.data);
+            dispatch(actCourseSuccess(res.data))
+        })  
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+};
 
 
 const actCourseRequest =() :Action=>{

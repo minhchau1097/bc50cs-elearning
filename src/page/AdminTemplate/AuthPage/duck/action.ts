@@ -58,7 +58,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
 }
 
 export const actLogOut = (navigate: NavigateFunction) => {
-    localStorage.removeItem("USER_CUSTOMER");
+    localStorage.removeItem("USER_ADMIN");
     navigate("/auth", { replace: true });
     return {
         type: ActionTypes.ADMIN_LOGOUT,
