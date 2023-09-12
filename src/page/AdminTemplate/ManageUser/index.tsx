@@ -119,8 +119,6 @@ useEffect(()=>{
   ];
   const data  = arrUser? arrUser : [];
 
-  const onChange = (pagination :any , filters :any , sorter :any , extra :any ) => {};
-
   return (
     <div className='container'>
       <h1 className='text-warning text-center'>Danh Sách Người Dùng</h1>
@@ -135,7 +133,7 @@ useEffect(()=>{
             size="large"
             onSearch={onSearch}
           />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"taiKhoan"}/>
+      <Table columns={columns} dataSource={data} rowKey={"taiKhoan"}/>
     </div>
   )
 }

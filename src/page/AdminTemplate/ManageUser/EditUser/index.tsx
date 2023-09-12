@@ -11,7 +11,7 @@ export default function EditUser() {
    const userEdit :any   = useSelector((state:RootState)=>state.userReducer.userEdit);
    const navigate:NavigateFunction = useNavigate();
    const param = useParams();   
-  console.log('dataEdit', userEdit);
+
 
    useEffect(()=>{
         dispatch(actFetchEditUser(param.id));

@@ -1,105 +1,194 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Table  } from 'antd';
 import {  useSelector } from 'react-redux';
 import { useAppDispatch } from 'store/type';
 import { RootState } from 'store';
-import { actFetchRegistCourse } from '../duck/action';
+import { actCancelRegistCourse, actConfirmUser, actFetchPendingUser, actFetchRegistCourse } from '../duck/action';
 import {useParams} from "react-router-dom"
 
 export default function RegistCourse() {
 
-    const arrCourse = useSelector((state :RootState)=>state.productReducer.data);
+    const userData = JSON.parse(localStorage.getItem('USER_ADMIN') || ''); 
+    const listUser =useSelector((state :RootState)=>state.productReducer.data);
+    const listPendingUser = useSelector((state :RootState)=>state.productReducer.courseEdit);
     const dispatch = useAppDispatch();
     const param = useParams();
-    console.log(arrCourse);
-  
+    console.log(listPendingUser);
+    
+    
     useEffect(()=>{
-      dispatch(actFetchRegistCourse(param.id));
+      dispatch(actFetchRegistCourse({ maKhoaHoc : param.id}));
+      dispatch(actFetchPendingUser({ maKhoaHoc : param.id}))
     },[])
   
 
-    const columns = [
+    const columns_1 = [
+      {
+        title: 'Tài Khoản',
+        dataIndex: 'taiKhoan',
+        value:(text: any,object: any)=>{return <span>{text}</span>},
+  
+        sorter: (a : any, b: any) => {
+          let taiKhoanA = a.taiKhoan.toLowerCase().trim();
+          let taiKhoanB = b.taiKhoan.toLowerCase().trim();
+          if(taiKhoanA > taiKhoanB){
+            return 1;
+          }
+          return -1;
+        },
+        sortDirections: ['descend','ascend'],
+        width: '25%',
+  
+      },
+      {
+        title: 'Họ Tên',
+        dataIndex: 'hoTen',
+        value:(text: any,object: any)=>{return <span>{text}</span>},
+  
+        sorter: (a : any, b: any) => {
+          let hoTenA = a.hoTen.toLowerCase().trim();
+          let hoTenB = b.hoTen.toLowerCase().trim();
+          if(hoTenA > hoTenB){
+            return 1;
+          }
+          return -1;
+        },
+        sortDirections: ['descend','ascend'],
+        width: '25%',
+  
+      },
+     
         {
-          title: 'Mã Khóa Học',
-          dataIndex: 'maKhoaHoc',
+          title: 'Bí Danh',
+          dataIndex: 'biDanh',
           value:(text: any,object: any)=>{return <span>{text}</span>},
     
           sorter: (a : any, b: any) => {
-            let maKhoaHocA = a.maKhoaHoc.toLowerCase().trim();
-            let maKhoaHocB = b.maKhoaHoc.toLowerCase().trim();
-            if(maKhoaHocA > maKhoaHocB){
+            let biDanhA = a.biDanh.toLowerCase().trim();
+            let biDanhB = b.biDanh.toLowerCase().trim();
+            if(biDanhA > biDanhB){
               return 1;
             }
             return -1;
           },
-          sortDirections: ['descend'],
-          width: '15%',
+          sortDirections: ['descend','ascend'],
+          width: '25%',
     
         },
-        {
-          title: 'Hình Ảnh',
-          dataIndex: 'hinhAnh',
-          render: (text: any,course: any)=>{
-            return <Fragment>
-              <img src={course.hinhAnh} alt={course.tenPhim} width={50} height={50}
-              />
-            </Fragment>
-          },
-          width: '15%',
-        },
-        {
-          title: 'Tên Khóa Học',
-          dataIndex: 'tenKhoaHoc',
-          sorter: (a : any, b: any) => {
-            let tenKhoaHocA = a.tenKhoaHoc.toLowerCase().trim();
-            let tenKhoaHocB = b.tenKhoaHoc.toLowerCase().trim();
-            if(tenKhoaHocA > tenKhoaHocB){
-              return 1;
-            }
-            return -1;
-          },
-          sortDirections: ['descend'],
-          width: '25%',
-          
-        },
+        
+       
     
     
         { 
           title: 'Tùy Chỉnh',
           dataIndex: 'tuyChinh',
-          render:(text :any,course :any)=>{
+          render:(text :any,user :any)=>{
             return  <Fragment>
-{/*     
-              <NavLink to={`/admin/ghidanh-sanpham/${course.tenKhoaHoc}`}>
-                <button className='btn btn-warning'>Ghi Danh</button>
-              </NavLink>
-              <NavLink to={`/admin/chinhsua-sanpham/${course.tenKhoaHoc}`}>
-                <button className='btn btn-info'>Sửa</button>
-              </NavLink>
     
                 <button className='btn btn-danger'
                 onClick={()=>{
-                  if(window.confirm(`Chắc là muốn xóa phim "${course.maKhoaHoc}" dữ chưa??? `)){
-                      dispatch(actDeleteCourse(course.maKhoaHoc))
+                  if(window.confirm(`Chắc là cho "${user.hoTen}" ra khỏi lớp chưa??? `)){
+                    dispatch(actCancelRegistCourse({maKhoaHoc : param.id, taiKhoan: userData.taiKhoan},{ maKhoaHoc : param.id}));
                   }
                 }}
-                >Xóa</button> */}
-    
+                >Xóa</button>
     
             </Fragment>
           },
           width: '25%',
         },
       ];
-      const data =arrCourse? arrCourse : [];
+      const columns_2 = [
+        {
+          title: 'Tài Khoản',
+          dataIndex: 'taiKhoan',
+          value:(text: any,object: any)=>{return <span>{text}</span>},
     
-      const onChange = (pagination : any, filters: any, sorter: any, extra: any) => {
-        
-      };
+          sorter: (a : any, b: any) => {
+            let taiKhoanA = a.taiKhoan.toLowerCase().trim();
+            let taiKhoanB = b.taiKhoan.toLowerCase().trim();
+            if(taiKhoanA > taiKhoanB){
+              return 1;
+            }
+            return -1;
+          },
+          sortDirections: ['descend','ascend'],
+          width: '25%',
+    
+        },
+        {
+          title: 'Họ Tên',
+          dataIndex: 'hoTen',
+          value:(text: any,object: any)=>{return <span>{text}</span>},
+    
+          sorter: (a : any, b: any) => {
+            let hoTenA = a.hoTen.toLowerCase().trim();
+            let hoTenB = b.hoTen.toLowerCase().trim();
+            if(hoTenA > hoTenB){
+              return 1;
+            }
+            return -1;
+          },
+          sortDirections: ['descend','ascend'],
+          width: '25%',
+    
+        },
+       
+          {
+            title: 'Bí Danh',
+            dataIndex: 'biDanh',
+            value:(text: any,object: any)=>{return <span>{text}</span>},
+      
+            sorter: (a : any, b: any) => {
+              let biDanhA = a.biDanh.toLowerCase().trim();
+              let biDanhB = b.biDanh.toLowerCase().trim();
+              if(biDanhA > biDanhB){
+                return 1;
+              }
+              return -1;
+            },
+            sortDirections: ['descend','ascend'],
+            width: '25%',
+      
+          },
+          
+         
+      
+      
+          { 
+            title: 'Tùy Chỉnh',
+            dataIndex: 'tuyChinh',
+            render:(text :any,user :any)=>{
+              return  <Fragment>
+                <button className='btn btn-success'
+                  onClick={()=>{
+                    dispatch(actConfirmUser({maKhoaHoc : param.id, taiKhoan: userData.taiKhoan},{ maKhoaHoc : param.id}))
+                  }}
+                  >Xác Nhận</button>
+      
+                  <button className='btn btn-danger'
+                  onClick={()=>{
+                    if(window.confirm(`Chắc là cho "${user.hoTen}" ra khỏi lớp chưa??? `)){
+                      dispatch(actCancelRegistCourse({maKhoaHoc : param.id, taiKhoan: userData.taiKhoan},{ maKhoaHoc : param.id}));
+                    }
+                  }}
+                  >Xóa</button>
+      
+              </Fragment>
+            },
+            width: '25%',
+          },
+        ];
+    const data_1 =listUser? listUser : [];
+    const data_2 =listPendingUser? listPendingUser : [];
+    
   return (
     <div className='container'>
     <h1 className='text-warning text-center'>Quản Lý Khóa Học</h1>
-    <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maKhoaHoc"}/>
+    <h1>Học sinh chờ xét duyệt</h1>
+    <Table columns={columns_2} dataSource={data_2}  rowKey={"taiKhoan"} pagination={{ pageSize: 5 }}/>
+    <h1>Danh sách học sinh trong lớp</h1>
+    <Table columns={columns_1} dataSource={data_1}  rowKey={"taiKhoan"}/>
   </div>
   )
 }
