@@ -11,6 +11,7 @@ export default function AuthPage() {
   const dispatch = useAppDispatch();
   const state = useAppSelector(state => state.authReducer);
   const [status, setStatus] = useState(false);
+  
   const formik: FormikProps<SignUp> = useFormik<SignUp>({
     initialValues: {
       taiKhoan: '',

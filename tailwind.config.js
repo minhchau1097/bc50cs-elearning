@@ -12,6 +12,7 @@ module.exports = {
     './src/page/HomeTemplate/Information/EditInfor/index.tsx',
     './src/page/HomeTemplate/_Component/BackToTop/index.tsx',
     './src/page/AdminTemplate/AuthPage/index.tsx',
+    './src/page/AdminTemplate/index.tsx',
   ],
   presets: [],
   darkMode: 'media', // or 'class'

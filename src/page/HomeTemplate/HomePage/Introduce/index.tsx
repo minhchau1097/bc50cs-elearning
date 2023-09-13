@@ -52,7 +52,7 @@ export default function Introduce() {
             <h6 className='font-medium'>Giảng viên hàng đầu</h6>
             <div className='introduce'>
                 <Swiper
-                    className='mySwiper mt-4'
+                    className=' mt-4'
                     spaceBetween={0}
                     breakpoints={{
                         400: {

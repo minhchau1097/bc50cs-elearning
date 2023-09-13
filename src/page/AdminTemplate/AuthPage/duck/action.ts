@@ -16,7 +16,7 @@ export const actSignUp = (value: SignUp, navigate: NavigateFunction) => {
                     dispatch(actLogin(value, navigate))
                     dispatch(actSignUpSuccess(result.data))
                     alert('Bạn đã đăng ký thành công!')
-                    navigate('/', { replace: true })
+                    navigate('/', { replace: false })
                 }
             })
             .catch((error: string) => {
@@ -40,13 +40,13 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                     if (window.history.state && window.history.state.idx > 0) {
                        navigate(-1)
                     } else {    
-                        navigate('/', { replace: true }); 
+                        navigate('/', { replace: false }); 
                     }
 
                 } else {
 
                     localStorage.setItem('USER_ADMIN', JSON.stringify(result.data))
-                    navigate('/admin/sanpham', { replace: true });
+                    navigate('/admin/sanpham', { replace: false });
 
                 }
             })
@@ -59,10 +59,16 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
 
 
 export const actLogOut = (navigate: NavigateFunction) => {
-    localStorage.removeItem("USER_ADMIN");
-    navigate("/auth", { replace: true });
+    if(localStorage.getItem('USER_CUSTOMER')){
+
+        localStorage.removeItem("USER_CUSTOMER");
+        navigate("/", { replace: true });
+    }else if(localStorage.getItem('USER_ADMIN')){
+        localStorage.removeItem("USER_ADMIN");
+        navigate("/auth", { replace: true });
+    }
     return {
-        type: ActionTypes.ADMIN_LOGOUT,
+        type: ActionTypes.AUTH_LOGOUT,
     }
 };
 

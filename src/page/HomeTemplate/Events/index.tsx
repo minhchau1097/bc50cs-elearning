@@ -5,7 +5,7 @@ import 'dayjs/locale/zh-cn'
 import { theme } from '..';
 import { Date } from 'type/type';
 dayjs.locale('zh-vn')
-export default function Events(props: any) {
+export default function Events() {
   const [state, setState] = useState<Date>({
     days: undefined,
     hours: undefined,
