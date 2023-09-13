@@ -1,4 +1,4 @@
-import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT } from "./contants";
+import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT,CONFIRM_USER} from "./contants";
 import api from "utils/api";
 import { Result,Action, Course} from "type/type";
 import { toast  } from 'react-toastify';
@@ -170,5 +170,12 @@ const actEditCourse = (course :any)=>{
     return{
         type: EDIT_PRODUCT,
         payload : course,
+    };
+};
+
+const actConfirm = (user :any)=>{
+    return{
+        type: CONFIRM_USER,
+        payload : user,
     };
 };

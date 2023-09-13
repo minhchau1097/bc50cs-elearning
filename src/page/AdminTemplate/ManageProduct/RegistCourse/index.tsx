@@ -10,7 +10,7 @@ export default function RegistCourse() {
 
     const userData = JSON.parse(localStorage.getItem('USER_ADMIN') || ''); 
     const listUser =useSelector((state :RootState)=>state.productReducer.data);
-    const listPendingUser = useSelector((state :RootState)=>state.productReducer.courseEdit);
+    const listPendingUser :any = useSelector((state :RootState)=>state.productReducer.courseEdit);
     const dispatch = useAppDispatch();
     const param = useParams();
     console.log(listPendingUser);
@@ -162,14 +162,14 @@ export default function RegistCourse() {
               return  <Fragment>
                 <button className='btn btn-success'
                   onClick={()=>{
-                    dispatch(actConfirmUser({maKhoaHoc : param.id, taiKhoan: userData.taiKhoan},{ maKhoaHoc : param.id}))
+                    dispatch(actConfirmUser({maKhoaHoc : param.id, taiKhoan: user.taiKhoan},{ maKhoaHoc : param.id}))
                   }}
                   >Xác Nhận</button>
       
                   <button className='btn btn-danger'
                   onClick={()=>{
                     if(window.confirm(`Chắc là cho "${user.hoTen}" ra khỏi lớp chưa??? `)){
-                      dispatch(actCancelRegistCourse({maKhoaHoc : param.id, taiKhoan: userData.taiKhoan},{ maKhoaHoc : param.id}));
+                      dispatch(actCancelRegistCourse({maKhoaHoc : param.id, taiKhoan: user.taiKhoan},{ maKhoaHoc : param.id}));
                     }
                   }}
                   >Xóa</button>
