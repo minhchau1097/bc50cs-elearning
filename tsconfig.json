@@ -3,7 +3,8 @@
     "baseUrl": "./src",
     "paths": {
       "utils/*": ["./utils/*"],
-      "pages/*": ["./pages/*"]
+      "page/*": ["./page/*"],
+      "type/*": ["./type/*"]
     },
     "target": "es5",
     "lib": [

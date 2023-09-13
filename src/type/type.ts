@@ -40,7 +40,7 @@ export interface Course {
     tenKhoaHoc: string;
     moTa: string;
     luotXem: number;
-    danhGia? : number;
+    danhGia?: number;
     hinhAnh: string;
     maNhom: string;
     ngayTao: string;
@@ -52,13 +52,13 @@ export interface Course {
 }
 
 export interface User {
-    taiKhoan: string ;
-    matKhau: string ;
-    hoTen: string ;
-    soDT: string ;
-    maLoaiNguoiDung: string ;
-    maNhom: string ;
-    email: string ;
+    taiKhoan: string;
+    matKhau: string;
+    hoTen: string;
+    soDT: string;
+    maLoaiNguoiDung: string;
+    maNhom: string;
+    email: string;
 }
 
 export interface Teacher {
@@ -111,4 +111,19 @@ export interface DetailUser {
     matKhau: string
     soDT: string
     taiKhoan: string
+}
+
+export interface RegisterCourse {
+    maKhoaHoc: string,
+    taiKhoan: string
+}
+export interface DetailCourse {
+    biDanh: string,
+    danhGia: number,
+    hinhAnh: string,
+    luotXem: number,
+    maKhoaHoc: string,
+    moTa: string,
+    ngayTao: string,
+    tenKhoaHoc: string,
 }

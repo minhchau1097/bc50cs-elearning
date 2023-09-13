@@ -1,5 +1,6 @@
 import { Action, AppState, Result } from "type/type";
 import * as ActionTypes from "./constant";
+import { NULL } from "sass";
 const myState = {
     signUp:{
 
@@ -55,6 +56,12 @@ switch (action.type) {
         state.logIn.loading = false;
         state.logIn.data = null;
         state.logIn.error= action.payload;
+        return {...state}
+    }
+    case ActionTypes.AUTH_LOGOUT:{
+        state.logIn.loading = false;
+        state.logIn.data = null;
+        state.logIn.error= null;
         return {...state}
     }
     default:

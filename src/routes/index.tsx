@@ -27,6 +27,7 @@ const routes = [
             { path: "nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser")) }, 
             { path: "them-nguoidung", element: lazy(() => import("../page/AdminTemplate/ManageUser/AddUser")) },
             { path: "chinhsua-nguoidung/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/EditUser")) },
+            { path: "khoa-hoc/:id", element: lazy(() => import("../page/AdminTemplate/ManageUser/Course")) },
         ]
     },
     { path: "auth", element: lazy(() => import("../page/AdminTemplate/AuthPage")) },

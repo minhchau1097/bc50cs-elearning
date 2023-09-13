@@ -5,4 +5,5 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
-export const ADMIN_LOGOUT = "ADMIN_LOGOUT";
+
+export const AUTH_LOGOUT = "AUTH_LOGOUT";

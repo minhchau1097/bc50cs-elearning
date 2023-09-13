@@ -1,3 +1,4 @@
+import PayPalCheckout from "../Paypal/PayPalCheckout";
 import Number from "./Countup";
 import CourseList from "./CourseList";
 import FeedBack from "./Feedback";
@@ -9,8 +10,8 @@ export default function HomePage() {
   return (
     <div>
       <Welcome />
-      <InfoCourse/>
-      <CourseList/>
+      <InfoCourse />
+      <CourseList />
       <Number />
       <Introduce />
       <FeedBack />

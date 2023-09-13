@@ -1,7 +1,7 @@
 
 import * as ActionTypes from "./constant";
 import api from "utils/api";
-import { SignUp, Result, Action, Login, DataAuth, Error, ResultAcount, DetailUser } from "type/type";
+import { Action, ResultAcount, DetailUser, RegisterCourse } from "type/type";
 import { AppDispatch } from 'store';
 export const actDetailUser = () => {
     return (dispatch: AppDispatch) => {
@@ -14,6 +14,22 @@ export const actDetailUser = () => {
             })
             .catch((error: string) => {
                 dispatch(actDetailUserFail(error))
+            })
+
+    }
+}
+
+export const actDeleteCourse = (value: RegisterCourse) => {
+    return (dispatch: AppDispatch) => {
+        api.post('QuanLyKhoaHoc/HuyGhiDanh', value)
+            .then((result) => {
+                if (result.status === 200) {
+                    dispatch(actDetailUser());
+                    alert(result.data);
+                }
+            })
+            .catch((error) => {
+                alert(error.response.data);
             })
 
     }
