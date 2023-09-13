@@ -1,10 +1,11 @@
-import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT } from "./contants";
+import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT,CONFIRM_USER } from "./contants";
 
 const initialState = {
     loading: false,
     data:null,
     error: null,
     courseEdit: null,
+    confirmCourse: null,
 };
 
 const productReducer = (state=initialState , action:any)=>{
@@ -32,6 +33,11 @@ const productReducer = (state=initialState , action:any)=>{
 
         case EDIT_PRODUCT:{
             state.courseEdit = action.payload;
+            return{...state}
+        }
+
+        case CONFIRM_USER:{
+            state.confirmCourse = action.payload;
             return{...state}
         }
 

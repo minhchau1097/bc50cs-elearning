@@ -39,7 +39,7 @@ const onSearch = (value :any) =>{
         }
         return -1;
       },
-      sortDirections: ['descend'],
+      sortDirections: ['descend','ascend'],
       width: '15%',
 
     },
@@ -65,7 +65,7 @@ const onSearch = (value :any) =>{
         }
         return -1;
       },
-      sortDirections: ['descend'],
+      sortDirections: ['descend','ascend'],
       width: '25%',
       
     },
@@ -86,13 +86,17 @@ const onSearch = (value :any) =>{
       dataIndex: 'tuyChinh',
       render:(text :any,course :any)=>{
         return  <Fragment>
-          <NavLink to={`/admin/chinhsua-sanpham/${course.tenKhoaHoc}`}>
+
+          <NavLink to={`/admin/ghidanh-sanpham/${course.maKhoaHoc}`}>
+            <button className='btn btn-warning'>Ghi Danh</button>
+          </NavLink>
+          <NavLink to={`/admin/chinhsua-sanpham/${course.maKhoaHoc}`}>
             <button className='btn btn-info'>Sửa</button>
           </NavLink>
 
             <button className='btn btn-danger'
             onClick={()=>{
-              if(window.confirm(`Chắc là muốn xóa phim "${course.maKhoaHoc}" dữ chưa??? `)){
+              if(window.confirm(`Chắc là muốn xóa khóa học "${course.maKhoaHoc}" dữ chưa??? `)){
                   dispatch(actDeleteCourse(course.maKhoaHoc))
               }
             }}

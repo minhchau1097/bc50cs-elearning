@@ -1,8 +1,8 @@
 
 import * as ActionTypes from "./constant";
-import api from "utils/api";
 import { Action, ResultAcount, DetailUser, RegisterCourse } from "type/type";
 import { AppDispatch } from 'store';
+import api from "utils/api";
 export const actDetailUser = () => {
     return (dispatch: AppDispatch) => {
         dispatch(actDetailUserRequest())

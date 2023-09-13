@@ -64,7 +64,7 @@ function getItem(label :any, key:any, icon:any, children:any) {
               onClick={()=>{
                 dispatch(actLogOut(navigate));
               }}
-              >Log Out</button>
+              >ĐĂNG XUẤT</button>
             </div>           
           </div>
           

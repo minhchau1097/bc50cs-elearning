@@ -119,9 +119,7 @@ export default function ListUser() {
       width: '25%',
     },
   ];
-  const data = arrUser ? arrUser : [];
-
-  const onChange = (pagination: any, filters: any, sorter: any, extra: any) => { };
+  const data  = arrUser? arrUser : [];
 
   return (
     <div className='container'>
@@ -130,14 +128,14 @@ export default function ListUser() {
         <button className='btn btn-success mb-2'>Thêm Người Dùng</button>
       </NavLink>
       <Search
-        className='mb-2'
-        placeholder="Tìm kiếm Người Dùng"
-        allowClear
-        enterButton="Search"
-        size="large"
-        onSearch={onSearch}
-      />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"taiKhoan"} />
+            className='mb-2'
+            placeholder="Tìm kiếm Người Dùng"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={onSearch}
+          />
+      <Table columns={columns} dataSource={data} rowKey={"taiKhoan"}/>
     </div>
   )
 }

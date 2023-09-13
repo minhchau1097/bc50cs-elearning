@@ -1,4 +1,4 @@
-import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT } from "./contants";
+import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT,CONFIRM_USER} from "./contants";
 import api from "utils/api";
 import { Result,Action, Course} from "type/type";
 import { toast  } from 'react-toastify';
@@ -52,12 +52,12 @@ export const actDeleteCourse =(taiKhoan :string)=>{
     }
 };
 
-export const actFetchEditCourse=  (tenKhoaHoc:any)=>{
+export const actFetchEditCourse=  (maKhoaHoc:any)=>{
     return(dispatch :any)=>{
         dispatch(actCourseRequest());
-        api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP03`)
+        api.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
         .then((res)=>{
-            dispatch(actEditCourse(res.data[0]));         
+            dispatch(actEditCourse(res.data));         
         })  
         .catch((error)=>{
         });
@@ -82,7 +82,67 @@ export const actUpdateCourse = (formData :any,hinhAnh:any,navigate :NavigateFunc
             toast.warn(`Không update được vì : ${error.response.data}`);
         });
     }
-}
+};
+
+export const actFetchRegistCourse=  (maKhoaHoc:any)=>{
+    return(dispatch :any)=>{
+        dispatch(actCourseRequest());
+        api.post(`QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`,maKhoaHoc)
+        .then((res)=>{
+            dispatch(actCourseSuccess(res.data));
+        })  
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+};
+
+export const actFetchPendingUser=  (maKhoaHoc:any)=>{
+    return(dispatch :any)=>{
+        dispatch(actCourseRequest());
+        api.post(`QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`,maKhoaHoc)
+        .then((res)=>{
+            dispatch(actEditCourse(res.data));
+        })  
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+};
+
+export const actCancelRegistCourse=  (objData:any,maKhoaHoc:any)=>{
+    return(dispatch :any)=>{
+        dispatch(actCourseRequest());
+        api.post(`QuanLyKhoaHoc/HuyGhiDanh`,objData)
+        .then((res)=>{
+            console.log(res.data);
+            dispatch(actFetchRegistCourse(maKhoaHoc));
+        })  
+        .catch((error)=>{
+            console.log(error);
+            dispatch(actFetchRegistCourse(maKhoaHoc));
+            toast.error(`Không xóa user ra khỏi khóa học được vì : ${error.response.data}`);
+        });
+    }
+};
+
+export const actConfirmUser=  (objData:any,maKhoaHoc:any)=>{
+    return(dispatch :any)=>{
+        dispatch(actCourseRequest());
+        api.post(`QuanLyKhoaHoc/GhiDanhKhoaHoc`,objData)
+        .then((res)=>{
+            console.log(res.data);
+            dispatch(actCourseSuccess(res.data));
+            dispatch(actFetchPendingUser(maKhoaHoc));
+            dispatch(actFetchRegistCourse(maKhoaHoc));
+        })  
+        .catch((error)=>{
+            console.log(error);
+            dispatch(actFetchRegistCourse(maKhoaHoc));
+            toast.error(`Không thêm user vào khóa học được vì : ${error.response.data}`);
+        });
+    }
+};
 
 
 const actCourseRequest =() :Action=>{
@@ -111,4 +171,11 @@ const actEditCourse = (course :any)=>{
         type: EDIT_PRODUCT,
         payload : course,
     };
-}
+};
+
+const actConfirm = (user :any)=>{
+    return{
+        type: CONFIRM_USER,
+        payload : user,
+    };
+};
