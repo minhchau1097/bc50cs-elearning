@@ -13,8 +13,6 @@ export default function RegistCourse() {
     const listPendingUser :any = useSelector((state :RootState)=>state.productReducer.courseEdit);
     const dispatch = useAppDispatch();
     const param = useParams();
-    console.log(listPendingUser);
-    
     
     useEffect(()=>{
       dispatch(actFetchRegistCourse({ maKhoaHoc : param.id}));

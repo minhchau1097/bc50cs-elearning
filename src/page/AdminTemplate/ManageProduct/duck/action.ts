@@ -115,11 +115,9 @@ export const actCancelRegistCourse=  (objData:any,maKhoaHoc:any)=>{
         dispatch(actCourseRequest());
         api.post(`QuanLyKhoaHoc/HuyGhiDanh`,objData)
         .then((res)=>{
-            console.log(res.data);
             dispatch(actFetchRegistCourse(maKhoaHoc));
         })  
         .catch((error)=>{
-            console.log(error);
             dispatch(actFetchRegistCourse(maKhoaHoc));
             toast.error(`Không xóa user ra khỏi khóa học được vì : ${error.response.data}`);
         });
@@ -131,13 +129,11 @@ export const actConfirmUser=  (objData:any,maKhoaHoc:any)=>{
         dispatch(actCourseRequest());
         api.post(`QuanLyKhoaHoc/GhiDanhKhoaHoc`,objData)
         .then((res)=>{
-            console.log(res.data);
             dispatch(actCourseSuccess(res.data));
             dispatch(actFetchPendingUser(maKhoaHoc));
             dispatch(actFetchRegistCourse(maKhoaHoc));
         })  
         .catch((error)=>{
-            console.log(error);
             dispatch(actFetchRegistCourse(maKhoaHoc));
             toast.error(`Không thêm user vào khóa học được vì : ${error.response.data}`);
         });
@@ -170,12 +166,5 @@ const actEditCourse = (course :any)=>{
     return{
         type: EDIT_PRODUCT,
         payload : course,
-    };
-};
-
-const actConfirm = (user :any)=>{
-    return{
-        type: CONFIRM_USER,
-        payload : user,
     };
 };
