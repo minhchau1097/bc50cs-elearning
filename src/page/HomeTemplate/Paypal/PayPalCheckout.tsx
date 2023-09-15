@@ -14,7 +14,8 @@ function PayPalCheckout():JSX.Element {
 
     return (
         <PayPalScriptProvider options={{clientId:'AeAytdnsAhXqHfzEqay1qztuo8t1gf0G86K756pDYdnPXZ1EYcCXsaXwCSuhIAQJH-8KAlIg1aHqID9V'}}>
-            <PayPalButtons createOrder={(data:any, actions:any,)=>{
+            <PayPalButtons style={{label:'pay'}}  createOrder={(data:any, actions:any,)=>{
+                console.log(data)
                 return actions.order.create({
                     intent: "CAPTURE",
                     purchase_units: [
