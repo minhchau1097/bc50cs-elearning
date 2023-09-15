@@ -1,6 +1,6 @@
 
 import api from "utils/api";
-import { SignUp, Result, Action, Login, DataAuth, Error, ResultAcount, DetailUser, User } from "type/type";
+import { User } from "type/type";
 import { AppDispatch } from 'store';
 import { NavigateFunction } from "react-router-dom";
 export const actUpdateDetailUser = (user: User, navigate: NavigateFunction) => {

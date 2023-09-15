@@ -48,7 +48,7 @@ export default function EditInfor() {
                     <div className="col">
                         <nav aria-label="breadcrumb" className=" mb-4">
                             <ol className="breadcrumb mb-0 bg-light  p-3 rounded-[8px]" >
-                                <li className="breadcrumb-item"><Link to={'/'}>Trang chủ</Link></li>
+                                <li className="breadcrumb-item font-semibold"><Link to={'/'}>Trang chủ</Link></li>
                                 <li className="breadcrumb-item "><Link to={'/thong-tin-ca-nhan'}>Thông tin cá nhân</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
                             </ol>

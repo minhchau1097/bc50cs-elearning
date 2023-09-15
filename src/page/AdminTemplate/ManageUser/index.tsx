@@ -104,7 +104,7 @@ export default function ListUser() {
             <button className='btn btn-info'>Sửa</button>
           </NavLink>
 
-          <button className='btn btn-danger'
+          <button className='btn btn-danger ml-2'
             onClick={() => {
               if (window.confirm(`Chắc là muốn đưa "${user.taiKhoan}" ra đảo dữ chưa??? `)) {
                 dispatch(actDeleteUser(user.taiKhoan))
@@ -112,7 +112,7 @@ export default function ListUser() {
             }}
           >Xóa</button>
           <NavLink to={`/admin/khoa-hoc/${user.taiKhoan}`}>
-            <button className='btn btn-primary'>Khoá học</button>
+            <button className='btn btn-primary ml-2'>Khoá học</button>
           </NavLink>
         </Fragment>
       },

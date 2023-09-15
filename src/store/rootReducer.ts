@@ -7,6 +7,7 @@ import userReducer from "page/AdminTemplate/ManageUser/duck/reducer";
 import detaiProductReducer from "page/HomeTemplate/Course/DetailProduct/duck/reducer";
 import productReducer from "page/AdminTemplate/ManageProduct/duck/reducer";
 import detailUserReducer from "page/HomeTemplate/Information/duck/reducer";
+import registedCourseReducer from "page/AdminTemplate/ManageUser/Course/duck/reducer";
 export const rootReducer = combineReducers({
     courseListReducer,
     courseCategoryReducer,
@@ -16,4 +17,5 @@ export const rootReducer = combineReducers({
     detaiProductReducer,
     productReducer,
     detailUserReducer,
+    registedCourseReducer,
 });

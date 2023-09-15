@@ -1,3 +1,4 @@
+
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 export type SelectEvent = React.ChangeEvent<HTMLSelectElement>;
 export interface AppState<T> {
@@ -126,4 +127,35 @@ export interface DetailCourse {
     moTa: string,
     ngayTao: string,
     tenKhoaHoc: string,
+}
+
+export interface RegistedCourse {
+    maKhoaHoc: string,
+    tenKhoaHoc: string,
+}
+export interface ComfirmCourse {
+    maKhoaHoc: string,
+    taiKhoan: string,
+}
+
+export interface StateCourse<T> {
+    registed: {
+
+        loading: boolean,
+        data: T[] | null,
+        error: any,
+    },
+    waitting: {
+
+        loading: boolean,
+        data: T[] | null,
+        error: any,
+    }
+
+};
+export interface Animate {
+    html: number,
+    css: number,
+    js: number,
+    react: number,
 }

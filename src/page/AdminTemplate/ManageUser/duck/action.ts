@@ -8,7 +8,7 @@ export const actFetchListUser =(taiKhoan='')=>{
     return (dispatch : any)=>{
         dispatch(actUserRequest());
         if(taiKhoan.trim() !== ''){
-            api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02&tuKhoa=${taiKhoan}`)
+            api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP03&tuKhoa=${taiKhoan}`)
             .then((res :Result<User>)=>{
                 if(res.status === 200){
                     console.log(res.data);
@@ -71,7 +71,7 @@ export const actDeleteUser =(taiKhoan :string)=>{
 
 export const actFetchEditUser =  (taiKhoan:any)=>{
     return(dispatch :any)=>{
-        api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02&tuKhoa=${taiKhoan}`)
+        api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP03&tuKhoa=${taiKhoan}`)
         .then((res)=>{    
             dispatch(actEditUser(res.data[0]))
         })  
