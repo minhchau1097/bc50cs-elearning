@@ -6,6 +6,7 @@ import { DetailUser, InputEvent, SelectEvent, User } from 'type/type';
 import * as Yup from "yup";
 import { actDetailUser } from '../duck/action';
 import { actUpdateDetailUser } from './duck/action';
+import { Breadcrumb } from 'antd';
 export default function EditInfor() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -44,98 +45,46 @@ export default function EditInfor() {
     return (
         <section className='infor-user' style={{ backgroundColor: '#eee', minHeight: '100vh' }}>
             <div className="px-[50px] py-5">
-                <div className="row">
-                    <div className="col">
-                        <nav aria-label="breadcrumb" className=" mb-4">
-                            <ol className="breadcrumb mb-0 bg-light  p-3 rounded-[8px]" >
-                                <li className="breadcrumb-item font-semibold"><Link to={'/'}>Trang chủ</Link></li>
-                                <li className="breadcrumb-item "><Link to={'/thong-tin-ca-nhan'}>Thông tin cá nhân</Link></li>
-                                <li className="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+                        <Breadcrumb className='mb-4 card-blur p-2'
+                            items={[
+                                {
+                                    title:
+                                        <Link to={'/'}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                            </svg></Link>
+                                    ,
+                                },
+                                {
+                                    title: (
 
-                {/* <div className="row"> */}
-                <div className="col-12">
-                    {/* <form
-                            onSubmitCapture={formik.handleSubmit}
-                            action="#" className="w-4/5  mx-auto p-6">
-                            <div className='w-1/2 mx-auto'>
-                                <div className={`text-black bg-white w-full max-w-[380px]  ${formik.errors.taiKhoan && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
-                                    <input onChange={handleOnchange} name='taiKhoan' type="text" placeholder="Tài khoản" />
-                                </div>
-                                {formik.errors.taiKhoan && formik.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                                    <p>{formik.errors.taiKhoan}</p>
-                                </div>)}
+                                        <Link className='!flex items-center' to={'/thong-tin-ca-nhan'}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                            </svg>
+                                            Thông tin cá nhân
+                                        </Link>
 
-                                <div className={`text-black bg-white w-full max-w-[380px]  ${formik.errors.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
-                                    <input onChange={handleOnchange} name='matKhau' type="password" placeholder="Mật khẩu" />
 
-                                </div>
-                                {formik.errors.matKhau && formik.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                                    <p>{formik.errors.matKhau}</p>
-                                </div>)}
-                                <div className={`text-black bg-white w-full max-w-[380px]  ${formik.errors.hoTen && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+                                    ),
+                                }, {
+                                    title: (
 
-                                    <input onChange={handleOnchange} name='hoTen' type="text" placeholder="Họ và tên" />
-                                </div>
-                                {formik.errors.hoTen && formik.touched.hoTen && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                                    <p>{formik.errors.hoTen}</p>
-                                </div>)}
-                                <div className={`text-black bg-white w-full max-w-[380px]  ${formik.errors.soDT && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+                                        <div className='flex  items-center'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                            </svg>
 
-                                    <input onChange={handleOnchange} name='soDT' type="text" placeholder="Số điện thoại" />
+                                            <span>Chỉnh sửa </span>
 
-                                </div>
-                                {formik.errors.soDT && formik.touched.soDT && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                                    <p>{formik.errors.soDT}</p>
-                                </div>)}
+                                        </div>
 
-                                <div className={`text-black bg-white w-full max-w-[380px]  ${formik.errors.email && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+                                    ),
+                                }
+                            ]}
+                        />
 
-                                    <input onChange={handleOnchange} name='email' type="email" placeholder="Email" />
-                                </div>
-                                {formik.errors.email && formik.touched.email && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
-                                    <p>{formik.errors.email}</p>
-                                </div>)}
-                                <div className="text-black bg-white w-full max-w-[380px] overflow-hidden">
-                                    <select onChange={handleOnchange} name='maNhom' className=' w-full h-full bg-[#f0f0f0] text-[#000] font-semibold' placeholder="Mã nhóm" >
-                                        <option value="GP01">GP01</option>
-                                        <option value="GP02">GP02</option>
-                                        <option value="GP03">GP03</option>
-                                        <option value="GP04">GP04</option>
-                                        <option value="GP05">GP05</option>
-                                        <option value="GP06">GP06</option>
-                                        <option value="GP07">GP07</option>
-                                        <option value="GP08">GP08</option>
-                                        <option value="GP09">GP09</option>
-                                    </select>
-                                </div>
-                                <div className='flex justify-between items-center max-w-[380px] w-full'>
-
-                                    <NavLink className='btnAuth btn-home ' to={'/'} >Trang chủ</NavLink>
-                                    <input type="submit" className="btnAuth" defaultValue="Sign up" />
-                                </div>
-                                <p className="social-text">Đăng nhập bằng nền tảng xã hội</p>
-                                <div className="social-media">
-                                    <a href="#" className="social-icon">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#" className="social-icon">
-                                        <i className="fab fa-twitter" />
-                                    </a>
-                                    <a href="#" className="social-icon">
-                                        <i className="fab fa-google" />
-                                    </a>
-                                    <a href="#" className="social-icon">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                </div>
-                            </div>
-                        </form> */}
-                </div>
-                {/* </div> */}
+             
                 <div className="max-w-2xl px-4 py-8 mx-auto lg:py-16 bg-white rounded-[8px]">
                     <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white text-center">Chỉnh sửa thông tin</h2>
                     <form action="#" onSubmitCapture={formik.handleSubmit}>

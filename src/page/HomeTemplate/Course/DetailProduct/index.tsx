@@ -6,36 +6,66 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
 import { replace } from 'formik';
 import { RegisterCourse, User } from 'type/type';
-
+import { ConfigProvider, notification } from 'antd';
+import type { NotificationPlacement } from 'antd/es/notification/interface';
 export default function DetailProduct() {
     const navigate = useNavigate();
     const dispatch: any = useDispatch();
     const product: any = useSelector((state: RootState) => state.detaiProductReducer.data);
     const param = useParams();
-
+    const [api, contextHolder] = notification.useNotification();
     useEffect(() => {
         dispatch(actFetchDetailCourse(param.id));
     }, []);
-    const getRegisterCourse = () => {
+    const openNotification = (placement: NotificationPlacement) => {
+        api.info({
+            message: 'Thông báo',
+            description:
+                'Vui lòng đăng nhập để thực hiện chức năng này',
+            placement,
+        });
+    };
+    const getRegisterCourse = async () => {
         if (localStorage.getItem('USER_CUSTOMER')) {
+
             let value: User = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
 
             let result: RegisterCourse = {
                 taiKhoan: value.taiKhoan,
                 maKhoaHoc: param?.id || ''
             }
-            if (window.confirm('Bạn có muốn đăng ký khoá học này ?')) {
-                dispatch(actGetRegisterCourse(result))
-            }
-        } else {
-            if (window.confirm('Bạn cần đăng nhập để thực hiện chức năng này')) {
+            try{
 
-                navigate('/auth', { replace: false })
+                let status = await dispatch(actGetRegisterCourse(result))
+                console.log(status)
+            }catch{
+
             }
+
+            // openNotification('bottomRight')
+            // if (window.confirm('Bạn có muốn đăng ký khoá học này ?')) {
+            // }
+        } else {
+            // if (window.confirm('Bạn cần đăng nhập để thực hiện chức năng này')) {
+
+            //     navigate('/auth', { replace: false })
+            // }
+            openNotification('bottomRight')
         }
     }
     return (
+
         <section className='p-5'>
+            <ConfigProvider
+                theme={{
+                    token: {
+                        /* here is your global tokens */
+                        colorInfo:'#41b294'
+                    },
+                }}
+            >
+                {contextHolder}
+            </ConfigProvider>
             <div className='row'>
                 <div className="col-lg-8 col-md-7">
                     <h1>Lập Trình {product?.tenKhoaHoc}</h1>

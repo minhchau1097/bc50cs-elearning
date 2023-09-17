@@ -151,26 +151,11 @@ export default function AdminCourse() {
   }
   return (
     <div>
-      <h3>Quản lý khoá học</h3>
-      {/* <NavLink className={'btn btn-success my-5'} to={'/admin/films/addnew'}>Thêm phim</NavLink> */}
-      {/* <Search
-        className='mb-5'
-        placeholder="Tìm phim"
-        size="medium"
-        onChange={(e) => {
-          const value = e.target.value
-
-          if (searchRef.current) {
-            clearTimeout(searchRef.current)
-          }
-          searchRef.current = setTimeout(() => {
-            dispatch(actFetchLichChieu(value))
-          }, 1000)
-        }}
-      /> */}
-      <h5>Khoá học chờ xét duyệt</h5>
+      <h3 className='text-[36px] font-semibold text-center'>Quản lý khoá học</h3>
+   
+      <h5 className='text-[22px] font-semibold my-4'>Khoá học chờ xét duyệt</h5>
       {renderWaittingCourse()}
-      <h5>Khoá học đã ghi danh</h5>
+      <h5 className='text-[22px] font-semibold my-4'>Khoá học đã ghi danh</h5>
       {renderRegistedCourse()}
 
     </div>

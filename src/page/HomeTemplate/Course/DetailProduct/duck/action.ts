@@ -23,12 +23,14 @@ export const actGetRegisterCourse = (value: RegisterCourse) => {
         api.post('QuanLyKhoaHoc/DangKyKhoaHoc', value)
             .then((res) => {
                 if (res.status === 200) {
-                    alert(res.data)
+                    // alert(res.data)
+                    return res.data
                     console.log(res)
                 }
             })
             .catch((err) => {
-                alert('Bạn đã đăng ký khoá học này rồi!')
+                return err.response.data
+                // alert('Bạn đã đăng ký khoá học này rồi!')
             })
     }
 };
