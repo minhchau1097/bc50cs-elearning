@@ -13,7 +13,7 @@ export default function BackToTop() {
        right:20px;
        bottom: 20px;
        font-size: 3rem;
-       z-index: 99999;
+       z-index: 100;
        cursor: pointer;
        visibility: ${visible ? 'visible' : 'hidden'};
     `

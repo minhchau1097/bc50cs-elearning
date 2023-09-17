@@ -7,6 +7,7 @@ module.exports = {
     './src/page/HomeTemplate/HomePage/Welcome/index.tsx',
     './src/page/HomeTemplate/About/index.tsx',
     './src/page/HomeTemplate/Blog/index.tsx',
+    './src/page/HomeTemplate/Cart/index.tsx',
     './src/page/HomeTemplate/Events/index.tsx',
     './src/page/HomeTemplate/Information/index.tsx',
     './src/page/HomeTemplate/Information/EditInfor/index.tsx',
@@ -14,6 +15,7 @@ module.exports = {
     './src/page/AdminTemplate/AuthPage/index.tsx',
     './src/page/AdminTemplate/ManageUser/Course/index.tsx',
     './src/page/AdminTemplate/index.tsx',
+    './src/Loader/index.tsx',
   ],
   presets: [],
   darkMode: 'media', // or 'class'

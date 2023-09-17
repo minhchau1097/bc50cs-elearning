@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Table, Input } from 'antd';
 import type { ColumnsType, TableProps } from 'antd/es/table';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { RootState } from '../../../store';
 import { actDeleteUser, actFetchListUser } from './duck/action';
 import { useAppDispatch } from "../../../store/type"
@@ -111,9 +111,7 @@ export default function ListUser() {
               }
             }}
           >Xóa</button>
-          <NavLink to={`/admin/khoa-hoc/${user.taiKhoan}`}>
-            <button className='btn btn-primary ml-2'>Khoá học</button>
-          </NavLink>
+          <Link to={`/admin/khoa-hoc/${user.taiKhoan}`} className='btn btn-primary ml-2'>Khoá học</Link>
         </Fragment>
       },
       width: '25%',

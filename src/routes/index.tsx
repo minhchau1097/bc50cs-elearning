@@ -8,6 +8,8 @@ const routes = [
         nested: [
             { path: "", element: lazy(() => import("../page/HomeTemplate/HomePage")) },
             { path: "danhmuckhoahoc", element: lazy(() => import("../page/HomeTemplate/Category")) },
+            { path: "gio-hang", element: lazy(() => import("../page/HomeTemplate/Cart")) },
+            { path: "thanh-toan", element: lazy(() => import("../page/HomeTemplate/Payment")) },
             { path: "blog", element: lazy(() => import("../page/HomeTemplate/Blog")) },
             { path: "sukien", element: lazy(() => import("../page/HomeTemplate/Events")) },
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
