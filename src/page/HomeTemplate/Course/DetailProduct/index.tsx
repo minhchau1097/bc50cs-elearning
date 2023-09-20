@@ -1,31 +1,31 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../store';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-// import { actFetchDetailCourse } from '../duck/action';
-import { actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
-import { replace } from 'formik';
+import {  useNavigate, useParams } from 'react-router-dom';
+import { actClearNote, actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
 import { RegisterCourse, User } from 'type/type';
 import { ConfigProvider, notification } from 'antd';
-import type { NotificationPlacement } from 'antd/es/notification/interface';
+import { useAppDispatch, useAppSelector } from 'store/type';
 export default function DetailProduct() {
     const navigate = useNavigate();
-    const dispatch: any = useDispatch();
-    const product: any = useSelector((state: RootState) => state.detaiProductReducer.data);
+    const dispatch = useAppDispatch();
+    const product: any = useAppSelector(state => state.detaiProductReducer.detailProduct.data);
     const param = useParams();
+    const { registerCourse } = useAppSelector(state => state.detaiProductReducer)
     const [api, contextHolder] = notification.useNotification();
     useEffect(() => {
         dispatch(actFetchDetailCourse(param.id));
+        return () => {
+            dispatch(actClearNote())
+        }
     }, []);
-    const openNotification = (placement: NotificationPlacement) => {
+
+    const openNotification = (value: string) => {
         api.info({
             message: 'Thông báo',
-            description:
-                'Vui lòng đăng nhập để thực hiện chức năng này',
-            placement,
+            description: value,
+            placement: 'bottomRight',
         });
     };
-    const getRegisterCourse = async () => {
+    const getRegisterCourse = () => {
         if (localStorage.getItem('USER_CUSTOMER')) {
 
             let value: User = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
@@ -34,24 +34,19 @@ export default function DetailProduct() {
                 taiKhoan: value.taiKhoan,
                 maKhoaHoc: param?.id || ''
             }
-            try{
+            dispatch(actGetRegisterCourse(result))
 
-                let status = await dispatch(actGetRegisterCourse(result))
-                console.log(status)
-            }catch{
-
-            }
-
-            // openNotification('bottomRight')
-            // if (window.confirm('Bạn có muốn đăng ký khoá học này ?')) {
-            // }
+          
         } else {
-            // if (window.confirm('Bạn cần đăng nhập để thực hiện chức năng này')) {
-
-            //     navigate('/auth', { replace: false })
-            // }
-            openNotification('bottomRight')
+          
+            openNotification('Vui lòng đăng nhập để thực hiện chức năng này')
         }
+    }
+    if (registerCourse.error) {
+        openNotification('Bạn đã đăng ký khoá học này rồi')
+
+    } else if (registerCourse.data) {
+        openNotification(registerCourse.data)
     }
     return (
 
@@ -60,7 +55,7 @@ export default function DetailProduct() {
                 theme={{
                     token: {
                         /* here is your global tokens */
-                        colorInfo:'#41b294'
+                        colorInfo: '#41b294'
                     },
                 }}
             >
