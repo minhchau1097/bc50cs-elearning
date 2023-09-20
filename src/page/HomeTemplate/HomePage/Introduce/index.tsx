@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Pagination, Grid } from 'swiper/modules';
-
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -51,6 +51,7 @@ export default function Introduce() {
         <div className='px-12 mt-5'>
             <h6 className='font-medium'>Giảng viên hàng đầu</h6>
             <div className='introduce'>
+                <AnimationOnScroll animateOnce={true} animateIn='animate__fadeInUp'>
                 <Swiper
                     className=' mt-4'
                     spaceBetween={0}
@@ -84,6 +85,7 @@ export default function Introduce() {
                 >
                     {renderSlide()}
                 </Swiper>
+                </AnimationOnScroll>
             </div>
         </div>
 

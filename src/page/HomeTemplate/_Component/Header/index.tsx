@@ -9,7 +9,7 @@ export default function Header() {
   const [status, setStatus] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { waitting } = useAppSelector(state => state.registedCourseReducer);
+  const { data } = useAppSelector(state => state.detailUserReducer);
   useEffect(() => {
     if (localStorage.getItem('USER_CUSTOMER')) {
       let user = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '')
@@ -18,11 +18,11 @@ export default function Header() {
     }
   }, [])
   const renderCart = () => {
-    return waitting.data?.map((item, index) => {
+    return data?.chiTietKhoaHocGhiDanh.map((item: DetailCourse, index) => {
       return <div className='user-cart-detail' key={index}>
         <div className='detail-img'>
 
-          <img src={''} alt="logo" onError={({ currentTarget }) => {
+          <img src={item.hinhAnh} alt="logo" onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src = 'https://www.makeforum.org/wp-content/uploads/2021/04/ngon-ngu-lap-trinh-850x415.png';
           }} />
@@ -34,6 +34,7 @@ export default function Header() {
         </div>
       </div>
     })
+
   }
   const renderUser = () => {
     if (localStorage.getItem('USER_CUSTOMER')) {
@@ -45,20 +46,27 @@ export default function Header() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
             </svg>
-            <span>{waitting.data ? waitting.data.length : 0}</span>
+            <span>{data ? data.chiTietKhoaHocGhiDanh.length : 0}</span>
           </Link>
           <div className='user-cart-overplay'>
 
             <div className='user-cart'>
-              <div className='user-cart-content'>
+              {data?.chiTietKhoaHocGhiDanh ? (
+                <>
+                  <div className='user-cart-content'>
 
-                {renderCart()}
-              </div>
+                    {renderCart()}
+                  </div>
+                  <div className='user-cart-total'>
+                    <p>Tổng cộng : <span>2.000.000đ</span></p>
+                    <Link to={'/gio-hang'}>Đến giỏ hàng</Link>
+                  </div>
+                </>
+              ) : <div style={{padding:20, width:300,textAlign:'center'}}>
+                <p>Giỏ hàng trống</p>
+              </div>}
 
-              <div className='user-cart-total'>
-                <p>Tổng cộng : <span>2.000.000đ</span></p>
-                <Link to={'/gio-hang'}>Đến giỏ hàng</Link>
-              </div>
+
             </div>
 
           </div>
@@ -68,7 +76,7 @@ export default function Header() {
             setStatus((preValue) => !preValue)
           }}>{user.hoTen.slice(0, 1)}</span>
         </div>
-        <div className='about-user-overplay' style={{ display: `${status ? 'block' : 'none'}` }} onClick={()=>{
+        <div className='about-user-overplay' style={{ display: `${status ? 'block' : 'none'}` }} onClick={() => {
           setStatus(false)
         }}>
           <div className='about-user' >
@@ -94,13 +102,10 @@ export default function Header() {
     }
 
   }
-  const style = {
-    width: '100%'
-  }
 
   return (
     <>
-      <nav className="navbar navbar-expand-md  navbar-dark pl-5 pr-5 headerFixed" style={style}>
+      <nav className="navbar navbar-expand-md  navbar-dark pl-5 pr-5 headerFixed" style={{ width: '100%' }}>
         <div className='d-flex justify-content-between'>
 
         </div>

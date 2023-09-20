@@ -1,35 +1,33 @@
-import React, { useEffect,useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'store/type';
-import { actDetailUser } from '../Information/duck/action';
-import { DetailCourse } from 'type/type';
-import { Link } from 'react-router-dom';
 import { Rating } from '@mui/material';
-import Payment from '../Payment';
-
-export default function Cart() {
+import React from 'react'
+import { useAppDispatch } from 'store/type';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { DetailCourse, RegisterCourse } from 'type/type';
+import { actDeleteCourse } from '../duck/action';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/grid';
+interface Props {
+    item: DetailCourse,
+    value: RegisterCourse
+}
+export default function SwiperItem({ item, value }: Props) {
     const dispatch = useAppDispatch();
-    const { data, loading, error } = useAppSelector(state => state.detailUserReducer);
-    useEffect(() => {
-        if (localStorage.getItem('USER_CUSTOMER')) {
-            // dispatch(actDetailUser())
-        }
-    }, [])
-    const renderCart = () => {
-        return data?.chiTietKhoaHocGhiDanh.map((item: DetailCourse, index) => {
-            return <div className=' flex py-[24px]  border-t-[1px]' key={index}>
-                <div className='w-[100px] h-[100px]'>
-                    <img className='w-full h-full object-fill' src={item.hinhAnh} alt="logo" onError={({ currentTarget }) => {
+    return (
+        <   >
+            <div className='slider-content xs:mx-auto md:ml-3 w-5/6 rounded-md transition-all py-4 flex flex-col lg:flex-row lg:mb-[20px]  gap-6'>
+                <div>
+                    <img className='w-[400px] h-[250px] object-cover rounded-[8px]' src={item.hinhAnh} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src = 'https://www.makeforum.org/wp-content/uploads/2021/04/ngon-ngu-lap-trinh-850x415.png';
-                    }} />
+                    }} alt="logo" />
                 </div>
-                <div className='ml-3'>
-                    <h3>{item.tenKhoaHoc}</h3>
-                    <p>{item.danhGia}</p>
-                    <div className='mb-2'>
-                        <Rating name="half-rating-read" defaultValue={5} precision={0.5} readOnly ></Rating>
-                    </div>
+                <div className=' text-left'>
+                    <h6 className='font-medium mb-2 text-[22px]'>{item.tenKhoaHoc}</h6>
+                    <p className='text-gray-400 mb-2'>{item.moTa.length > 30 ? item.moTa.substr(0, 100) + '...' : item.moTa}</p>
                     <div className='flex gap-2 items-center mb-2    '>
+
                         <div className='flex gap-2'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-[#f5c002] w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,30 +48,21 @@ export default function Cart() {
 
                             All level
                         </div>
+
                     </div>
+                    <div className='mb-2'>
+                        <Rating name="half-rating-read" defaultValue={5} precision={0.5} readOnly ></Rating>
+                    </div>
+                    <button className='bg-red-500 p-2 rounded-lg text-white hover:bg-red-600' onClick={() => {
+                        dispatch(actDeleteCourse(value))
+                    }}>Huỷ đăng ký</button>
+                    <button className='bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 ml-2' onClick={() => {
+
+                    }}>Thanh toán</button>
                 </div>
 
             </div>
-        })
-    }
-    return (
-        <div className='px-[50px]'>
-            <h1>Thông tin giỏ hàng</h1>
-            <div className='flex mt-5'>
-
-
-                <div className='w-3/5'>
-                    <p> Có n khoá học trong giỏ hàng</p>
-                    <div >
-                        {renderCart()}
-                    </div>
-                </div>
-                <div className='w-2/5 ml-[32px]'>
-                    <p>Tổng cộng: </p>
-                    <h3 className='font-semibold text-[24px]'>2.000.000đ</h3>
-                    <Payment />
-                </div>
-            </div>
-        </div>
+        </>
     )
+
 }
