@@ -3,6 +3,7 @@ import * as ActionTypes from "./constant";
 import { Action, ResultAcount, DetailUser, RegisterCourse } from "type/type";
 import { AppDispatch } from 'store';
 import api from "utils/api";
+import axios from "axios";
 export const actDetailUser = () => {
     return (dispatch: AppDispatch) => {
         dispatch(actDetailUserRequest())
@@ -32,6 +33,19 @@ export const actDeleteCourse = (value: RegisterCourse) => {
                 alert(error.response.data);
             })
 
+    }
+}
+
+export const actGetPayment = () => {
+    return (dispatch: AppDispatch) => {
+        axios({
+            url: 'https://64709e2a3de51400f7249feb.mockapi.io/thanhToanKhoaHoc',
+            method: 'GET'
+        }).then((result) => {
+            console.log(result)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 }
 

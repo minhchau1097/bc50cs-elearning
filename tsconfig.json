@@ -4,7 +4,7 @@
     "paths": {
       "utils/*": ["./utils/*"],
       "page/*": ["./page/*"],
-      "type/*": ["./type/*"]
+      "type/*": ["./type/*"],
     },
     "target": "es5",
     "lib": [

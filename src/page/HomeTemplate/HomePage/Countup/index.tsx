@@ -1,10 +1,11 @@
 import React from 'react'
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 import CountUp from 'react-countup';
 export default function Number() {
     return (
         <div className='count-up  py-10'>
             <div className='px-12'>
-                <div className=''>
+                        <AnimationOnScroll animateOnce={true} animateIn='animate__bounceIn'>
                     <div className='grid md:grid-cols-4 sm:grid-cols-1 xs:grid-cols-1'>
                         <div className="content" >
                             <div>
@@ -55,9 +56,9 @@ export default function Number() {
                             <p>Giảng viên</p>
                         </div>
                     </div>
+                        </AnimationOnScroll>
 
 
-                </div>
             </div>
 
         </div>

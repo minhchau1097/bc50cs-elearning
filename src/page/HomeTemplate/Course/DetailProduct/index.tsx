@@ -1,41 +1,66 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../store';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-// import { actFetchDetailCourse } from '../duck/action';
-import { actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
-import { replace } from 'formik';
+import {  useNavigate, useParams } from 'react-router-dom';
+import { actClearNote, actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
 import { RegisterCourse, User } from 'type/type';
-
+import { ConfigProvider, notification } from 'antd';
+import { useAppDispatch, useAppSelector } from 'store/type';
 export default function DetailProduct() {
     const navigate = useNavigate();
-    const dispatch: any = useDispatch();
-    const product: any = useSelector((state: RootState) => state.detaiProductReducer.data);
+    const dispatch = useAppDispatch();
+    const product: any = useAppSelector(state => state.detaiProductReducer.detailProduct.data);
     const param = useParams();
-
+    const { registerCourse } = useAppSelector(state => state.detaiProductReducer)
+    const [api, contextHolder] = notification.useNotification();
     useEffect(() => {
         dispatch(actFetchDetailCourse(param.id));
+        return () => {
+            dispatch(actClearNote())
+        }
     }, []);
+
+    const openNotification = (value: string) => {
+        api.info({
+            message: 'Thông báo',
+            description: value,
+            placement: 'bottomRight',
+        });
+    };
     const getRegisterCourse = () => {
         if (localStorage.getItem('USER_CUSTOMER')) {
+
             let value: User = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
 
             let result: RegisterCourse = {
                 taiKhoan: value.taiKhoan,
                 maKhoaHoc: param?.id || ''
             }
-            if (window.confirm('Bạn có muốn đăng ký khoá học này ?')) {
-                dispatch(actGetRegisterCourse(result))
-            }
-        } else {
-            if (window.confirm('Bạn cần đăng nhập để thực hiện chức năng này')) {
+            dispatch(actGetRegisterCourse(result))
 
-                navigate('/auth', { replace: false })
-            }
+          
+        } else {
+          
+            openNotification('Vui lòng đăng nhập để thực hiện chức năng này')
         }
     }
+    if (registerCourse.error) {
+        openNotification('Bạn đã đăng ký khoá học này rồi')
+
+    } else if (registerCourse.data) {
+        openNotification(registerCourse.data)
+    }
     return (
+
         <section className='p-5'>
+            <ConfigProvider
+                theme={{
+                    token: {
+                        /* here is your global tokens */
+                        colorInfo: '#41b294'
+                    },
+                }}
+            >
+                {contextHolder}
+            </ConfigProvider>
             <div className='row'>
                 <div className="col-lg-8 col-md-7">
                     <h1>Lập Trình {product?.tenKhoaHoc}</h1>
