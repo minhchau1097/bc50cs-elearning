@@ -21,6 +21,10 @@
     font-size: 20px;
 }
 
+.detailCouresContent{
+    padding: 48px;
+}
+
 .textDiscripts {
     color: grey;
     padding-bottom: 20px;
@@ -47,6 +51,10 @@
     padding: 5px 0;
     text-align: justify;
     font-weight: 500;
+}
+
+.courseContent{
+    padding: 24px;
 }
 
 .courseContent h6 {
@@ -161,4 +169,33 @@
     outline: none;
     padding: 3px 10px;
     border: 1px solid #d0d0d0;
+}
+
+.courseDetailContent {
+    padding: 16px;
+}
+
+@media screen and (max-width: 575px) {
+    .detailCourseIntro{
+        margin-bottom: 8px;
+    }
+    .detailCouresContent {
+        padding: 20px;
+    }
+    .titleDetailCourse{
+        font-size: 24px;
+        // padding: 10px 0;
+    }
+    .headDetailCourse{
+        padding: 5px 0 ;
+    }
+    .textDiscripts, .boxCourseLearn, .lessonContent {
+        font-size: 12px;
+    }
+    .courseDetailContent{
+        padding: 0px;
+    }
+    .courseContent{
+        padding: 24px 0;
+    }
 }

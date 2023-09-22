@@ -130,7 +130,7 @@ const onSearch = (value :any) =>{
             size="large"
             onSearch={onSearch}
           />
-      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maKhoaHoc"}/>
+      <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maKhoaHoc"} />
     </div>
   )
 }

@@ -7,7 +7,7 @@ export const actFetchListCourse =(tenKhoaHoc='')=>{
     return (dispatch : any)=>{
         dispatch(actListCourseRequest());
         if(tenKhoaHoc.trim() !== ''){
-            api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP03`)
+            api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP01`)
             .then((res :Result<Course>)=>{
                 if(res.status === 200){
                     dispatch(actListCourseSuccess(res.data));
@@ -19,7 +19,7 @@ export const actFetchListCourse =(tenKhoaHoc='')=>{
             })
         }
         else{
-            api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP03")
+            api.get("QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01")
             .then((res :Result<Course>)=>{
                 if(res.status === 200){
                     dispatch(actListCourseSuccess(res.data));    
