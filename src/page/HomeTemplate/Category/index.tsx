@@ -58,7 +58,7 @@ export default function Category() {
           <p>Lựa chọn khóa học theo sở thích.</p>
         </div>
       </div>
-      <div className="categoryContent p-3 row">
+      <div className="categoryContent row">
         {renderCategory()}
       </div>
     </section>

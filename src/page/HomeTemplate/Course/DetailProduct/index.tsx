@@ -46,7 +46,7 @@ export default function DetailProduct() {
     }
     return (
 
-        <section className='p-5'>
+        <section className='detailCouresContent'>
             <ConfigProvider
                 theme={{
                     token: {
@@ -59,7 +59,7 @@ export default function DetailProduct() {
             </ConfigProvider>
             <div className='row'>
                 <div className="col-lg-8 col-md-7">
-                    <h1>Lập Trình {product?.tenKhoaHoc}</h1>
+                    <h1 className='titleDetailCourse'>Lập Trình {product?.tenKhoaHoc}</h1>
                     <div className='row p-3'>
                         <div className='col-lg-4'>
                             <div className='detailCourseIntro'>
@@ -81,15 +81,13 @@ export default function DetailProduct() {
                         </div>
                         <div className='col-lg-4'>
                             <div className='detailCourseIntro'>
-                                <img src={require("../../../../Image/instrutor5.2e4bd1e6.jpg")} alt="" />
                                 <div className='pl-1 pr-1'>
                                     <div>
                                         <i className="fas fa-star"></i>
                                         <i className="fas fa-star"></i>
                                         <i className="fas fa-star"></i>
                                         <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <p>5 sao</p>
+                                        <i className="fas fa-star"></i>5 sao
                                     </div>
                                     <p className='pt-2'>{product?.luotXem} Lượt Xem</p>
                                 </div>
@@ -122,9 +120,9 @@ export default function DetailProduct() {
                         </div>
                     </div>
 
-                    <div className='p-4 courseContent'>
+                    <div className='courseContent'>
                         <h6>Nội dung khóa học</h6>
-                        <div className='courseDetailContent p-3'>
+                        <div className='courseDetailContent'>
                             <div className="sectionCourse">
                                 <span>Mục 1: Giới thiệu</span>
                                 <button className=" btnPreview">Xem trước</button>
@@ -148,7 +146,7 @@ export default function DetailProduct() {
                             </div>
                         </div>
 
-                        <div className='courseDetailContent p-3'>
+                        <div className='courseDetailContent'>
                             <div className="sectionCourse">
                                 <span>MỤC 2: KIẾN THỨC CĂN BẢN</span>
                                 <button className=" btnPreview">Xem trước</button>
@@ -176,7 +174,7 @@ export default function DetailProduct() {
                             </div>
                         </div>
 
-                        <div className='courseDetailContent p-3'>
+                        <div className='courseDetailContent'>
                             <div className="sectionCourse">
                                 <span>MỤC 3: KIẾN THỨC CHUYÊN SÂU</span>
                                 <button className=" btnPreview">Xem trước</button>

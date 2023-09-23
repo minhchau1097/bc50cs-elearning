@@ -6,7 +6,7 @@ import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify
 import 'react-toastify/dist/ReactToastify.css';
 import ReactLoading from 'react-loading';
 import './App.css';
-import Loader from "Loader";
+import Loader from "././Loader";
 import "animate.css/animate.min.css";
 function App(): JSX.Element {
   return (

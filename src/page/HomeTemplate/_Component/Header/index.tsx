@@ -44,6 +44,14 @@ export default function Header() {
 
   }
 
+  const handleSubmit= (event: any)=>{
+    event.preventDefault();
+    navigate(`/timkiem/${event.target[0].value}`)
+    if (event.target[0].value == '') {
+      navigate(`/`);
+  }
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-md  navbar-dark pl-5 pr-5 headerFixed" style={{ width: '100%' }}>
@@ -51,10 +59,12 @@ export default function Header() {
 
         </div>
         <NavLink to="/">
-          <img src={require("../../../../Image/logo (1).png")} width={250} />
+          <img className='logo' src={require("../../../../Image/logo (1).png")} width={250} />
         </NavLink>
-        <form><input className='searchForm mt-2' type="text" placeholder="Tìm kiếm" /></form>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <form  onSubmit={handleSubmit}> <input className='searchForm mt-2' type="text" 
+        placeholder="Tìm kiếm" 
+        /></form>
+        <button className="navbar-toggler p-2 text-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           Menu
         </button>
         <div className="collapse navbar-collapse " id="collapsibleNavbar">

@@ -141,3 +141,13 @@
         }
     }
 }
+
+@media screen and (max-width: 575px){
+    .searchForm{
+        margin-left: 0;
+        margin-bottom: 12px;
+    }
+    .logo{
+        padding-right: 50px;
+    }
+}

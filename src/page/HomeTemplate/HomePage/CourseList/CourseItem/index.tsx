@@ -7,10 +7,13 @@ interface Props{
 
 export default function CourseItem({item} : Props) {
   return (
-    <div className='col-md-6 col-xl-3 mt-4 cardGlobal'>
-      <NavLink to={`/`}>
+    <div className=' col-md-6 col-xl-3 mt-4 cardGlobal'>
+      <NavLink  to={`/chitiet/${item.maKhoaHoc}`}>
           <div className='cardItem'>
-              <img src={item?.hinhAnh} alt="" />
+              <img src={item?.hinhAnh} alt="logo" onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = 'https://www.makeforum.org/wp-content/uploads/2021/04/ngon-ngu-lap-trinh-850x415.png';
+                    }} />
               <span className='titleCard'>{item?.tenKhoaHoc}ava</span>
               <div className='cardBodyGlobal'>
                   <h6 className='pb-2'>Lập trình hiện đang là xu hướng trên toàn thế giới...</h6>

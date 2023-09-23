@@ -36,11 +36,6 @@ const productReducer = (state=initialState , action:any)=>{
             return{...state}
         }
 
-        case CONFIRM_USER:{
-            state.confirmCourse = action.payload;
-            return{...state}
-        }
-
         default:
             return {...state}
     }

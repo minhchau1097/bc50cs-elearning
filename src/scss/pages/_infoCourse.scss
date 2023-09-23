@@ -3,6 +3,7 @@
     grid-template-columns: repeat(3,1fr);
     color: white;
     gap: 20px;
+    padding: 0 48px;
 }
 
 .infoItem{
@@ -42,4 +43,15 @@
     ul li i{
         padding-right: 10px;
     }
+}
+
+@media screen and (max-width: 575px){
+    .infoCourse {
+        grid-template-columns: none;
+        padding: 0 30px;
+    }
+    .infoContent h3{
+        font-size: 22px;
+    }
+    
 }

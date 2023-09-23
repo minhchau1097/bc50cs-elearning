@@ -13,7 +13,7 @@ const routes = [
             { path: "thongtin", element: lazy(() => import("../page/HomeTemplate/About")) },
             { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
             { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
-
+            { path: "timkiem/:id", element: lazy(() => import("../page/HomeTemplate/Search")) },
         ]
     },
 
