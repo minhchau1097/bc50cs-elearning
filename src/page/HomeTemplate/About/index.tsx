@@ -1,8 +1,15 @@
 
 import styled from '@emotion/styled';
-import React from 'react'
+import Loader from 'Loader';
+import React, { useEffect, useState } from 'react'
 
 export default function About() {
+  const [status, setStatus] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setStatus(false)
+    }, 1000)
+  }, [])
   const Wrapper = styled.div`
   background-image: url(https://demo2.cybersoft.edu.vn/static/media/bgAbout.19ac825c.png) !important;
   background-position: 50% ;
@@ -23,6 +30,7 @@ background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;
 `;
+  if (status) return <Loader color={'#f6ba35'} value={50} />
   return (
     <div className='about'>
       <Wrapper>

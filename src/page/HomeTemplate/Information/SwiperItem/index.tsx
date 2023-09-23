@@ -16,9 +16,9 @@ export default function SwiperItem({ item, value }: Props) {
     const dispatch = useAppDispatch();
     return (
         <   >
-            <div className='slider-content xs:mx-auto md:ml-3 w-5/6 rounded-md transition-all py-4 flex flex-col lg:flex-row lg:mb-[20px]  gap-6'>
+            <div className='slider-content xs:mx-auto md:ml-3 w-5/6 rounded-md transition-all py-4 flex flex-col lg:flex-row lg:mb-[20px]  gap-6 '>
                 <div>
-                    <img className='w-[400px] h-[250px] object-cover rounded-[8px]' src={item.hinhAnh} onError={({ currentTarget }) => {
+                    <img className='w-[400px] h-[250px] object-fill rounded-[8px] shadow-md' src={item.hinhAnh} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src = 'https://www.makeforum.org/wp-content/uploads/2021/04/ngon-ngu-lap-trinh-850x415.png';
                     }} alt="logo" />
@@ -56,9 +56,7 @@ export default function SwiperItem({ item, value }: Props) {
                     <button className='bg-red-500 p-2 rounded-lg text-white hover:bg-red-600' onClick={() => {
                         dispatch(actDeleteCourse(value))
                     }}>Huỷ đăng ký</button>
-                    <button className='bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 ml-2' onClick={() => {
-
-                    }}>Thanh toán</button>
+                   
                 </div>
 
             </div>

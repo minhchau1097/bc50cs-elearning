@@ -37,7 +37,7 @@ export default function CardItem({ item }: Props) {
                 <div className="card-body text-center">
                     <div >
 
-                        <span className='text-white bg-[#f6ba35] rounded-full w-16 h-16 leading-[64px] uppercase font-semibold text-[24px] inline-block'> {item?.hoTen.slice(0, 1)}</span>
+                        <span className='inline-block'> <img className='w-[60px] h-[60px] rounded-full object-cover' src='	https://demo2.cybersoft.edu.vn/static/media/instrutor10.89946c43.jpg' alt='logo' /></span>
                         <h5 className="my-3">{item?.hoTen}</h5>
                         <p className="text-muted mb-1">{item?.soDT}</p>
                         <p className="text-muted mb-4">{item?.email}</p>

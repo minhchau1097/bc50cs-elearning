@@ -1,6 +1,6 @@
 import { RegisterCourse, Action, Course } from 'type/type';
 import { DETAIL_COURSE_REQUEST, DETAIL_COURSE_SUCCESS, DETAIL_COURSE_FAIL, GET_REGISTER_REQUEST, GET_REGISTER_SUCCESS, GET_REGISTER_FAIL, CLEAR_NOTE } from "./contants";
-import api from "utils/api";
+import {api} from "utils/api";
 import { AppDispatch } from 'store';
 
 

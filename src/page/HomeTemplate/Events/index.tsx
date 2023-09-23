@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import 'dayjs/locale/zh-cn'
 import { theme } from '..';
 import { Date } from 'type/type';
+import Loader from 'Loader';
 dayjs.locale('zh-vn')
 export default function Events() {
   const [state, setState] = useState<Date>({
@@ -13,6 +14,7 @@ export default function Events() {
     seconds: undefined
 
   });
+  const [status, setStatus] = useState(true);
   useEffect(() => {
     const interval = setInterval(() => {
       const then: any = dayjs('09 25 2023 ,06:00 am', 'MM DD YYYY, h:mm a');
@@ -26,43 +28,46 @@ export default function Events() {
 
     }, 1000)
 
+    setTimeout(() => {
+      setStatus(false)
+    }, 1000)
     return () => {
       if (interval) {
         clearInterval(interval)
       }
     }
   }, [])
+  if (status) return <Loader color={'#f6ba35'} value={50} />
   const { days, hours, minutes, seconds } = state;
 
- 
   return (
     <>
       <div className='relative bg-event grayscale-[50%]'>
         <div className='py-[200px]  px-[50px] relative z-10'>
           <div className='bg-event1 absolute top-0 left-0 h-full w-full -z-10 '></div>
           <div className='flex'>
-            <div className='flex flex-col mr-5 items-center'>
+            <div className='flex flex-col mr-5 '>
 
               {days && (
                 <span className='text-[#ffbe0b] text-[60px] font-semibold'>{days}</span>
               )}
               <span className='text-[20px] text-white'>NGÀY</span>
             </div>
-            <div className='flex flex-col mr-5 items-center'>
+            <div className='flex flex-col mr-5 '>
 
               {hours && (
                 <span className='text-[#fb5607] text-[60px] font-semibold'>{hours}</span>
               )}
               <span className='text-[20px] text-white'>GIỜ</span>
             </div>
-            <div className='flex flex-col mr-5 items-center'>
+            <div className='flex flex-col mr-5 '>
 
               {minutes && (
                 <span className='text-[#ff006e] text-[60px] font-semibold'>{minutes}</span>
               )}
               <span className='text-[20px] text-white'>PHÚT</span>
             </div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col '>
 
               {seconds && (
                 <span className='text-[#8338ec] text-[60px] font-semibold'>{seconds}</span>
@@ -76,19 +81,19 @@ export default function Events() {
       </div>
 
       <div className="p-[50px]">
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={2}>
-          <Grid item md={6}>
-            <img className='animate-pulse w-full h-[270px] object-contain' src="https://demo2.cybersoft.edu.vn/static/media/it.ef68b551.png" alt="logo" />
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={2}>
+            <Grid item md={6}>
+              <img className='animate-pulse w-full h-[270px] object-contain' src="https://demo2.cybersoft.edu.vn/static/media/it.ef68b551.png" alt="logo" />
+            </Grid>
+            <Grid item md={6}>
+              <h5 className='font-semibold uppercase text-[#9f1f56] md:text-[30px] mb-[10px] xs:text-[25px]'>Sự kiện công nghệ dành cho startup</h5>
+              <h6 className='font-medium'>Nơi gặp gỡ của những tư tưởng lớn</h6>
+              <p className='my-4 text-[#8c8c8c] xs:text-[12px] md:text-[16px]'>Innovatube Frontier Summit (IFS) là sự kiện đầu tiên tại Việt Nam tập trung vào cả bốn mảng tiêu biểu của công nghệ tiên phong, bao gồm Artificial Intelligence (trí tuệ nhân tạo), Internet of Things (Internet vạn vật), Blockchain (Chuỗi khối) và Augmented reality/Virtual Reality (Thực tế tăng cường/Thực tế ảo)</p>
+              <button className='bg-[#41b294] text-white rounded p-2 uppercase mr-3 hover:scale-95 transition-all delay-100'>Tham gia</button>
+              <button className='bg-[#f6ba35] text-white rounded p-2 uppercase hover:scale-95 transition-all delay-100'>Tìm hiểu thêm</button>
+            </Grid>
           </Grid>
-          <Grid item md={6}>
-            <h5 className='font-semibold uppercase text-[#9f1f56] md:text-[30px] mb-[10px] xs:text-[25px]'>Sự kiện công nghệ dành cho startup</h5>
-            <h6 className='font-medium'>Nơi gặp gỡ của những tư tưởng lớn</h6>
-            <p className='my-4 text-[#8c8c8c] xs:text-[12px] md:text-[16px]'>Innovatube Frontier Summit (IFS) là sự kiện đầu tiên tại Việt Nam tập trung vào cả bốn mảng tiêu biểu của công nghệ tiên phong, bao gồm Artificial Intelligence (trí tuệ nhân tạo), Internet of Things (Internet vạn vật), Blockchain (Chuỗi khối) và Augmented reality/Virtual Reality (Thực tế tăng cường/Thực tế ảo)</p>
-            <button className='bg-[#41b294] text-white rounded p-2 uppercase mr-3 hover:scale-95 transition-all delay-100'>Tham gia</button>
-            <button className='bg-[#f6ba35] text-white rounded p-2 uppercase hover:scale-95 transition-all delay-100'>Tìm hiểu thêm</button>
-          </Grid>
-        </Grid>
         </ThemeProvider>
       </div>
 

@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { actClearNote, actFetchDetailCourse, actGetRegisterCourse } from './duck/action';
-import { RegisterCourse, User } from 'type/type';
+import {  NotificationType, RegisterCourse, User } from 'type/type';
 import { ConfigProvider, notification } from 'antd';
 import { useAppDispatch, useAppSelector } from 'store/type';
 export default function DetailProduct() {
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const product: any = useAppSelector(state => state.detaiProductReducer.detailProduct.data);
     const param = useParams();
-    const { registerCourse } = useAppSelector(state => state.detaiProductReducer)
+    const { registerCourse } = useAppSelector(state => state.detaiProductReducer);
     const [api, contextHolder] = notification.useNotification();
     useEffect(() => {
         dispatch(actFetchDetailCourse(param.id));
@@ -17,9 +16,17 @@ export default function DetailProduct() {
             dispatch(actClearNote())
         }
     }, []);
+    useEffect(() => {
+        if (registerCourse.error) {
+            openNotification('Bạn đã đăng ký khoá học này rồi', 'error')
 
-    const openNotification = (value: string) => {
-        api.info({
+        } else if (registerCourse.data) {
+            openNotification(registerCourse.data, 'success')
+        }
+    }, [registerCourse.data || registerCourse.error])
+
+    const openNotification = (value: string, type: NotificationType) => {
+        api[type]({
             message: 'Thông báo',
             description: value,
             placement: 'bottomRight',
@@ -27,26 +34,15 @@ export default function DetailProduct() {
     };
     const getRegisterCourse = () => {
         if (localStorage.getItem('USER_CUSTOMER')) {
-
             let value: User = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '');
-
             let result: RegisterCourse = {
                 taiKhoan: value.taiKhoan,
                 maKhoaHoc: param?.id || ''
             }
             dispatch(actGetRegisterCourse(result))
-
-          
         } else {
-          
-            openNotification('Vui lòng đăng nhập để thực hiện chức năng này')
+            openNotification('Vui lòng đăng nhập để thực hiện chức năng này', 'warning')
         }
-    }
-    if (registerCourse.error) {
-        openNotification('Bạn đã đăng ký khoá học này rồi')
-
-    } else if (registerCourse.data) {
-        openNotification(registerCourse.data)
     }
     return (
 

@@ -2,8 +2,8 @@
 import * as ActionTypes from "./constant";
 import { Action, ResultAcount, DetailUser, RegisterCourse } from "type/type";
 import { AppDispatch } from 'store';
-import api from "utils/api";
-import axios from "axios";
+import { api } from "utils/api";
+
 export const actDetailUser = () => {
     return (dispatch: AppDispatch) => {
         dispatch(actDetailUserRequest())
@@ -17,35 +17,6 @@ export const actDetailUser = () => {
                 dispatch(actDetailUserFail(error))
             })
 
-    }
-}
-
-export const actDeleteCourse = (value: RegisterCourse) => {
-    return (dispatch: AppDispatch) => {
-        api.post('QuanLyKhoaHoc/HuyGhiDanh', value)
-            .then((result) => {
-                if (result.status === 200) {
-                    dispatch(actDetailUser());
-                    alert(result.data);
-                }
-            })
-            .catch((error) => {
-                alert(error.response.data);
-            })
-
-    }
-}
-
-export const actGetPayment = () => {
-    return (dispatch: AppDispatch) => {
-        axios({
-            url: 'https://64709e2a3de51400f7249feb.mockapi.io/thanhToanKhoaHoc',
-            method: 'GET'
-        }).then((result) => {
-            console.log(result)
-        }).catch((error) => {
-            console.log(error)
-        })
     }
 }
 
@@ -66,5 +37,52 @@ const actDetailUserFail = (error: string): Action => {
     return {
         type: ActionTypes.DETAIL_FAIL,
         payload: error
+    }
+}
+
+
+export const actDeleteCourse = (value: RegisterCourse) => {
+    return (dispatch: AppDispatch) => {
+        dispatch(actDeleteCourseRequest())
+        api.post('QuanLyKhoaHoc/HuyGhiDanh', value)
+            .then((result) => {
+                if (result.status === 200) {
+                    dispatch(actDeleteCourseSuccess(result.data))
+                    dispatch(actDetailUser())
+                }
+            })
+            .catch((error) => {
+                dispatch(actDeleteCourseFail(error.response.data))
+            })
+
+    }
+}
+
+
+
+
+const actDeleteCourseRequest = (): Action => {
+    return {
+        type: ActionTypes.DELETE_COURSE_REQUEST
+
+    }
+}
+
+const actDeleteCourseSuccess = (data: string): Action => {
+    return {
+        type: ActionTypes.DELETE_COURSE_SUCCESS,
+        payload: data
+    }
+}
+const actDeleteCourseFail = (error: string): Action => {
+    return {
+        type: ActionTypes.DELETE_COURSE_FAIL,
+        payload: error
+    }
+}
+
+export const actClearNote =():Action=>{
+    return{
+        type:ActionTypes.CLEAR_NOTE,
     }
 }

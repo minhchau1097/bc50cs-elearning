@@ -1,5 +1,5 @@
 import { PRODUCT_REQUEST,PRODUCT_SUCCESS,PRODUCT_FAIL,EDIT_PRODUCT,CONFIRM_USER} from "./contants";
-import api from "utils/api";
+import {api} from "utils/api";
 import { Result,Action, Course} from "type/type";
 import { toast  } from 'react-toastify';
 import { NavigateFunction } from "react-router";
