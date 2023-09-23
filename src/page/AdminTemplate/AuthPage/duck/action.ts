@@ -1,6 +1,6 @@
 
 import * as ActionTypes from "./constant";
-import api from "utils/api";
+import {api} from "utils/api";
 import { SignUp, Result, Action, Login, DataAuth, Error, ResultAcount } from "type/type";
 import { AppDispatch } from 'store';
 import { NavigateFunction } from "react-router";
@@ -11,17 +11,13 @@ export const actSignUp = (value: SignUp, navigate: NavigateFunction) => {
         api.post(`QuanLyNguoiDung/DangKy`, value)
             .then((result: Result<DataAuth>) => {
                 if (result.status === 200) {
-
-
-                    dispatch(actLogin(value, navigate))
-                    dispatch(actSignUpSuccess(result.data))
                     alert('Bạn đã đăng ký thành công!')
-                    navigate('/', { replace: false })
+                    dispatch(actSignUpSuccess(result.data))
+                    dispatch(actLogin(value, navigate))
                 }
             })
             .catch((error: string) => {
                 dispatch(actSignUpFail(error))
-                console.log(error)
             })
 
     }

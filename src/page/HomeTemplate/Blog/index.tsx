@@ -8,7 +8,16 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import { theme } from './../index';
+import { useEffect, useState } from 'react';
+import Loader from 'Loader';
 export default function Blog() {
+  const [status, setStatus] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setStatus(false)
+    }, 1000)
+  }, [])
+  if (status) return <Loader color={'#f6ba35'} value={50} />
   return (
     <div>
       <div className="p-[50px] uppercase bg-[#ffd60a] text-white">

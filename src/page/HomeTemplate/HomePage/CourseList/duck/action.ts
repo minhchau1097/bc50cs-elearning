@@ -1,6 +1,6 @@
 import { COURSELIST_REQUEST,COURSELIST_SUCCESS,COURSELIST_FAIL } from "./contants";
-import api from "../../../../../utils/api";
-import { Result ,Action ,Course} from "../../../../../type/type";
+import  {api}  from "utils/api";
+import { Result ,Action ,Course} from "type/type";
 import { actFetchEditCourse } from "page/AdminTemplate/ManageProduct/duck/action";
 
 export const actFetchListCourse =(tenKhoaHoc='')=>{

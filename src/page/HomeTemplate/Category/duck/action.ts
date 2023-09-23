@@ -1,6 +1,6 @@
 import { CATEGORY_REQUEST, CATEGORY_SUCCESS, CATEGORY_FAIL } from "./contants";
-import api from "../../../../utils/api";
-import { Action, Result } from "../../../../type/type";
+import  {api}  from "utils/api";
+import { Action, Result } from "type/type";
 import {  CategoryType } from "./type";
 
 

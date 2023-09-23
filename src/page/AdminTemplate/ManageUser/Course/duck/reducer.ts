@@ -1,13 +1,13 @@
 import { Action, AppState, AppStateAcount, DetailUser, RegistedCourse, Result, StateCourse } from "type/type";
 import * as ActionTypes from "./constant";
 const myState: StateCourse<RegistedCourse> = {
-    registed: {
+    state: {
 
         loading: false,
         data: null,
         error: null,
     },
-    waitting: {
+   state2: {
 
         loading: false,
         data: null,
@@ -19,43 +19,43 @@ const myState: StateCourse<RegistedCourse> = {
 const registedCourseReducer = (state = myState, action: Action) => {
     switch (action.type) {
         case ActionTypes.COURSE_REGISTED_REQUEST: {
-            state.registed.loading = true;
-            state.registed.data = null;
-            state.registed.error = null;
+            state.state.loading = true;
+            state.state.data = null;
+            state.state.error = null;
             return { ...state }
         }
 
         case ActionTypes.COURSE_REGISTED_SUCCESS: {
-            state.registed.loading = false;
-            state.registed.data = action.payload;
-            state.registed.error = null;
+            state.state.loading = false;
+            state.state.data = action.payload;
+            state.state.error = null;
             return { ...state }
         }
 
         case ActionTypes.COURSE_REGISTED_FAIL: {
-            state.registed.loading = false;
-            state.registed.data = null;
-            state.registed.error = action.payload;
+            state.state.loading = false;
+            state.state.data = null;
+            state.state.error = action.payload;
             return { ...state }
         }
         case ActionTypes.COURSE_WAITTING_REQUEST: {
-            state.waitting.loading = true;
-            state.waitting.data = null;
-            state.waitting.error = null;
+           state.state2.loading = true;
+           state.state2.data = null;
+           state.state2.error = null;
             return { ...state }
         }
 
         case ActionTypes.COURSE_WAITTING_SUCCESS: {
-            state.waitting.loading = false;
-            state.waitting.data = action.payload;
-            state.waitting.error = null;
+           state.state2.loading = false;
+           state.state2.data = action.payload;
+           state.state2.error = null;
             return { ...state }
         }
 
         case ActionTypes.COURSE_WAITTING_FAIL: {
-            state.waitting.loading = false;
-            state.waitting.data = null;
-            state.waitting.error = action.payload;
+           state.state2.loading = false;
+           state.state2.data = null;
+           state.state2.error = action.payload;
             return { ...state }
         }
         default:

@@ -1,26 +1,33 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import {useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { actFetchCategory } from "./duck/action";
 import CategoryItem from "./CategoryItem";
 import { useAppDispatch } from "store/type";
+import Loader from "Loader";
 
 
 export default function Category() {
-  const dispatch  = useAppDispatch();
-  const category :any = useSelector((state: RootState)=>state.categoryReducer.data);
+  const [status, setStatus] = useState(true);
 
-  useEffect(()=>{
+
+  const dispatch = useAppDispatch();
+  const category: any = useSelector((state: RootState) => state.categoryReducer.data);
+
+  useEffect(() => {
     dispatch(actFetchCategory());
-  },[]);
+    setTimeout(() => {
+      setStatus(false)
+    }, 1000)
+  }, []);
 
-  const renderCategory =()=>{
-    return category?.map((item: any, n :number )=>{
+  const renderCategory = () => {
+    return category?.map((item: any, n: number) => {
       return <CategoryItem
-      key ={item.maDanhMuc}
-      category = {item}
-      img = {arrayImg[n]}
-      />  
+        key={item.maDanhMuc}
+        category={item}
+        img={arrayImg[n]}
+      />
     })
   };
 
@@ -40,7 +47,7 @@ export default function Category() {
     'https://img.freepik.com/premium-vector/programmer-is-thinking-about-program-code-development-programming-coding-technologies_569013-329.jpg?w=2000',
 
   ];
-
+  if (status) return <Loader color={'#f6ba35'} value={50} />
 
   return (
     <section className="category">
