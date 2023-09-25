@@ -1,5 +1,5 @@
 import { USER_REQUEST,USER_SUCCESS,USER_FAIL,EDIT_USER } from "./contants";
-import api from "utils/api";
+import  {api}  from "utils/api";
 import { Result,Action, User} from "type/type";
 import { toast  } from 'react-toastify';
 import { NavigateFunction } from "react-router";

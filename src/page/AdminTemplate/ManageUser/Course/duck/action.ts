@@ -1,7 +1,8 @@
 import * as ActionTypes from "./constant";
 import { Action, ResultAcount, RegistedCourse, Result, ComfirmCourse } from "type/type";
 import { AppDispatch } from 'store';
-import api from "utils/api";
+import  {api}  from "utils/api";
+import { toast } from "react-toastify";
 export const actCourseRegisted = (id: {}) => {
     return (dispatch: AppDispatch) => {
         dispatch(actCourseRegistedRequest())
@@ -74,11 +75,12 @@ export const actAcceptWaittingCourse = (value:ComfirmCourse) => {
                     dispatch(actWaittingCourse({taiKhoan:value.taiKhoan}))
                     dispatch(actCourseRegisted({taiKhoan:value.taiKhoan}))
                     // alert(result.data)
+                    toast.success(result.data);
 
                 }
             })
             .catch((error) => {
-                alert(error.response.data)
+                toast.error(error.response.data)
             })
 
     }

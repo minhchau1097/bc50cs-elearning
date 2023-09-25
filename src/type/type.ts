@@ -127,6 +127,7 @@ export interface DetailCourse {
     moTa: string,
     ngayTao: string,
     tenKhoaHoc: string,
+    gia:number
 }
 
 export interface RegistedCourse {
@@ -139,13 +140,13 @@ export interface ComfirmCourse {
 }
 
 export interface StateCourse<T> {
-    registed: {
+    state: {
 
         loading: boolean,
-        data: T[] | null,
+        data: T[] | [],
         error: any,
     },
-    waitting: {
+    state2: {
 
         loading: boolean,
         data: T[] | null,
@@ -159,3 +160,6 @@ export interface Animate {
     js: number,
     react: number,
 }
+
+
+export type NotificationType = 'success' | 'info' | 'warning' | 'error';

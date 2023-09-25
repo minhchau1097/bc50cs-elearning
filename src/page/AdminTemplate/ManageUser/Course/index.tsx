@@ -10,10 +10,11 @@ import { RegistedCourse } from 'type/type';
 export default function AdminCourse() {
   const param = useParams();
   const dispatch = useAppDispatch();
-  const { registed, waitting } = useAppSelector(state => state.registedCourseReducer);
+  const { state, state2 } = useAppSelector(state => state.registedCourseReducer);
 
 
   useEffect(() => {
+    console.log(param.id)
     dispatch(actWaittingCourse({ taiKhoan: param.id }))
     dispatch(actCourseRegisted({ taiKhoan: param.id }))
   }, [])
@@ -26,7 +27,7 @@ export default function AdminCourse() {
         dataIndex: 'tenKhoaHoc',
         fixed: true,
         width: 150,
-        filters: waitting.data?.map((item) => {
+        filters: state2.data?.map((item) => {
           return {
             value: item.tenKhoaHoc,
             text: item.tenKhoaHoc
@@ -61,7 +62,7 @@ export default function AdminCourse() {
 
       }
     ];
-    let course = waitting.data?.map((item, index) => {
+    let course = state2.data?.map((item, index) => {
       return {
         key: index,
         tenKhoaHoc: item.tenKhoaHoc,
@@ -91,7 +92,7 @@ export default function AdminCourse() {
         dataIndex: 'tenKhoaHoc',
         fixed: true,
         width: 150,
-        filters: registed.data?.map((item) => {
+        filters: state.data?.map((item) => {
           return {
             value: item.tenKhoaHoc,
             text: item.tenKhoaHoc
@@ -126,7 +127,7 @@ export default function AdminCourse() {
 
       }
     ];
-    let course = registed.data?.map((item, index) => {
+    let course = state.data?.map((item, index) => {
       return {
         key: index,
         tenKhoaHoc: item.tenKhoaHoc,
