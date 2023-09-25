@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'store/type'
 import { actClearNote, actDetailUser } from './duck/action';
 import { DetailCourse, NotificationType, RegisterCourse } from 'type/type';
@@ -18,33 +18,22 @@ import TitleItem from './TitleItem';
 import Loader from 'Loader';
 
 export default function Information() {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [api, contextHolder] = notification.useNotification();
     const { state, state2 } = useAppSelector(state => state.detailUserReducer);
-
     useEffect(() => {
-        dispatch(actDetailUser())
+        if(localStorage.getItem('USER_CUSTOMER')){
+            let taiKhoan = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '').taiKhoan
+            dispatch(actDetailUser())
+        }else{
+            navigate('/auth',{replace:false})
+        }
         return () => {
             dispatch(actClearNote())
         }
     }, [])
-    useEffect(() => {
-        if(state2.data){
-
-            openNotification(`${state2.data}`,'success')
-        }else{
-            
-            openNotification(`${state2.error}`,'error')
-        }
-        console.log(state.data)
-    }, [state2.data || state2.error])
-    const openNotification = (value: string, type: NotificationType) => {
-        api[type]({
-            message: 'Thông báo',
-            description: value,
-            placement: 'bottomRight',
-        });
-    };
+  
     if (state.loading || state2.loading) return <Loader color={'#f6ba35'} value={50} />
     const renderCourse = () => {
         if (state.data?.chiTietKhoaHocGhiDanh.length === 0) {
@@ -61,6 +50,7 @@ export default function Information() {
             })
         }
     }
+
 
     const items: TabsProps['items'] = [
         {
@@ -102,49 +92,10 @@ export default function Information() {
                 {renderCourse()}
             </Swiper>,
         },
-        {
-            key: '2',
-            label: <span className='font-semibold'>Khoá học đã được xét duyệt</span>,
-            children: <Swiper
-
-                spaceBetween={2}
-                breakpoints={{
-                    400: {
-                        slidesPerView: 1
-                    },
-                    640: {
-                        slidesPerView: 1
-                    },
-                    768: {
-                        slidesPerView: 1
-                    },
-                    1024: {
-                        slidesPerView: 1
-                    },
-                    1200: {
-                        slidesPerView: 1
-                    }
-
-                }}
-                grid={{
-                    rows: 1,
-
-
-                }}
-                pagination={{
-                    clickable: true,
-
-                }}
-                modules={[Pagination, Grid]}
-            >
-
-            </Swiper>,
-        },
 
     ];
     return (
         <>
-            {contextHolder}
             <section className='infor-user space-y-2'>
 
                 <div className="px-[50px] py-5">

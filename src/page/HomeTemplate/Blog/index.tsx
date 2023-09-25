@@ -34,7 +34,7 @@ export default function Blog() {
                   <Card >
                     <CardContent>
                       <img className='h-[302px] object-fill w-full rounded-[8px]' src="https://sanfactory.vn/wp-content/uploads/2023/02/tranh-dong-luc-san-tr48-8.jpg" alt="logo" />
-                      <Typography variant='h6' className='py-[10px]'>
+                      <Typography variant='h6' className='!my-[10px]'>
                         Thời gian và động lực
                       </Typography>
                       <div className='flex justify-between items-center'>
@@ -47,7 +47,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='py-[10px]'>
+                        <Typography variant="body2" className='!my-[10px] '>
                           Có lẽ cũng rất lâu rồi mà tôi chưa đụng đến thứ được gọi là "timetable". Hay dân dã hơn thì người ta hay gọi là "Lịch thường nhật",...
                         </Typography>
                       </div>
@@ -61,7 +61,7 @@ export default function Blog() {
                   <Card >
                     <CardContent>
                       <img className='h-[302px] object-fill w-full rounded-[8px]' src="https://statics.cdn.200lab.io/2023/04/huong-dan-cai-dat-tailwind-css-co-ban.png" alt="logo" />
-                      <Typography variant='h6' className='py-[10px]'>
+                      <Typography variant='h6' className='!my-[10px]'>
                         Tailwind CSS
                       </Typography>
                       <div className='flex justify-between items-center'>
@@ -74,7 +74,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='py-[10px] text-ellipsis overflow-hidden'>
+                        <Typography variant="body2" className='!my-[10px]  line-clamp-2'>
                           Được dịch từ tiếng Anh-Tailwind CSS là một khung CSS mã nguồn mở. Tính năng chính của thư viện này là, không giống như các khung CSS khác như Bootstrap, nó không cung cấp một loạt các lớp được xác định trước cho các thành phần như nút hoặc bảng.
                         </Typography>
                       </div>
@@ -89,7 +89,7 @@ export default function Blog() {
                   <Card >
                     <CardContent>
                       <img className='h-[302px] object-fill w-full rounded-[8px]' src="https://resources.iostream.vn/content/article/html-phan-1-co-ban-ve-html/thumbnail-hd/blob-1598602790106@1280x720.jpg" alt="logo" />
-                      <Typography variant='h6' className='py-[10px]'>
+                      <Typography variant='h6' className='!my-[10px]'>
                         HTML
                       </Typography>
                       <div className='flex justify-between items-center'>
@@ -102,7 +102,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='py-[10px]'>
+                        <Typography variant="body2" className='!my-[10px] line-clamp-2'>
                           HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. Nó có thể được trợ giúp bởi các công nghệ như CSS và các ngôn ngữ kịch bản giống như JavaScript.
                         </Typography>
                       </div>
@@ -117,7 +117,7 @@ export default function Blog() {
                   <Card >
                     <CardContent>
                       <img className='h-[302px] object-fill w-full rounded-[8px]' src="https://networksynapse.net/wp-content/uploads/2020/07/mui.png" alt="logo" />
-                      <Typography variant='h6' className='py-[10px]'>
+                      <Typography variant='h6' className='!my-[10px]'>
                         Material Design
                       </Typography>
                       <div className='flex justify-between items-center'>
@@ -130,7 +130,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='py-[10px]'>
+                        <Typography variant="body2" className='!my-[10px] line-clamp-2'>
                           Material Design là một ngôn ngữ thiết kế được phát triển vào năm 2014 bởi Google. Mở rộng dựa trên mô típ "thẻ" có mặt trên Google Now, Material Design đem đến phong cách tự do hơn với các cách bố trí dạng lưới, các phản hồi hoạt họa chuyển động, kéo giãn, và các hiệu ứng chiều sâu như ánh sáng và đổ bóng.
                         </Typography>
                       </div>
@@ -145,7 +145,7 @@ export default function Blog() {
                   <Card >
                     <CardContent>
                       <img className='h-[302px] object-fill w-full rounded-[8px]' src="https://miro.medium.com/v2/resize:fit:480/1*MGcLJS1ZvMFcBA94PXn16Q.png" alt="logo" />
-                      <Typography variant='h6' className='py-[10px]'>
+                      <Typography variant='h6' className='!my-[10px]'>
                         Visual Studio Code
                       </Typography>
                       <div className='flex justify-between items-center'>
@@ -158,7 +158,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='py-[10px]'>
+                        <Typography variant="body2" className='!my-[10px] line-clamp-2'>
                           Visual Studio Code là một trình soạn thảo mã nguồn được phát triển bởi Microsoft dành cho Windows, Linux và macOS. Nó hỗ trợ chức năng debug, đi kèm với Git, có chức năng nổi bật cú pháp, tự hoàn thành mã thông minh, snippets, và cải tiến mã nguồn.
                         </Typography>
                       </div>
