@@ -11,7 +11,6 @@ export default function CourseList() {
   const dataList :any = useSelector((state: RootState) => state.courseListReducer.data);
   const newArray = dataList?.slice(0, 8);
 
-
   useEffect(() => {
     dispatch(actFetchListCourse());
   }, []);
