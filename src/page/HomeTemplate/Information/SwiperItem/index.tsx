@@ -1,6 +1,6 @@
 import { Rating } from '@mui/material';
-import React from 'react'
-import { useAppDispatch } from 'store/type';
+import React, { useState } from 'react'
+import { useAppDispatch, useAppSelector } from 'store/type';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { DetailCourse, RegisterCourse } from 'type/type';
 import { actDeleteCourse } from '../duck/action';
@@ -8,12 +8,29 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/grid';
+import { Link } from 'react-router-dom';
+import { Popconfirm } from 'antd';
 interface Props {
     item: DetailCourse,
     value: RegisterCourse
 }
+
 export default function SwiperItem({ item, value }: Props) {
     const dispatch = useAppDispatch();
+    const { state2 } = useAppSelector(state => state.detailUserReducer);
+    const [open, setOpen] = useState(false);
+    const handleOk = () => {
+        dispatch(actDeleteCourse(value))
+        if (state2.data) {
+            setOpen(false)
+        }
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+    };
+
+
     return (
         <   >
             <div className='slider-content xs:mx-auto md:ml-3 w-5/6 rounded-md transition-all py-4 flex flex-col lg:flex-row lg:mb-[20px]  gap-6 '>
@@ -24,7 +41,7 @@ export default function SwiperItem({ item, value }: Props) {
                     }} alt="logo" />
                 </div>
                 <div className=' text-left'>
-                    <h6 className='font-medium mb-2 text-[22px]'>{item.tenKhoaHoc}</h6>
+                    <Link to={`/chitiet/${item.maKhoaHoc}`} className='font-medium mb-2 text-[22px] hover:text-[#f6ba35]'>{item.tenKhoaHoc}</Link>
                     <p className='text-gray-400 mb-2'>{item.moTa.length > 30 ? item.moTa.substr(0, 100) + '...' : item.moTa}</p>
                     <div className='flex gap-2 items-center mb-2    '>
 
@@ -53,10 +70,16 @@ export default function SwiperItem({ item, value }: Props) {
                     <div className='mb-2'>
                         <Rating name="half-rating-read" defaultValue={5} precision={0.5} readOnly ></Rating>
                     </div>
-                    <button className='bg-red-500 p-2 rounded-lg text-white hover:bg-red-600' onClick={() => {
-                        dispatch(actDeleteCourse(value))
-                    }}>Huỷ đăng ký</button>
-                   
+                    <Popconfirm title="Thông báo"
+                        description="Bạn có  muốn huỷ khoá học này ?"
+                        open={open}
+                        onConfirm={handleOk}
+                        okButtonProps={{ loading: state2.loading }}
+                        onCancel={handleCancel}>
+
+                        <button className='bg-red-500 p-2 rounded-lg text-white hover:bg-red-600' onClick={() => setOpen(true)}>Huỷ đăng ký</button>
+                    </Popconfirm>
+
                 </div>
 
             </div>

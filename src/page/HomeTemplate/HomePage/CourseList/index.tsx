@@ -29,7 +29,7 @@ export default function CourseList() {
   
 
   return (
-    <section className='pt-4 pb-4'>
+    <section style={{padding:'32px 50px'}}>
 
       <AnimationOnScroll animateOnce={true} animateIn='animate__fadeInUp'>
         <div className="row">

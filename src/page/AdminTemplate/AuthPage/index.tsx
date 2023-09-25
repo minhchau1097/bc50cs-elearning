@@ -11,7 +11,11 @@ export default function AuthPage() {
   const dispatch = useAppDispatch();
   const state = useAppSelector(state => state.authReducer);
   const [status, setStatus] = useState(false);
-  
+  const [eyes, setEyes] = useState(false);
+  const [pass, setPass] = useState(false);
+  const [eyesSignUp, setEyesSignUp] = useState(false);
+  const [passSignUp, setPassSignUp] = useState(false);
+
   const formik: FormikProps<SignUp> = useFormik<SignUp>({
     initialValues: {
       taiKhoan: '',
@@ -51,10 +55,20 @@ export default function AuthPage() {
   });
   const handleOnchange = (e: InputEvent | SelectEvent) => {
     const { name, value } = e.target
+    if (name === 'matKhau' && value) {
+      setEyesSignUp(true)
+    } else {
+      setEyesSignUp(false)
+    }
     formik.setFieldValue(name, value)
   }
   const handleChangeLogin = (e: InputEvent) => {
     const { name, value } = e.target
+    if (name === 'matKhau' && value) {
+      setEyes(true)
+    } else {
+      setEyes(false)
+    }
     formikLogin.setFieldValue(name, value)
   }
   return (
@@ -72,9 +86,10 @@ export default function AuthPage() {
               {formikLogin.errors.taiKhoan && formikLogin.touched.taiKhoan && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formikLogin.errors.taiKhoan}</p>
               </div>)}
-              <div className={`input-field ${formikLogin.errors.matKhau && formikLogin.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+              <div className={`input-field !grid-cols-[15%,70%,15%] ${formikLogin.errors.matKhau && formikLogin.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
                 <i className="fas fa-lock" />
-                <input name='matKhau' onChange={handleChangeLogin} type="password" placeholder="Mật khẩu" />
+                <input name='matKhau' onChange={handleChangeLogin} type={pass ? 'text' : 'password'} placeholder="Mật khẩu" />
+                {eyes && (<i className={`fa-solid cursor-pointer ${pass ? 'fa-eye-slash' : 'fa-eye'}`} onClick={() => setPass((preValue) => !preValue)}></i>)}
               </div>
               {formikLogin.errors.matKhau && formikLogin.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formikLogin.errors.matKhau}</p>
@@ -114,9 +129,9 @@ export default function AuthPage() {
                 <p>{formik.errors.taiKhoan}</p>
               </div>)}
 
-              <div className={`input-field input-sign-up  ${formik.errors.matKhau && formik.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
-                <input onChange={handleOnchange} name='matKhau' type="password" placeholder="Mật khẩu" />
-
+              <div className={`input-field input-sign-up flex-row ${formik.errors.matKhau && formik.touched.matKhau && ('border-[1px]  border-[rgba(240,23,23,.835)]')}`}>
+                <input className='!w-[85%]' onChange={handleOnchange} name='matKhau' type={passSignUp ? 'text' : 'password'} placeholder="Mật khẩu" />
+                {eyesSignUp && (<i className={`fa-solid w-[15%] cursor-pointer ${passSignUp ? 'fa-eye-slash' : 'fa-eye'}`} onClick={() => setPassSignUp((preValue) => !preValue)}></i>)}
               </div>
               {formik.errors.matKhau && formik.touched.matKhau && (<div className='max-w-[380px] w-full text-[rgba(240,23,23,.835)]'>
                 <p>{formik.errors.matKhau}</p>

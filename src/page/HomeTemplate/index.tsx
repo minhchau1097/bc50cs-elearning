@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from "./_Component/Footer"
 import Header from "./_Component/Header"
@@ -28,6 +28,9 @@ export const theme = createTheme({
 });
 
 export default function HomeTemplate() {
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   return (
     <div>
       <Header />

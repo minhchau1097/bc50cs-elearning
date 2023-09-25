@@ -67,7 +67,10 @@
 }
 
 .input-sign-up {
-  grid-template-columns: none !important;
+display: flex !important;
+input{
+  width: 100%;
+}
 }
 
 
