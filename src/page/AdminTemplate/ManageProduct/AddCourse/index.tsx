@@ -49,7 +49,7 @@ export default function AddCourse() {
       taiKhoanNguoiTao : userData.taiKhoan,
     },
     onSubmit:(value :any)=>{
-      value.maNhom = 'GP03';
+      value.maNhom = 'GP01';
       let formData =new FormData();
       formData.append('file', selectedFile );
       formData.append('tenKhoaHoc', value.tenKhoaHoc);

@@ -12,8 +12,6 @@ export default function Search() {
   const param = useParams()
   const dispatch = useAppDispatch();
   const dataCourse = useSelector((state: RootState)=>state.courseListReducer.data);
-  console.log(dataCourse);
-  
 
   useEffect(()=>{
     dispatch(actFetchListCourse(param.id));

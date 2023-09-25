@@ -11,12 +11,11 @@ const { Search } = Input;
 
 export default function DashBoard() {
 
-  const arrCourse = useSelector((state :RootState)=>state.courseListReducer.data);
+  const arrCourse :any = useSelector((state :RootState)=>state.courseListReducer.data);
   const dispatch = useAppDispatch();
   
 const onSearch = (value :any) =>{
   console.log(value);
-
   dispatch(actFetchListCourse(value));
  };
 
@@ -35,6 +34,23 @@ const onSearch = (value :any) =>{
         let maKhoaHocA = a.maKhoaHoc.toLowerCase().trim();
         let maKhoaHocB = b.maKhoaHoc.toLowerCase().trim();
         if(maKhoaHocA > maKhoaHocB){
+          return 1;
+        }
+        return -1;
+      },
+      sortDirections: ['descend','ascend'],
+      width: '15%',
+
+    },
+    {
+      title: 'Danh Mục',
+      dataIndex: 'danhMucKhoaHoc',
+      // value:(text: any,object: any)=>{return <span>{text.tenDanhMucKhoaHoc}</span>},
+      render: (item :any)=>Object.values(item)[1],
+      sorter: (a : any, b: any) => {
+        let maDanhMucKhoahocA = a.danhMucKhoaHoc.maDanhMucKhoahoc.toLowerCase().trim();
+        let maDanhMucKhoahocB = b.danhMucKhoaHoc.maDanhMucKhoahoc.toLowerCase().trim();
+        if(maDanhMucKhoahocA > maDanhMucKhoahocB){
           return 1;
         }
         return -1;
