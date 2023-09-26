@@ -20,7 +20,7 @@ export const actFetchListUser =(taiKhoan='')=>{
                 dispatch(actUserFail(err));        
             })
         }else{
-            api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02`)
+            api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP03`)
             .then((res :Result<User>)=>{
                 if(res.status === 200){
                     dispatch(actUserSuccess(res.data));
