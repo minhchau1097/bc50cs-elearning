@@ -24,9 +24,12 @@ export const actDenyCourseRegisted = (value:ComfirmCourse) => {
             .then((result) => {
                 if (result.status === 200) {
                     dispatch(actCourseRegisted({taiKhoan:value.taiKhoan}))
+                    dispatch(actWaittingCourse({taiKhoan:value.taiKhoan}))
+                    toast.success(result.data);
                 }
             })
             .catch((error) => {
+                toast.error(error.response.data);
             })
 
     }
@@ -74,7 +77,6 @@ export const actAcceptWaittingCourse = (value:ComfirmCourse) => {
                 if (result.status === 200) {
                     dispatch(actWaittingCourse({taiKhoan:value.taiKhoan}))
                     dispatch(actCourseRegisted({taiKhoan:value.taiKhoan}))
-                    // alert(result.data)
                     toast.success(result.data);
 
                 }

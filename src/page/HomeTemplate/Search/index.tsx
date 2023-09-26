@@ -27,8 +27,10 @@ export default function Search() {
 };
 
   return (
+    <div style={{padding:'0 50px'}}>
     <div className='row mt-4 pb-5'>
          {renderItem()}
+    </div>
     </div>
   )
 }

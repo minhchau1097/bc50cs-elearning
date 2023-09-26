@@ -69,7 +69,10 @@ export default function AdminCourse() {
         maKhoaHoc: item.maKhoaHoc,
         hanhDong: <div className='flex gap-3 text-base'>
           <button className='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg' onClick={() => {
-
+            if (window.confirm('Bạn có chắc muốn xoá khoá học này ?')) {
+              let value = { maKhoaHoc: item.maKhoaHoc, taiKhoan: param.id || '' }
+              dispatch(actDenyCourseRegisted(value))
+            }
           }}>Xoá</button>
           <button className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg' onClick={() => {
             let value = { maKhoaHoc: item.maKhoaHoc, taiKhoan: param.id || '' }
@@ -153,7 +156,7 @@ export default function AdminCourse() {
   return (
     <div>
       <h3 className='text-[36px] font-semibold text-center'>Quản lý khoá học</h3>
-   
+
       <h5 className='text-[22px] font-semibold my-4'>Khoá học chờ xét duyệt</h5>
       {renderWaittingCourse()}
       <h5 className='text-[22px] font-semibold my-4'>Khoá học đã ghi danh</h5>
