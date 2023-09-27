@@ -31,7 +31,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                 dispatch(actLoginSuccess(result.data))
                 let user = result.data.maLoaiNguoiDung
                 console.log(user)
-                if (user === 'HV') {
+                if (user.trim() === 'HV') {
                     localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
                     if (window.history.state && window.history.state.idx > 0) {
                        navigate(-1)

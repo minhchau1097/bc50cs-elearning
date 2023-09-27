@@ -82,7 +82,7 @@ const onSearch = (value :any) =>{
         return -1;
       },
       sortDirections: ['descend','ascend'],
-      width: '25%',
+      width: '15%',
       
     },
 
@@ -94,7 +94,7 @@ const onSearch = (value :any) =>{
           {course.moTa.length > 50 ? course.moTa.substr(0,50) + '...' : course.moTa}
         </Fragment>
       },
-      width: '25%',
+      width: '15%',
     },
 
     { 
@@ -140,7 +140,7 @@ const onSearch = (value :any) =>{
       
       <Search
             className='mb-2'
-            placeholder="Tìm kiếm khóa học"
+            placeholder="Tìm kiếm theo tên khóa học"
             allowClear
             enterButton="Search"
             size="large"
