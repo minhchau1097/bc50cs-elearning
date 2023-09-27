@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/page/HomeTemplate/HomePage/CountUp/index.tsx',
+    './src/page/HomeTemplate/HomePage/Countup/index.tsx',
     './src/page/HomeTemplate/HomePage/Introduce/index.tsx',
     './src/page/HomeTemplate/HomePage/FeedBack/index.tsx',
     './src/page/HomeTemplate/HomePage/Welcome/index.tsx',
