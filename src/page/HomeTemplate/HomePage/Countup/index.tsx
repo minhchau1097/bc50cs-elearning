@@ -5,7 +5,7 @@ export default function Number() {
     return (
         <div className='count-up  py-10'>
             <div className='px-12'>
-                        <AnimationOnScroll animateOnce={true} animateIn='animate__bounceIn'>
+                <AnimationOnScroll animateOnce={true} animateIn='animate__bounceIn'>
                     <div className='grid md:grid-cols-4 sm:grid-cols-1 xs:grid-cols-1'>
                         <div className="content" >
                             <div>
@@ -56,7 +56,7 @@ export default function Number() {
                             <p>Giảng viên</p>
                         </div>
                     </div>
-                        </AnimationOnScroll>
+                </AnimationOnScroll>
 
 
             </div>
