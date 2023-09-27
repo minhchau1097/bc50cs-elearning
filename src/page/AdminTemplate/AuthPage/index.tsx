@@ -35,7 +35,6 @@ export default function AuthPage() {
         .required('Vui lòng không để trống').matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'Số điện thoại không hợp lệ'),
     }),
     onSubmit: (values) => {
-      console.log(values)
       dispatch(actSignUp(values, navigate))
     }
   });
@@ -49,7 +48,6 @@ export default function AuthPage() {
       matKhau: Yup.string().required('Vui lòng không để trống'),
     }),
     onSubmit: (values) => {
-      console.log(values)
       dispatch(actLogin(values, navigate))
     }
   });

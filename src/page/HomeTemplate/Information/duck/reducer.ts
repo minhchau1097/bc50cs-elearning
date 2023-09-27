@@ -68,12 +68,7 @@ const detailUserReducer = (state = myState, action: Action) => {
             state.state2.error = action.payload;
             return { ...state }
         }
-        case ActionTypes.CLEAR_NOTE:{
-            state.state2.loading =false;
-            state.state2.data = null;
-            state.state2.error = null;
-            return {...state};
-        }
+        
         default:
             return { ...state }
     }

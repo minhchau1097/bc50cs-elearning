@@ -17,7 +17,7 @@ export default function Events() {
   const [status, setStatus] = useState(true);
   useEffect(() => {
     const interval = setInterval(() => {
-      const then: any = dayjs('09 25 2023 ,06:00 am', 'MM DD YYYY, h:mm a');
+      const then: any = dayjs('09 29 2023 ,06:00 am', 'MM DD YYYY, h:mm a');
       const now: any = dayjs();
       const countdown = dayjs(then - now);
       const days = countdown.format('DD');
@@ -76,7 +76,7 @@ export default function Events() {
             </div>
           </div>
           <h4 className='text-[40px] py-[10px] font-semibold text-white uppercase'>Sự kiện công nghệ lớn nhất 2023</h4>
-          <h6 className='text-[18px] text-white font-medium'> 25 tháng 09, 2023, Việt Nam</h6>
+          <h6 className='text-[18px] text-white font-medium'> 29 tháng 09, 2023, Việt Nam</h6>
         </div>
       </div>
 
