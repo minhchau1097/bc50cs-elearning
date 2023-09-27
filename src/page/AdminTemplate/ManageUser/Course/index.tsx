@@ -14,7 +14,6 @@ export default function AdminCourse() {
 
 
   useEffect(() => {
-    console.log(param.id)
     dispatch(actWaittingCourse({ taiKhoan: param.id }))
     dispatch(actCourseRegisted({ taiKhoan: param.id }))
   }, [])

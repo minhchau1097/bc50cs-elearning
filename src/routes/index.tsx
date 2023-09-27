@@ -14,6 +14,7 @@ const routes = [
             { path: "danhmuckhoahoc/:id", element: lazy(() => import("../page/HomeTemplate/Course/Template")) },
             { path: "chitiet/:id", element: lazy(() => import("../page/HomeTemplate/Course/DetailProduct")) },
             { path: "timkiem/:id", element: lazy(() => import("../page/HomeTemplate/Search")) },
+            { path: "timkiem/notfound", element: lazy(() => import("../page/HomeTemplate/Search/SearchFail")) },
         ]
     },
 

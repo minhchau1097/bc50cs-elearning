@@ -11,12 +11,11 @@ const { Search } = Input;
 
 export default function DashBoard() {
 
-  const arrCourse = useSelector((state :RootState)=>state.courseListReducer.data);
+  const arrCourse :any = useSelector((state :RootState)=>state.courseListReducer.data);
   const dispatch = useAppDispatch();
   
 const onSearch = (value :any) =>{
   console.log(value);
-
   dispatch(actFetchListCourse(value));
  };
 
@@ -35,6 +34,23 @@ const onSearch = (value :any) =>{
         let maKhoaHocA = a.maKhoaHoc.toLowerCase().trim();
         let maKhoaHocB = b.maKhoaHoc.toLowerCase().trim();
         if(maKhoaHocA > maKhoaHocB){
+          return 1;
+        }
+        return -1;
+      },
+      sortDirections: ['descend','ascend'],
+      width: '15%',
+
+    },
+    {
+      title: 'Danh Mục',
+      dataIndex: 'danhMucKhoaHoc',
+      // value:(text: any,object: any)=>{return <span>{text.tenDanhMucKhoaHoc}</span>},
+      render: (item :any)=>Object.values(item)[1],
+      sorter: (a : any, b: any) => {
+        let maDanhMucKhoahocA = a.danhMucKhoaHoc.maDanhMucKhoahoc.toLowerCase().trim();
+        let maDanhMucKhoahocB = b.danhMucKhoaHoc.maDanhMucKhoahoc.toLowerCase().trim();
+        if(maDanhMucKhoahocA > maDanhMucKhoahocB){
           return 1;
         }
         return -1;
@@ -66,7 +82,7 @@ const onSearch = (value :any) =>{
         return -1;
       },
       sortDirections: ['descend','ascend'],
-      width: '25%',
+      width: '15%',
       
     },
 
@@ -78,7 +94,7 @@ const onSearch = (value :any) =>{
           {course.moTa.length > 50 ? course.moTa.substr(0,50) + '...' : course.moTa}
         </Fragment>
       },
-      width: '25%',
+      width: '15%',
     },
 
     { 
@@ -124,7 +140,7 @@ const onSearch = (value :any) =>{
       
       <Search
             className='mb-2'
-            placeholder="Tìm kiếm khóa học"
+            placeholder="Tìm kiếm theo tên khóa học"
             allowClear
             enterButton="Search"
             size="large"

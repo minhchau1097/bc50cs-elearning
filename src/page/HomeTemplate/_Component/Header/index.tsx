@@ -23,7 +23,7 @@ export default function Header() {
         <div className='about-user-overplay' style={{ display: `${status ? 'block' : 'none'}` }} onClick={() => {
           setStatus(false)
         }}> </div>
-        <div className='about-user ' style={{ transform: `${status ? 'translateX(0)' : 'translateX(100%)'}`, transition: 'all 0.5s', boxShadow: `${status ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px;' : 'none'}` }} >
+        <div className='about-user ' style={{ transform: `${status ? 'translateX(0)' : 'translateX(100%)'}`, transition: 'all 0.5s', }} >
           <a onClick={() => {
             setStatus(false)
 
@@ -84,7 +84,7 @@ export default function Header() {
           setMenu(false)
         }}>
         </div>
-        <div className="menu" style={{ transform: `${menu ? 'translateX(0)' : 'translateX(100%)'}`, transition: 'all 0.5s', boxShadow: `${menu ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px;' : 'none'}` }}>
+        <div className="menu" style={{ transform: `${menu ? 'translateX(0)' : 'translateX(100%)'}`, transition: 'all 0.5s', }}>
           {renderUser()}
           <form onSubmit={handleSubmit}> <input className='searchForm' type="text"
             placeholder="Tìm kiếm"

@@ -34,6 +34,26 @@ export const actFetchListCourse =(tenKhoaHoc='')=>{
     }
 };
 
+export const actFetchSearch =(tenKhoaHoc='', navigate :any)=>{
+    return (dispatch : any)=>{
+        dispatch(actListCourseRequest());
+        if(tenKhoaHoc.trim() !== ''){
+            api.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=GP01`)
+            .then((res :Result<Course>)=>{
+                if(res.status === 200){
+                    dispatch(actListCourseSuccess(res.data));
+                    dispatch(actFetchEditCourse(null));              
+                }             
+            })
+            .catch((err)=>{
+                dispatch(actListCourseFail(err));   
+                navigate("/timkiem/notfound",{ replace: false })     
+            })
+        }
+         
+    }
+};
+
 const actListCourseRequest =() :Action=>{
     return{
         type:COURSELIST_REQUEST,

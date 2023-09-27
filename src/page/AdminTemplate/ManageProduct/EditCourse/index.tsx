@@ -18,7 +18,7 @@ import { actFetchCategory } from 'page/HomeTemplate/Category/duck/action';
 
 export default function EditCourse() {
     const [componentSize, setComponentSize] = useState('default');
-    const onFormLayoutChange = ({ size}) => {
+    const onFormLayoutChange = ({ size } ) => {
       setComponentSize(size);
     };
     
@@ -30,13 +30,14 @@ export default function EditCourse() {
     const dataEdit:any = useSelector((state: RootState)=>state.productReducer.courseEdit);
     const dataDanhMucKhoaHoc :any = useSelector((state: RootState)=>state.categoryReducer.data);
     const userData = JSON.parse(localStorage.getItem('USER_ADMIN') || '');
+   console.log(dataEdit?.danhMucKhoaHoc.maDanhMucKhoahoc);
   
     useEffect(()=>{
       dispatch(actFetchCategory());
       dispatch(actFetchEditCourse(param.id));
     },[]);
   
-    const formik =useFormik({
+    const formik =  useFormik({
       enableReinitialize: true,
       initialValues: {
         maKhoaHoc: dataEdit?.maKhoaHoc,
@@ -46,7 +47,7 @@ export default function EditCourse() {
         luotXem : dataEdit?.luotXem,
         danhGia : 10,
         hinhAnh : dataEdit?.hinhAnh,
-        maNhom : 'GP03',
+        maNhom : 'GP01',
         ngayTao : dataEdit?.ngayTao,
         maDanhMucKhoaHoc : dataEdit?.danhMucKhoaHoc.maDanhMucKhoahoc,
         taiKhoanNguoiTao : userData.taiKhoan,
@@ -80,7 +81,7 @@ export default function EditCourse() {
       if(file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg'){
         let reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload =(event)=>{
+        reader.onload =(event :any)=>{
           setImgSrc(event.target.result);
         }
         formik.setFieldValue('hinhAnh', file.name);
@@ -98,9 +99,8 @@ export default function EditCourse() {
                 return { label: item.tenDanhMuc, value: item.maDanhMuc }
               })
 
-     
     };
-  
+
   return (
     <div className='container'>
 <Form
@@ -171,7 +171,7 @@ export default function EditCourse() {
 
             <Form.Item label="Danh Mục">
               
-              <Select defaultValue={dataEdit?.danhMucKhoaHoc.maDanhMucKhoahoc} onChange={handleChangeDanhMuc} 
+              <Select defaultValue={formik.values.maDanhMucKhoaHoc} onChange={handleChangeDanhMuc} 
               options={ selectDanhMuc()}
               />
             </Form.Item>

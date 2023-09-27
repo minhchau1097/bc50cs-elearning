@@ -12,7 +12,6 @@ export default function EditUser() {
    const navigate:NavigateFunction = useNavigate();
    const param = useParams();   
 
-
    useEffect(()=>{
         dispatch(actFetchEditUser(param.id));
    },[]);
