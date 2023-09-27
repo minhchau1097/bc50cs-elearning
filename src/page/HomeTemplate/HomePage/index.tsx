@@ -1,5 +1,5 @@
 
-import Number from "./Countup";
+import Number from "./CountUp";
 import CourseList from "./CourseList";
 import FeedBack from "./Feedback";
 import InfoCourse from "./InfoCourse";
