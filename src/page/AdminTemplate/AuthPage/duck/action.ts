@@ -29,8 +29,7 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
         api.post(`QuanLyNguoiDung/DangNhap`, value)
             .then((result: ResultAcount<DataAuth>) => {
                 dispatch(actLoginSuccess(result.data))
-                let user = result.data.maLoaiNguoiDung
-                console.log(user)
+                let user = result.data.maLoaiNguoiDung.trim();
                 if (user === 'HV') {
                     localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
                     if (window.history.state && window.history.state.idx > 0) {

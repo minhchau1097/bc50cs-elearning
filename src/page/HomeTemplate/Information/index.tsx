@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'store/type'
-import { actClearNote, actDetailUser } from './duck/action';
+import {  actDetailUser } from './duck/action';
 import { DetailCourse, NotificationType, RegisterCourse } from 'type/type';
 import { Tabs, ConfigProvider, Breadcrumb, Empty, Skeleton, notification } from 'antd';
 import type { TabsProps } from 'antd';
@@ -20,18 +20,14 @@ import Loader from 'Loader';
 export default function Information() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const [api, contextHolder] = notification.useNotification();
     const { state, state2 } = useAppSelector(state => state.detailUserReducer);
     useEffect(() => {
         if(localStorage.getItem('USER_CUSTOMER')){
-            let taiKhoan = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '').taiKhoan
             dispatch(actDetailUser())
         }else{
             navigate('/auth',{replace:false})
         }
-        return () => {
-            dispatch(actClearNote())
-        }
+      
     }, [])
   
     if (state.loading || state2.loading) return <Loader color={'#f6ba35'} value={50} />

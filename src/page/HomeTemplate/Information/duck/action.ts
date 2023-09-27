@@ -81,8 +81,3 @@ const actDeleteCourseFail = (error: string): Action => {
     }
 }
 
-export const actClearNote =():Action=>{
-    return{
-        type:ActionTypes.CLEAR_NOTE,
-    }
-}

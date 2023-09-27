@@ -17,13 +17,15 @@ interface Props {
 
 export default function SwiperItem({ item, value }: Props) {
     const dispatch = useAppDispatch();
-    const { state2 } = useAppSelector(state => state.detailUserReducer);
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const handleOk = () => {
-        dispatch(actDeleteCourse(value))
-        if (state2.data) {
+        setLoading(true)
+        setTimeout(async () => {
+            setLoading(false)
             setOpen(false)
-        }
+            dispatch(actDeleteCourse(value))
+        }, 1000)
     };
 
     const handleCancel = () => {
@@ -72,9 +74,10 @@ export default function SwiperItem({ item, value }: Props) {
                     </div>
                     <Popconfirm title="Thông báo"
                         description="Bạn có  muốn huỷ khoá học này ?"
+                        okType='danger'
                         open={open}
                         onConfirm={handleOk}
-                        okButtonProps={{ loading: state2.loading }}
+                        okButtonProps={{ loading }}
                         onCancel={handleCancel}>
 
                         <button className='bg-red-500 p-2 rounded-lg text-white hover:bg-red-600' onClick={() => setOpen(true)}>Huỷ đăng ký</button>
