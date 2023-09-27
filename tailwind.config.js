@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './src/page/HomeTemplate/HomePage/Countup/index.tsx',
     './src/page/HomeTemplate/HomePage/Introduce/index.tsx',
-    './src/page/HomeTemplate/HomePage/FeedBack/index.tsx',
+    './src/page/HomeTemplate/HomePage/Feedback/index.tsx',
     './src/page/HomeTemplate/HomePage/Welcome/index.tsx',
     './src/page/HomeTemplate/About/index.tsx',
     './src/page/HomeTemplate/Blog/index.tsx',
