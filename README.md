@@ -1,4 +1,4 @@
-# BC50_CapStone-Project_MASTERWORK
+# BC50_CapStone-Project_Elearning
 Team Size: 2
 <br>
 Team members:
