@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from "./_Component/Footer"
 import Header from "./_Component/Header"
 import BackToTop from './_Component/BackToTop';
 import { createTheme } from '@mui/material';
+import { actTryLogin } from 'page/AdminTemplate/AuthPage/duck/action';
+import { useAppDispatch } from 'store/type';
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xs: true;
@@ -28,8 +30,12 @@ export const theme = createTheme({
 });
 
 export default function HomeTemplate() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(()=>{
     window.scrollTo(0,0)
+    dispatch(actTryLogin(navigate))
+    console.log('home')
   },[])
   return (
     <div>

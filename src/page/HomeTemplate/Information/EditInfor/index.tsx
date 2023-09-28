@@ -18,7 +18,11 @@ export default function EditInfor() {
     const [status, setStatus] = useState<boolean>(false);
     const [api, contextHolder] = notification.useNotification();
     useEffect(() => {
-        dispatch(actDetailUser())
+        if(localStorage.getItem('USER_CUSTOMER')){
+            dispatch(actDetailUser())
+        }else{
+            navigate('/auth',{replace:false})
+        }
         return () => {
             dispatch(actClearNote())
         }

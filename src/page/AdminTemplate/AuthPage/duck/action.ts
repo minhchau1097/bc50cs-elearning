@@ -1,9 +1,11 @@
 
 import * as ActionTypes from "./constant";
-import {api} from "utils/api";
+import { api } from "utils/api";
 import { SignUp, Result, Action, Login, DataAuth, Error, ResultAcount } from "type/type";
 import { AppDispatch } from 'store';
 import { NavigateFunction } from "react-router";
+//phiên đăng nhập 60p
+const expire = 60 * 60 * 1000;
 
 export const actSignUp = (value: SignUp, navigate: NavigateFunction) => {
     return (dispatch: AppDispatch) => {
@@ -30,13 +32,12 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
             .then((result: ResultAcount<DataAuth>) => {
                 dispatch(actLoginSuccess(result.data))
                 let user = result.data.maLoaiNguoiDung
-                console.log(user)
                 if (user.trim() === 'HV') {
                     localStorage.setItem('USER_CUSTOMER', JSON.stringify(result.data))
                     if (window.history.state && window.history.state.idx > 0) {
-                       navigate(-1)
-                    } else {    
-                        navigate('/', { replace: false }); 
+                        navigate(-1)
+                    } else {
+                        navigate('/', { replace: false });
                     }
 
                 } else {
@@ -45,6 +46,11 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
                     navigate('/admin/sanpham', { replace: false });
 
                 }
+                let date = new Date().getTime()
+                //setLocalStorage expire 
+                localStorage.setItem('expire', `${date + expire}`)
+                // action timeout logout
+                dispatch(timeoutLogout(expire, navigate))
             })
             .catch((error: Error) => {
                 dispatch(actLoginFail(error.response?.data))
@@ -53,16 +59,47 @@ export const actLogin = (value: Login, navigate: NavigateFunction) => {
     }
 }
 
+const timeoutLogout = (expire: number, navigate: NavigateFunction) => {
+    return (dispatch: AppDispatch) => {
+        setTimeout(() => {
+            dispatch(actLogOut(navigate))
+        }, expire);
+    }
+}
+export const actTryLogin = (navigate: NavigateFunction) => {
+    return (dispatch: AppDispatch) => {
+        let user = null
+        if (localStorage.getItem('USER_ADMIN')) {
+            user = JSON.parse(localStorage.getItem('USER_ADMIN') || '')
+        } else if (localStorage.getItem('USER_CUSTOMER')) {
+            user = JSON.parse(localStorage.getItem('USER_CUSTOMER') || '')
+        }
 
+
+        if (!user) return;
+
+        const exp = Number(localStorage.getItem('expire'))
+        const date = new Date().getTime()
+        if (date > exp) {
+            dispatch(actLogOut(navigate))
+            return;
+        }
+        // neu thoi gian hien tai < thoi gian het han
+        dispatch(timeoutLogout(exp - date, navigate))
+        dispatch(actLoginSuccess(user))
+    }
+}
 export const actLogOut = (navigate: NavigateFunction) => {
-    if(localStorage.getItem('USER_CUSTOMER')){
+    alert('Phiên đăng nhập đã hết hạn')
+    if (localStorage.getItem('USER_CUSTOMER')) {
 
         localStorage.removeItem("USER_CUSTOMER");
         navigate("/", { replace: true });
-    }else if(localStorage.getItem('USER_ADMIN')){
+    } else if (localStorage.getItem('USER_ADMIN')) {
         localStorage.removeItem("USER_ADMIN");
         navigate("/auth", { replace: true });
     }
+    localStorage.removeItem("expire");
     return {
         type: ActionTypes.AUTH_LOGOUT,
     }

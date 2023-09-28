@@ -1,82 +1,59 @@
-import dayjs from 'dayjs';
+import React, { useState, useEffect } from 'react'
 import { Grid, ThemeProvider } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import 'dayjs/locale/zh-cn'
 import { theme } from '..';
-import { Date } from 'type/type';
 import Loader from 'Loader';
-dayjs.locale('zh-vn')
+import Countdown, { CountdownRenderProps } from 'react-countdown';
 export default function Events() {
-  const [state, setState] = useState<Date>({
-    days: undefined,
-    hours: undefined,
-    minutes: undefined,
-    seconds: undefined
-
-  });
   const [status, setStatus] = useState(true);
   useEffect(() => {
-    const interval = setInterval(() => {
-      const then: any = dayjs('09 29 2023 ,06:00 am', 'MM DD YYYY, h:mm a');
-      const now: any = dayjs();
-      const countdown = dayjs(then - now);
-      const days = countdown.format('DD');
-      const hours = countdown.format('HH');
-      const minutes = countdown.format('mm');
-      const seconds = countdown.format('ss');
-      setState({ days, hours, minutes, seconds })
-
-    }, 1000)
-
     setTimeout(() => {
       setStatus(false)
     }, 1000)
-    return () => {
-      if (interval) {
-        clearInterval(interval)
-      }
-    }
   }, [])
   if (status) return <Loader color={'#f6ba35'} value={50} />
-  const { days, hours, minutes, seconds } = state;
+  // Renderer callback with condition
+  const renderer = ({ formatted: { days, hours, minutes, seconds }, completed }: CountdownRenderProps) => {
+
+    // Render a countdown
+    return <>
+      <div className='flex flex-col mr-5 '>
+        <span className='text-[#ffbe0b] text-[60px] font-semibold'>{days}</span>
+        <span className='text-[20px] text-white'>NGÀY</span>
+      </div>
+      <div className='flex flex-col mr-5 '>
+        <span className='text-[#fb5607] text-[60px] font-semibold'>{hours}</span>
+        <span className='text-[20px] text-white'>GIỜ</span>
+      </div>
+      <div className='flex flex-col mr-5 '>
+        <span className='text-[#ff006e] text-[60px] font-semibold'>{minutes}</span>
+        <span className='text-[20px] text-white'>PHÚT</span>
+      </div>
+      <div className='flex flex-col '>
+        <span className='text-[#8338ec] text-[60px] font-semibold'>{seconds}</span>
+        <span className='text-[20px] text-white'>GIÂY</span>
+      </div>
+    </>;
+
+  };
 
   return (
     <>
+
       <div className='relative bg-event grayscale-[50%]'>
         <div className='py-[200px]  px-[50px] relative z-10'>
           <div className='bg-event1 absolute top-0 left-0 h-full w-full -z-10 '></div>
           <div className='flex'>
-            <div className='flex flex-col mr-5 '>
+            <Countdown
+              zeroPadTime={2}
+              zeroPadDays={2}
+              date={'2023-09-29T00:00:00'}
+              renderer={renderer}
+              autoStart
 
-              {days && (
-                <span className='text-[#ffbe0b] text-[60px] font-semibold'>{days}</span>
-              )}
-              <span className='text-[20px] text-white'>NGÀY</span>
-            </div>
-            <div className='flex flex-col mr-5 '>
-
-              {hours && (
-                <span className='text-[#fb5607] text-[60px] font-semibold'>{hours}</span>
-              )}
-              <span className='text-[20px] text-white'>GIỜ</span>
-            </div>
-            <div className='flex flex-col mr-5 '>
-
-              {minutes && (
-                <span className='text-[#ff006e] text-[60px] font-semibold'>{minutes}</span>
-              )}
-              <span className='text-[20px] text-white'>PHÚT</span>
-            </div>
-            <div className='flex flex-col '>
-
-              {seconds && (
-                <span className='text-[#8338ec] text-[60px] font-semibold'>{seconds}</span>
-              )}
-              <span className='text-[20px] text-white'>GIÂY</span>
-            </div>
+            />
           </div>
           <h4 className='text-[40px] py-[10px] font-semibold text-white uppercase'>Sự kiện công nghệ lớn nhất 2023</h4>
-          <h6 className='text-[18px] text-white font-medium'> 29 tháng 09, 2023, Việt Nam</h6>
+          <h6 className='text-[18px] text-white font-medium'> 28 tháng 09, 2023, Việt Nam</h6>
         </div>
       </div>
 
