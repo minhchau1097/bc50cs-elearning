@@ -47,7 +47,7 @@ export default function Blog() {
                       </div>
                       <div>
 
-                        <Typography variant="body2" className='!my-[10px] '>
+                        <Typography variant="body2" className='!my-[10px] line-clamp-2'>
                           Có lẽ cũng rất lâu rồi mà tôi chưa đụng đến thứ được gọi là "timetable". Hay dân dã hơn thì người ta hay gọi là "Lịch thường nhật",...
                         </Typography>
                       </div>
